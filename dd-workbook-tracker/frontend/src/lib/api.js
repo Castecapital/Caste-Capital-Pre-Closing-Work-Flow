@@ -36,5 +36,8 @@ export const api = {
     request(`/deals/${dealId}/deal-config`, { method: "PUT", body: JSON.stringify(patch) }),
   getDealTeam: (dealId = DEAL_ID, q) =>
     request(`/deals/${dealId}/deal-team${q ? `?q=${encodeURIComponent(q)}` : ""}`),
+  getHapConfig: (dealId = DEAL_ID) => request(`/deals/${dealId}/hap-config`),
+  updateHapConfig: (patch, dealId = DEAL_ID) =>
+    request(`/deals/${dealId}/hap-config`, { method: "PUT", body: JSON.stringify(patch) }),
   getMeta: () => request("/meta"),
 };

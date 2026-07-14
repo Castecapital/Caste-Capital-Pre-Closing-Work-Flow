@@ -9,13 +9,14 @@ for storage (no database).
 
 ## Status
 
-**Steps 1-3 are built and working end-to-end**: shared workflow engine, Deal
-Team directory, Master DD Tracker, and the Internal/External DD Request
-Lists (with cross-tab link suggestions). The UI has an Apple-style visual
+**Steps 1-4 are built and working end-to-end**: shared workflow engine, Deal
+Team directory, Master DD Tracker, Internal/External DD Request Lists (with
+cross-tab link suggestions), and the HAP Assignment Checklist (grouped by
+section, with a HAP General Info panel). The UI has an Apple-style visual
 design (SF-like type, muted neutrals with a single blue accent, translucent
-sticky nav, rounded cards). Steps 4-10 (dedicated dependency/critical-path
-view, HAP Assignment Checklist, Lender Checklist, Cost Schedule, dashboard,
-deal cloning, workflow automation, reporting) are not yet built.
+sticky two-row nav, rounded cards). Steps 5-10 (dedicated dependency/
+critical-path view, Lender Checklist, Cost Schedule, dashboard, deal
+cloning, workflow automation, reporting) are not yet built.
 
 Every item (any tab) has a detail page at `/items/:itemId` — click any table
 row to get there. It shows all fields, comments (with add-comment), full
@@ -54,10 +55,11 @@ npm run import-workbook
 # or: node scripts/import-workbook.js <path-to-xlsx> <deal-id>
 ```
 
-The **Deal Team**, **DD Full Checklist**, **Internal - DD Request List**, and
-**External - DD List** tabs are imported so far. The script prints anomalies
-it hit along the way (data-entry issues in the source file, fields it
-couldn't confidently map) rather than silently guessing at them.
+The **Deal Team**, **DD Full Checklist**, **Internal - DD Request List**,
+**External - DD List**, and **HAP Assignment Checklist** tabs are imported so
+far. The script prints anomalies it hit along the way (data-entry issues in
+the source file, fields it couldn't confidently map) rather than silently
+guessing at them.
 
 ### Import assumptions worth knowing about
 
@@ -93,6 +95,20 @@ couldn't confidently map) rather than silently guessing at them.
 - **`department`** on both DD Request List tabs is carried down from
   section-header rows where the source left the per-row Department column
   blank (5 items on Internal, 3 on External).
+- **HAP General Info** (name/address/contract/new owner/seller/FHA/PBCA/HUD
+  AE) imports entirely blank — the source workbook's header block for these
+  fields is an unfilled template, not missing data. Fill in via HAP Info.
+- **`proposed_owner_info`** on every HAP item is the section's topic label
+  carried down from its header row ("Proposed Owner Information",
+  "Management Company Information", "Project Finances and Affordability",
+  "Property Information") - the field name is literal only for Section 1;
+  for the other three sections it's "what this section is about," not
+  actually about the proposed owner.
+- All 51 HAP items import with **`status: "Open"`** - the source Status
+  column is entirely blank (never filled in for this checklist).
+- One source quirk: HAP item **hap-4l**'s letter cell reads `"l ."` (stray
+  space before the period). The `item_id` strips it correctly; the raw
+  `sub_item_letter` field keeps the source text as-is.
 
 ## Data layout
 
@@ -107,6 +123,7 @@ backend/data/
       items.json               # all workflow items, tagged by source_tab
       deal_config.json         # deal_name + key dates, all nullable
       deal_team.json           # role/organization/name roster
+      hap_config.json          # HAP General Info, all nullable
 ```
 
 ## API
@@ -120,3 +137,4 @@ backend/data/
 - `POST /api/deals/:dealId/items/:itemId/link` — `{ target_item_id }`, bidirectional, only fires on explicit user confirmation
 - `GET /api/deals/:dealId/deal-config`, `PUT ...`
 - `GET /api/deals/:dealId/deal-team?q=...`, `PUT ...`
+- `GET /api/deals/:dealId/hap-config`, `PUT ...`

@@ -69,6 +69,34 @@ export function emptyDealConfig() {
   return config;
 }
 
+export const HAP_CONFIG_FIELDS = [
+  "name",
+  "address",
+  "contract",
+  "new_owner",
+  "seller",
+  "fha_number",
+  "pbca",
+  "hud_ae",
+];
+
+export function emptyHapConfig() {
+  const config = {};
+  for (const field of HAP_CONFIG_FIELDS) config[field] = null;
+  return config;
+}
+
+// HAP Assignment Checklist section topics - carried down from the source's
+// section header rows into every lettered sub-item's proposed_owner_info
+// field (named for Section 1, but the field is really "what this section
+// pertains to," which varies per section - see import script notes).
+export const HAP_SECTION_TOPICS = [
+  "Proposed Owner Information",
+  "Management Company Information",
+  "Project Finances and Affordability",
+  "Property Information",
+];
+
 export function today() {
   return new Date().toISOString().slice(0, 10);
 }
@@ -163,6 +191,22 @@ export function validateDdRequestListItem(item, { partial = false } = {}) {
   if (!partial && item.department === undefined && item.status !== "Deleted") {
     errors.push("department is required");
   }
+
+  return errors;
+}
+
+export function validateHapItem(item, { partial = false } = {}) {
+  const errors = validateItem(item, { partial });
+  const required = (field) => {
+    if (!partial && (item[field] === undefined || item[field] === null || item[field] === "")) {
+      errors.push(`${field} is required`);
+    }
+  };
+
+  required("section_number");
+  required("sub_item_letter");
+  required("item_description");
+  required("proposed_owner_info");
 
   return errors;
 }

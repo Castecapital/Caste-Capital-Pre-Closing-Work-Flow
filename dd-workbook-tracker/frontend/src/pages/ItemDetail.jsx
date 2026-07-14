@@ -11,6 +11,10 @@ const OPPOSITE_TAB = {
 
 const STATUSES = ["Open", "Closed", "Blocked", "At Risk", "Deleted"];
 
+function itemTitle(item) {
+  return item.action_item ?? item.document ?? item.item_description ?? item.item_id;
+}
+
 export default function ItemDetail() {
   const { itemId } = useParams();
   const [item, setItem] = useState(null);
@@ -94,13 +98,14 @@ export default function ItemDetail() {
 
       <div className="flex items-start justify-between gap-4 mt-3 mb-1">
         <h1 className="text-[26px] font-semibold tracking-tight text-[#1d1d1f] dark:text-white">
-          {item.action_item ?? item.document}
+          {itemTitle(item)}
         </h1>
       </div>
       <p className="text-[13px] text-[#86868b] mb-6">
         {item.item_id} · {item.source_tab}
         {item.category && ` · ${item.category}`}
         {item.department && ` · ${item.department}`}
+        {item.section_number && ` · ${item.section_number}`}
       </p>
 
       {unclosedLinks.length > 0 && (
@@ -112,7 +117,7 @@ export default function ItemDetail() {
             {unclosedLinks.map((l) => (
               <li key={l.item_id}>
                 <Link to={`/items/${l.item_id}`} className="hover:underline">
-                  {l.item_id}: {l.action_item ?? l.document} ({l.status})
+                  {l.item_id}: {itemTitle(l)} ({l.status})
                 </Link>
               </li>
             ))}
@@ -140,6 +145,8 @@ export default function ItemDetail() {
         <Row label="Responsible Party">{item.responsible_party}</Row>
         {item.external_party && <Row label="External Party">{item.external_party}</Row>}
         {item.div_folder && <Row label="DIV Folder">{item.div_folder}</Row>}
+        {item.proposed_owner_info && <Row label="Section Topic">{item.proposed_owner_info}</Row>}
+        {item.sub_item_letter && <Row label="Sub-Item">{item.sub_item_letter}</Row>}
         {item.outside_date_raw !== undefined && (
           <Row label="Outside Date">{item.outside_date ?? item.outside_date_raw ?? "—"}</Row>
         )}
@@ -191,7 +198,7 @@ export default function ItemDetail() {
                 className="flex items-center justify-between gap-3 rounded-xl bg-[#f5f5f7] dark:bg-white/5 px-4 py-2.5 hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
               >
                 <span className="text-[13px] font-medium text-[#1d1d1f] dark:text-white truncate">
-                  {l.item_id}: {l.action_item ?? l.document}
+                  {l.item_id}: {itemTitle(l)}
                 </span>
                 <StatusBadge status={l.status} />
               </Link>

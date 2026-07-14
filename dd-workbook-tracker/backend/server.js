@@ -9,13 +9,18 @@ import {
   writeDealConfig,
   readDealTeam,
   writeDealTeam,
+  readHapConfig,
+  writeHapConfig,
 } from "./store.js";
 import {
   validateItem,
   validateDdFullChecklistItem,
   validateDdRequestListItem,
+  validateHapItem,
   emptyDealConfig,
+  emptyHapConfig,
   DEAL_CONFIG_FIELDS,
+  HAP_CONFIG_FIELDS,
   SOURCE_TABS,
   STATUSES,
   CATEGORIES,
@@ -41,6 +46,7 @@ async function requireDeal(req, res, next) {
 function validatorFor(sourceTab) {
   if (sourceTab === "DD Full Checklist") return validateDdFullChecklistItem;
   if (sourceTab === "Internal DD Request List" || sourceTab === "External DD List") return validateDdRequestListItem;
+  if (sourceTab === "HAP Assignment Checklist") return validateHapItem;
   return validateItem;
 }
 
@@ -195,6 +201,21 @@ app.put("/api/deals/:dealId/deal-config", requireDeal, async (req, res) => {
     if (field in req.body) updated[field] = req.body[field] || null;
   }
   await writeDealConfig(req.params.dealId, updated);
+  res.json(updated);
+});
+
+app.get("/api/deals/:dealId/hap-config", requireDeal, async (req, res) => {
+  const config = await readHapConfig(req.params.dealId);
+  res.json(config ?? emptyHapConfig());
+});
+
+app.put("/api/deals/:dealId/hap-config", requireDeal, async (req, res) => {
+  const existing = (await readHapConfig(req.params.dealId)) ?? emptyHapConfig();
+  const updated = { ...existing };
+  for (const field of HAP_CONFIG_FIELDS) {
+    if (field in req.body) updated[field] = req.body[field] || null;
+  }
+  await writeHapConfig(req.params.dealId, updated);
   res.json(updated);
 });
 

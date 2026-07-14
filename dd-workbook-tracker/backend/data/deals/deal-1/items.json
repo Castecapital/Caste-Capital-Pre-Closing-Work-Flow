@@ -6062,5 +6062,1066 @@
     "div_folder": null,
     "document": "Vendor Bills - 3 prior years",
     "department": "Accounting"
+  },
+  {
+    "item_id": "hap-1a",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "John Daniels",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Comments",
+        "text": "Borrower Name:",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 1",
+    "sub_item_letter": "a.",
+    "item_description": "Name and signature block for Proposed Owner entity",
+    "proposed_owner_info": "Proposed Owner Information"
+  },
+  {
+    "item_id": "hap-1b",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste - Nixon",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 1",
+    "sub_item_letter": "b.",
+    "item_description": "Organizational Chart for Proposed Owner entity (with percentage interests and roles for all entities and individuals)",
+    "proposed_owner_info": "Proposed Owner Information"
+  },
+  {
+    "item_id": "hap-1c",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "John Daniels",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "Will this be both CC and MG?",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 1",
+    "sub_item_letter": "c.",
+    "item_description": "Resume for Proposed Owner or sponsor (include any affordable experience)",
+    "proposed_owner_info": "Proposed Owner Information"
+  },
+  {
+    "item_id": "hap-1d",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "John Daniels",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Comments",
+        "text": "State of Formation:",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 1",
+    "sub_item_letter": "d.",
+    "item_description": "Articles of Organization/Certificate of Formation/Certificate of Limited Partnership",
+    "proposed_owner_info": "Proposed Owner Information"
+  },
+  {
+    "item_id": "hap-1e",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "John Daniels",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Comments",
+        "text": "Date of Operating Agreement:",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 1",
+    "sub_item_letter": "e.",
+    "item_description": "Operating Agreement/Limited Partnership Agreement",
+    "proposed_owner_info": "Proposed Owner Information"
+  },
+  {
+    "item_id": "hap-1f",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "John Daniels",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Comments",
+        "text": "APPS Submission Number:\nConfirm entities are registered in Business Partner Registration if paper 2530 is submitted in lieu of APPS submission.",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 1",
+    "sub_item_letter": "f.",
+    "item_description": "2530 Previous Participation submission confirmation in APPS",
+    "proposed_owner_info": "Proposed Owner Information"
+  },
+  {
+    "item_id": "hap-1g",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "John Daniels",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "Will this be both CC and MG? Trace control",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 1",
+    "sub_item_letter": "g.",
+    "item_description": "Real Estate Owned (REO) Schedule",
+    "proposed_owner_info": "Proposed Owner Information"
+  },
+  {
+    "item_id": "hap-1h",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "John Daniels",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "Will this be both CC and MG? Trace control",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 1",
+    "sub_item_letter": "h.",
+    "item_description": "Purchaser's Financial Statement (HUD Form 92417)",
+    "proposed_owner_info": "Proposed Owner Information"
+  },
+  {
+    "item_id": "hap-1i",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "John Daniels",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "Will this be both CC and MG? Trace control",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Comments",
+        "text": "Unique Entity ID:",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 1",
+    "sub_item_letter": "i.",
+    "item_description": "Unique Entity ID Registration Confirmation",
+    "proposed_owner_info": "Proposed Owner Information"
+  },
+  {
+    "item_id": "hap-1j",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "John Daniels",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "Will this be both CC and MG? Trace control",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Comments",
+        "text": "EIN Number:",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 1",
+    "sub_item_letter": "j.",
+    "item_description": "EIN Number for Proposed Owner entity",
+    "proposed_owner_info": "Proposed Owner Information"
+  },
+  {
+    "item_id": "hap-1k",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "John Daniels",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "Will this be both CC and MG? Trace control",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 1",
+    "sub_item_letter": "k.",
+    "item_description": "Confirmation of Fiscal Year End Date",
+    "proposed_owner_info": "Proposed Owner Information"
+  },
+  {
+    "item_id": "hap-1l",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "John Daniels",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "Will this be both CC and MG? Trace control",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 1",
+    "sub_item_letter": "l.",
+    "item_description": "Certificate of Good Standing",
+    "proposed_owner_info": "Proposed Owner Information"
+  },
+  {
+    "item_id": "hap-1m",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "John Daniels",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "Will this be both CC and MG? Trace control",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 1",
+    "sub_item_letter": "m.",
+    "item_description": "Authorizing Resolution",
+    "proposed_owner_info": "Proposed Owner Information"
+  },
+  {
+    "item_id": "hap-1n",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "John Daniels",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "Will this be both CC and MG? Trace control",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 1",
+    "sub_item_letter": "n.",
+    "item_description": "Credit Report for sponsor",
+    "proposed_owner_info": "Proposed Owner Information"
+  },
+  {
+    "item_id": "hap-2a",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "From UHM",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Comments",
+        "text": "Name of Management Agent:",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 2",
+    "sub_item_letter": "a.",
+    "item_description": "Resume of Management Company",
+    "proposed_owner_info": "Management Company Information"
+  },
+  {
+    "item_id": "hap-2b",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "N/A",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "N/A with UHM staying in place?",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 2",
+    "sub_item_letter": "b.",
+    "item_description": "Management Agent Certification (HUD Form 9839-B)",
+    "proposed_owner_info": "Management Company Information"
+  },
+  {
+    "item_id": "hap-2c",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "From UHM",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 2",
+    "sub_item_letter": "c.",
+    "item_description": "Management Entity Profile (HUD Form 9832)",
+    "proposed_owner_info": "Management Company Information"
+  },
+  {
+    "item_id": "hap-2d",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "From UHM",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Comments",
+        "text": "APPS Submission Number:\nConfirm entities are registered in Business Partner Registration if paper 2530 is submitted in lieu of APPS submission.",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 2",
+    "sub_item_letter": "d.",
+    "item_description": "2530 Previous Participation submission confirmation on APPS",
+    "proposed_owner_info": "Management Company Information"
+  },
+  {
+    "item_id": "hap-2e",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "From UHM",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 2",
+    "sub_item_letter": "e.",
+    "item_description": "Proposed Tenant Selection Plan",
+    "proposed_owner_info": "Management Company Information"
+  },
+  {
+    "item_id": "hap-2f",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "From UHM",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Comments",
+        "text": "Need confirmation that the agent will use the HUD form model lease (form HUD-90105a)",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 2",
+    "sub_item_letter": "f.",
+    "item_description": "Proposed Tenant Lease",
+    "proposed_owner_info": "Management Company Information"
+  },
+  {
+    "item_id": "hap-2g",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "Can we use current or needs to be assigned?",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 2",
+    "sub_item_letter": "g.",
+    "item_description": "Management Agreement with HUD required provisions",
+    "proposed_owner_info": "Management Company Information"
+  },
+  {
+    "item_id": "hap-3a",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "Will likely be TBD prior to submission. Ok to follow",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 3",
+    "sub_item_letter": "a.",
+    "item_description": "Description of financing (LIHTC? Conventional? FHA? Tax-exempt bonds?)",
+    "proposed_owner_info": "Project Finances and Affordability"
+  },
+  {
+    "item_id": "hap-3b",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 3",
+    "sub_item_letter": "b.",
+    "item_description": "Pro Forma Net Operating Income",
+    "proposed_owner_info": "Project Finances and Affordability"
+  },
+  {
+    "item_id": "hap-3c",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 3",
+    "sub_item_letter": "c.",
+    "item_description": "Pro Forma Sources and Uses",
+    "proposed_owner_info": "Project Finances and Affordability"
+  },
+  {
+    "item_id": "hap-3d",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Comments",
+        "text": "Closing Date:",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 3",
+    "sub_item_letter": "d.",
+    "item_description": "Estimated closing date",
+    "proposed_owner_info": "Project Finances and Affordability"
+  },
+  {
+    "item_id": "hap-3e",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Comments",
+        "text": "Executed Date:",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 3",
+    "sub_item_letter": "e.",
+    "item_description": "Purchase and Sale Agreement and any amendments or assignments",
+    "proposed_owner_info": "Project Finances and Affordability"
+  },
+  {
+    "item_id": "hap-3f",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Comments",
+        "text": "Lender Name:",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 3",
+    "sub_item_letter": "f.",
+    "item_description": "Name and address of Lender",
+    "proposed_owner_info": "Project Finances and Affordability"
+  },
+  {
+    "item_id": "hap-3g",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Comments",
+        "text": "Title Name:",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 3",
+    "sub_item_letter": "g.",
+    "item_description": "Name and address of Title Company/Escrow Agent",
+    "proposed_owner_info": "Project Finances and Affordability"
+  },
+  {
+    "item_id": "hap-3h",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 3",
+    "sub_item_letter": "h.",
+    "item_description": "Proposed Deed",
+    "proposed_owner_info": "Project Finances and Affordability"
+  },
+  {
+    "item_id": "hap-3i",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 3",
+    "sub_item_letter": "i.",
+    "item_description": "Balance Sheet",
+    "proposed_owner_info": "Project Finances and Affordability"
+  },
+  {
+    "item_id": "hap-3j",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 3",
+    "sub_item_letter": "j.",
+    "item_description": "Lender's Reserve Requirement (both initial deposit and PUPY amounts)",
+    "proposed_owner_info": "Project Finances and Affordability"
+  },
+  {
+    "item_id": "hap-3k",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 3",
+    "sub_item_letter": "k.",
+    "item_description": "Draft Financing Documents",
+    "proposed_owner_info": "Project Finances and Affordability"
+  },
+  {
+    "item_id": "hap-3l",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 3",
+    "sub_item_letter": "l.",
+    "item_description": "Lender Term Sheet or Financing Commitment",
+    "proposed_owner_info": "Project Finances and Affordability"
+  },
+  {
+    "item_id": "hap-3m",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "N/A",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 3",
+    "sub_item_letter": "m.",
+    "item_description": "LIHTC Documents (if applcable - includes LIHTC lease rider, draft tax credit use agreement, etc.)",
+    "proposed_owner_info": "Project Finances and Affordability"
+  },
+  {
+    "item_id": "hap-3n",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste - Nixon",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "Is this a pre-consent agreement before executing the assignment? Or consent from lender?",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Comments",
+        "text": "Need confirmation of Fannie, Freddie, or Conventional Financing along with lender name and address",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 3",
+    "sub_item_letter": "n.",
+    "item_description": "Consent to Assignment of HAP Contract",
+    "proposed_owner_info": "Project Finances and Affordability"
+  },
+  {
+    "item_id": "hap-4a",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 4",
+    "sub_item_letter": "a.",
+    "item_description": "Unit count and configuration",
+    "proposed_owner_info": "Property Information"
+  },
+  {
+    "item_id": "hap-4b",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Comments",
+        "text": "Limitation on Distributions – Yes/No\nReserve for Replacement Requirement – Yes/No",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 4",
+    "sub_item_letter": "b.",
+    "item_description": "HAP Original Contract",
+    "proposed_owner_info": "Property Information"
+  },
+  {
+    "item_id": "hap-4c",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 4",
+    "sub_item_letter": "c.",
+    "item_description": "Copies of prior HAP Assignments, if applicable",
+    "proposed_owner_info": "Property Information"
+  },
+  {
+    "item_id": "hap-4d",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Comments",
+        "text": "Effective Date:",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 4",
+    "sub_item_letter": "d.",
+    "item_description": "HAP Renewal Contract",
+    "proposed_owner_info": "Property Information"
+  },
+  {
+    "item_id": "hap-4e",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Comments",
+        "text": "Effective Date:",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 4",
+    "sub_item_letter": "e.",
+    "item_description": "Current Rent Schedule",
+    "proposed_owner_info": "Property Information"
+  },
+  {
+    "item_id": "hap-4f",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 4",
+    "sub_item_letter": "f.",
+    "item_description": "Utility Allowance (if tenant-paid, date of most recent UA baseline)",
+    "proposed_owner_info": "Property Information"
+  },
+  {
+    "item_id": "hap-4g",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 4",
+    "sub_item_letter": "g.",
+    "item_description": "Scope of Work",
+    "proposed_owner_info": "Property Information"
+  },
+  {
+    "item_id": "hap-4h",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "N/A",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 4",
+    "sub_item_letter": "h.",
+    "item_description": "Relocation Plan, if applicable",
+    "proposed_owner_info": "Property Information"
+  },
+  {
+    "item_id": "hap-4i",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "From what time period? CNA from 2021, CC will likely do PCR and/or CNA depending on requirements. Needs to be recent and need CNA with Vendor familiar with HUD",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Comments",
+        "text": "Need copy of final report and automated email from HUD confirming the reviewer of the submitted report via HUD’s online eTool",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 4",
+    "sub_item_letter": "i.",
+    "item_description": "Property Condition Report (PCR) or Project Capital Needs Assessment (PCNA) via the eTool",
+    "proposed_owner_info": "Property Information"
+  },
+  {
+    "item_id": "hap-4j",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Comments",
+        "text": "REAC Score and Date:",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 4",
+    "sub_item_letter": "j.",
+    "item_description": "Latest REAC Inspection Report",
+    "proposed_owner_info": "Property Information"
+  },
+  {
+    "item_id": "hap-4k",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Comments",
+        "text": "MOR Result and Date:",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 4",
+    "sub_item_letter": "k.",
+    "item_description": "Latest MOR Inspection Report",
+    "proposed_owner_info": "Property Information"
+  },
+  {
+    "item_id": "hap-4l",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "Have 2023 and 2024, not sure timing of 2025. 2023 and 2024 okay",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 4",
+    "sub_item_letter": "l .",
+    "item_description": "Financial Audits for two previous years",
+    "proposed_owner_info": "Property Information"
+  },
+  {
+    "item_id": "hap-4m",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 4",
+    "sub_item_letter": "m.",
+    "item_description": "Interim Financial Statements for the Project (i.e. trailing 12-month)",
+    "proposed_owner_info": "Property Information"
+  },
+  {
+    "item_id": "hap-4n",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 4",
+    "sub_item_letter": "n.",
+    "item_description": "Title Commitment",
+    "proposed_owner_info": "Property Information"
+  },
+  {
+    "item_id": "hap-4o",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "Confirm if applicable",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 4",
+    "sub_item_letter": "o.",
+    "item_description": "HUD Use Agreements, if applicable",
+    "proposed_owner_info": "Property Information"
+  },
+  {
+    "item_id": "hap-4p",
+    "source_tab": "HAP Assignment Checklist",
+    "status": "Open",
+    "responsible_party": "Caste",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC/MG Notes",
+        "text": "Confirm if applicable",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "section_number": "Section 4",
+    "sub_item_letter": "p.",
+    "item_description": "Service Coordinator Grant, if applicable",
+    "proposed_owner_info": "Property Information"
   }
 ]

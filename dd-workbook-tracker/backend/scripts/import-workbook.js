@@ -1,18 +1,18 @@
 // One-time import: RAP UP DD Work Log (Internal).xlsx -> deal-1 seed data.
 //
-// Handles the "Deal Team", "DD Full Checklist", "Internal - DD Request List"
-// and "External - DD List" tabs (Steps 1-3 of the workbook build). The
-// remaining tabs (HAP Assignment Checklist, Lender Checklist, Cost Schedule)
-// are structurally irregular in their own ways and are imported in later
-// steps once the core engine is proven against these four.
+// Handles the "Deal Team", "DD Full Checklist", "Internal - DD Request List",
+// "External - DD List", and "HAP Assignment Checklist" tabs (Steps 1-4 of the
+// workbook build). The remaining tabs (Lender Checklist, Cost Schedule) are
+// structurally irregular in their own ways and are imported in later steps
+// once the core engine is proven against these five.
 //
 // Usage: node scripts/import-workbook.js [path-to-xlsx] [deal-id]
 
 import ExcelJS from "exceljs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { writeItems, writeDealConfig, writeDealTeam, readItems } from "../store.js";
-import { emptyDealConfig, today } from "../schema.js";
+import { writeItems, writeDealConfig, writeDealTeam, writeHapConfig, readItems } from "../store.js";
+import { emptyDealConfig, emptyHapConfig, today } from "../schema.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -286,6 +286,92 @@ async function importDdRequestList(workbook, { sheetName, sourceTab, idPrefix, l
   return { items, anomalies };
 }
 
+// "HAP Assignment Checklist" tab: a general-info header (rows 3-7, all blank
+// in this workbook - it's an unfilled template) followed by 4 numbered
+// sections, each with lettered sub-items (a., b., c. ...). Section rows:
+// column A/B (merged) = "Section N", column C = the section's topic label.
+// Sub-item rows: B = letter, C = item description, D = Responsible Party,
+// E = CC/MG Notes, F = Status, G = a fill-in-the-blank prompt (folded into
+// comments as "Comments", same treatment as the other free-text columns).
+async function importHapAssignmentChecklist(workbook) {
+  const ws = workbook.getWorksheet("HAP Assignment Checklist");
+  const importDate = today();
+  const items = [];
+  const anomalies = [];
+  let currentSection = null;
+  let currentTopic = null;
+
+  for (let r = 8; r <= 66; r++) {
+    const row = ws.getRow(r);
+    const sectionLabel = cellText(row.getCell(1)); // A (merged with B on header rows)
+    const letter = cellText(row.getCell(2)); // B
+    const description = cellText(row.getCell(3)); // C
+
+    if (sectionLabel === null && letter === null && description === null) continue;
+
+    // Section header row: A holds "Section N", C holds the topic label.
+    if (sectionLabel) {
+      currentSection = String(sectionLabel).trim();
+      currentTopic = description ? String(description).trim() : null;
+      continue;
+    }
+
+    // Sub-label row (e.g. "If new management is being retained at closing:"):
+    // no letter, informational only - the real items beneath it still carry
+    // the section's topic, so nothing is lost by skipping it.
+    if (!letter) continue;
+
+    if (!currentSection) {
+      anomalies.push(`HAP Assignment Checklist row ${r}: no section header seen yet, skipping`);
+      continue;
+    }
+
+    const responsiblePartyRaw = cellText(row.getCell(4)); // D
+    const ccMgNotes = cellText(row.getCell(5)); // E
+    const statusRaw = cellText(row.getCell(6)); // F
+    const commentsPrompt = cellText(row.getCell(7)); // G
+
+    const comments = [];
+    if (ccMgNotes) comments.push({ author: "CC/MG Notes", text: String(ccMgNotes).trim(), timestamp: importDate });
+    if (commentsPrompt) comments.push({ author: "Comments", text: String(commentsPrompt).trim(), timestamp: importDate });
+
+    const status = typeof statusRaw === "string" && statusRaw.trim() ? statusRaw.trim() : "Open";
+    const sectionNumber = currentSection.replace(/^Section\s*/i, "");
+    // Source has stray internal whitespace in a couple of letter cells
+    // (e.g. "l ." instead of "l.") - strip all periods/whitespace rather
+    // than just a trailing period so the item_id never ends up with a
+    // trailing space (e.g. "hap-4l ").
+    const letterKey = String(letter).replace(/[.\s]/g, "");
+
+    items.push({
+      item_id: `hap-${sectionNumber}${letterKey}`,
+      source_tab: "HAP Assignment Checklist",
+      status,
+      responsible_party: responsiblePartyRaw ? String(responsiblePartyRaw).trim() : "Unassigned",
+      external_party: null,
+      comments,
+      linked_items: null,
+      opened_date: importDate,
+      last_updated: importDate,
+      history: [],
+      section_number: currentSection,
+      sub_item_letter: String(letter).trim(),
+      item_description: String(description).trim(),
+      proposed_owner_info: currentTopic,
+    });
+  }
+
+  return { items, anomalies };
+}
+
+async function importHapConfig() {
+  // The General Information header (rows 3-7: Name/Address/Contract/New
+  // Owner/Seller/FHA/PBCA/HUD AE) is entirely unfilled in this workbook -
+  // it's a blank template, not missing data. Every field starts null, same
+  // as Deal Setup, and is meant to be filled in via the HAP Info panel.
+  return emptyHapConfig();
+}
+
 async function importDealConfig(workbook) {
   const ws = workbook.getWorksheet("DD Full Checklist");
   const config = emptyDealConfig();
@@ -352,13 +438,19 @@ async function main() {
   });
   console.log(`External DD List: imported ${externalDd.items.length} items`);
 
-  const allItems = [...ddFull.items, ...internalDd.items, ...externalDd.items];
+  const hap = await importHapAssignmentChecklist(workbook);
+  console.log(`HAP Assignment Checklist: imported ${hap.items.length} items`);
+
+  const allItems = [...ddFull.items, ...internalDd.items, ...externalDd.items, ...hap.items];
   await writeItems(DEAL_ID, allItems);
+
+  const hapConfig = await importHapConfig();
+  await writeHapConfig(DEAL_ID, hapConfig);
 
   const { config, anomalies: configAnomalies } = await importDealConfig(workbook);
   console.log(`Deal Setup: ${Object.entries(config).filter(([, v]) => v !== null).length}/${Object.keys(config).length} fields populated`);
 
-  const allAnomalies = [...ddFull.anomalies, ...internalDd.anomalies, ...externalDd.anomalies, ...configAnomalies];
+  const allAnomalies = [...ddFull.anomalies, ...internalDd.anomalies, ...externalDd.anomalies, ...hap.anomalies, ...configAnomalies];
   if (allAnomalies.length) {
     console.log(`\n${allAnomalies.length} note(s) from import:`);
     for (const a of allAnomalies) console.log(`  - ${a}`);

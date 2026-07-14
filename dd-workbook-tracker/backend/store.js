@@ -51,6 +51,10 @@ function dealTeamFile(dealId) {
   return path.join(dealDir(dealId), "deal_team.json");
 }
 
+function hapConfigFile(dealId) {
+  return path.join(dealDir(dealId), "hap_config.json");
+}
+
 export async function readDealsRegistry() {
   return readJson(DEALS_REGISTRY_FILE, []);
 }
@@ -86,4 +90,12 @@ export async function readDealTeam(dealId) {
 
 export async function writeDealTeam(dealId, team) {
   return writeJson(dealTeamFile(dealId), team);
+}
+
+export async function readHapConfig(dealId) {
+  return readJson(hapConfigFile(dealId), null);
+}
+
+export async function writeHapConfig(dealId, config) {
+  return writeJson(hapConfigFile(dealId), config);
 }
