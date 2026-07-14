@@ -1,0 +1,3300 @@
+[
+  {
+    "item_id": "dd-1",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Patrick Kimble",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Equity Financing",
+    "phase": "Active Due Diligence",
+    "action_item": "Create Investor log/tracker",
+    "outside_date_raw": "Ongoing",
+    "outside_date": null,
+    "is_internal": true,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-2",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Patrick Kimble",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Equity Financing",
+    "phase": "Active Due Diligence",
+    "action_item": "Draft initial investor email",
+    "outside_date_raw": "2026-01-05T00:00:00.000Z",
+    "outside_date": "2026-01-05",
+    "is_internal": true,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-3",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Patrick Kimble",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "$10k set up fee + 7% success fee",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Equity Financing",
+    "phase": "Active Due Diligence",
+    "action_item": "Set up Smallchange account",
+    "outside_date_raw": "2026-03-01T00:00:00.000Z",
+    "outside_date": "2026-03-01",
+    "is_internal": true,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-4",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Patrick Kimble",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Discuss funding of 2% UPB. Send out this week. Drop individual signature blocks for individuals",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Equity Financing",
+    "phase": "Active Due Diligence",
+    "action_item": "Finalize and confirm special GP Investor roster",
+    "outside_date_raw": "2026-07-20T00:00:00.000Z",
+    "outside_date": "2026-07-20",
+    "is_internal": true,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-5",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Bode Adunbarin",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "CC internal to discuss before sending materials",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Equity Financing",
+    "phase": "Active Due Diligence",
+    "action_item": "Confirm special co-GP AMF approach",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-6",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Bode Adunbarin",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Update OM with latest financials/deal ",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Equity Financing",
+    "phase": "Active Due Diligence",
+    "action_item": "Finalize Caste investment OM",
+    "outside_date_raw": "2026-03-01T00:00:00.000Z",
+    "outside_date": "2026-03-01",
+    "is_internal": true,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-7",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Debt Financing",
+    "phase": "Active Due Diligence",
+    "action_item": "Draft list of prospective lenders to send materials",
+    "outside_date_raw": "TBC",
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-8",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Update as more recent DD materials come in",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Debt Financing",
+    "phase": "Active Due Diligence",
+    "action_item": "Create Lender OM - updated Model, S+U, OM, Rent Roll",
+    "outside_date_raw": "TBC",
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-9",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "See Teams",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Debt Financing",
+    "phase": "Active Due Diligence",
+    "action_item": "Create Lender tracker",
+    "outside_date_raw": "TBC",
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-10",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": "Jacques",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Going back to NM and WD for best and final",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Debt Financing",
+    "phase": "Active Due Diligence",
+    "action_item": "Provide feedback on loan options and impacts to business plan",
+    "outside_date_raw": "TBC",
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-11",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Received. Send relevant items to UHM. Schedule call to discuss updated financials & A/R.",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Debt Financing",
+    "phase": "Active Due Diligence",
+    "action_item": "W& D UW DD CHECKLIST",
+    "outside_date_raw": "TBC",
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": true
+  },
+  {
+    "item_id": "dd-12",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Received. CC sent the materials needed. UHM must complete pipe work bbefore we close",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Debt Financing",
+    "phase": "Active Due Diligence",
+    "action_item": "W&D: PCA/ESA/PLAN & COST CHECKLIST",
+    "outside_date_raw": "TBC",
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-13",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Patrick Kimble",
+    "external_party": "Nixon",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Executed 3/20",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Draft, review and execute PSA",
+    "outside_date_raw": "2026-03-20T00:00:00.000Z",
+    "outside_date": "2026-03-20",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-14",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Patrick Kimble",
+    "external_party": "Goodwin",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "$2,900. To confirm on timing. Bank account is opened",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Run down cost estimates for all Goodwin legal",
+    "outside_date_raw": "2026-02-10T00:00:00.000Z",
+    "outside_date": "2026-02-10",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-15",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Patrick Kimble",
+    "external_party": "MG",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "MG drafting",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Confirm if Menkiti drafting GP JVA",
+    "outside_date_raw": "2026-02-15T00:00:00.000Z",
+    "outside_date": "2026-02-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-16",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Patrick Kimble",
+    "external_party": "MG",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "MG drafting",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Confirm if Menkiti drafting LPA (Co-GPs and OCF)",
+    "outside_date_raw": "2025-12-23T00:00:00.000Z",
+    "outside_date": "2025-12-23",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-17",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Patrick Kimble",
+    "external_party": "MG, Goodwin",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Discussing with Seller",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Note",
+        "text": "HUD needs draft. CC decide on date needed by",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Set up JV OA: (CC, MG, OCF LP)",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": true
+  },
+  {
+    "item_id": "dd-18",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Patrick Kimble",
+    "external_party": "MG",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "MG drafting. Awaiting first draft",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Note",
+        "text": "HUD needs draft. CC decide on date needed by",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Set GP OA: (CC, MG)",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": true
+  },
+  {
+    "item_id": "dd-19",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Patrick Kimble",
+    "external_party": "Goodwin",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Document has been finalized",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Set up Caste OA: (CC Partners, Special Co-GP)",
+    "outside_date_raw": "2026-05-01T00:00:00.000Z",
+    "outside_date": "2026-05-01",
+    "is_internal": true,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-20",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Patrick Kimble",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Register entity in DA. Bank needs OA, EIN, articles of incorp. DS to circulate final doc. PK to set up entity",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Set up RAP UP Partners LLC deal (CC Partners)",
+    "outside_date_raw": "2026-05-06T00:00:00.000Z",
+    "outside_date": "2026-05-06",
+    "is_internal": true,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-21",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Patrick Kimble",
+    "external_party": "MG",
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Escrow $50K Deposit at PSA execution",
+    "outside_date_raw": "2026-03-27T00:00:00.000Z",
+    "outside_date": "2026-03-27",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-22",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Patrick Kimble",
+    "external_party": "MG",
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Escrow $150K Deposit at DD exit",
+    "outside_date_raw": "2026-05-26T00:00:00.000Z",
+    "outside_date": "2026-05-26",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-23",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": "Nixon/MG",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Finalizing remaining language. ",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Draft / Review PMA",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-24",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": "MG / Murphy",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "In waiting mode. ",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Release Murphy Consulting on HUD 2530 Clearance",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": true
+  },
+  {
+    "item_id": "dd-25",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Patrick Kimble",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Received 40T exemption letter on 7/13",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Confirm EOHLC's waiver",
+    "outside_date_raw": "2026-06-05T00:00:00.000Z",
+    "outside_date": "2026-06-05",
+    "is_internal": false,
+    "is_critical_path": true
+  },
+  {
+    "item_id": "dd-26",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Patrick Kimble",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Lender requires No more than 3 units vacant for 90 days before closing - send message to UHM",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-27",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Sent 3.18.26",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Send Murphy Requested Information",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-28",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": "MG / Murphy",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "MG is running point.",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Review list of deliverables for HUD 2530 Clearance",
+    "outside_date_raw": "TBC",
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": true
+  },
+  {
+    "item_id": "dd-29",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "CC/MG completed 3/20",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Send Walker & Dunlop PFS",
+    "outside_date_raw": "2026-03-19T00:00:00.000Z",
+    "outside_date": "2026-03-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-30",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Send Walker & Dunlop REO",
+    "outside_date_raw": "2026-03-19T00:00:00.000Z",
+    "outside_date": "2026-03-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-31",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Patrick Kimble",
+    "external_party": "Nixon",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Call with MG Wed and Alex R on Friday morning",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Review Loan Docs",
+    "outside_date_raw": "TBC",
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": true
+  },
+  {
+    "item_id": "dd-32",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Patrick Kimble",
+    "external_party": "MG",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Revert back in July",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Confirm Menkiti can fund Lender Deposit the week of close",
+    "outside_date_raw": "2026-09-13T00:00:00.000Z",
+    "outside_date": "2026-09-13",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-33",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Patrick Kimble",
+    "external_party": "Nixon",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Alex R (Nixon) working with confirm Ross (Seller) to submit. Ross has submitted",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Engage with Seller to complete 40T process",
+    "outside_date_raw": "2026-05-03T00:00:00.000Z",
+    "outside_date": "2026-05-03",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-34",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Darryl Settles",
+    "external_party": "Nixon",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Still need to submit: Deed (DS working to follow up with Seller on updated language), Property Management Agreement (sending to Kelly today)",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "HAP Application",
+    "outside_date_raw": "2026-08-07T00:00:00.000Z",
+    "outside_date": "2026-08-07",
+    "is_internal": false,
+    "is_critical_path": true
+  },
+  {
+    "item_id": "dd-35",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Alex Schultz",
+    "external_party": "Nixon",
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Draft Rollover Term Sheet (eg JV OA)",
+    "outside_date_raw": "2026-07-03T00:00:00.000Z",
+    "outside_date": "2026-07-03",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-36",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": "MG",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "PSA executed. Caste to send ASAP",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Finalize pre-dev/deposit funding structure agreement",
+    "outside_date_raw": "2026-03-27T00:00:00.000Z",
+    "outside_date": "2026-03-27",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-37",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Patrick Kimble",
+    "external_party": "Nixon, Jacques",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Ask Nixon for copy of HAP contract and exhibits",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Review existing HAP Contract and prepare Assumption",
+    "outside_date_raw": "2026-04-06T00:00:00.000Z",
+    "outside_date": "2026-04-06",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-38",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Legal - Transaction",
+    "phase": "Active Due Diligence",
+    "action_item": "Send Darryl finalized DD External list (within 3 days of LOI execution)",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-39",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Engage Property Inspection Firm for full property review",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-40",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "EBI released on 3/20. EBI will use drones to review roof due to inability to safely access roof during DD.",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Physical Reports / Property Condition Reports",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-41",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "DS/AS",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Need both PCR and HUD blessed CNA",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Confirm HUD reqs with Nixon/Lenders (e.g. need PCR or CNA?)",
+    "outside_date_raw": "2026-01-30T00:00:00.000Z",
+    "outside_date": "2026-01-30",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-42",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "there is an existing roof report (Feb '25)",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Roof Reports/Repairs/Maintenance",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-43",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Not typically required by lender.  No existing reports available",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Structural & Seismic Reports",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-44",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Patrick Kimble",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Rec'd Detailed Worklog 1/1-1/12, Summary 2025.  UHM is working with IT to get detailed log for 2025.",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Work Orders/PM Logs (HVAC, R&M, Roof, etc.)",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-45",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Received: pest control, snow removal and janitorial. No others",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Service Agreements (list)",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-46",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Warranties (list)",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-47",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Vendor Contact List",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-48",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Patrick Kimble",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Under acct # for all props and ensure they're active/any open payables",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Utility Account Numbers List & Identification",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-49",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Utility Allowance Schedule",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-50",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Special Claims History",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-51",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Repayment Agreements (if any)",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-52",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "VAWA Transfer Log (if applicable)",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-53",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Reasonable Accomodation Request Log (if applicable)",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-54",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Fire Escape (5 year certs)",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-55",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "HVAC Unit Inventory and Description",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-56",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Infra-red/Thermographic Scan",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-57",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "UHM to provide responses to CC/MG follow up questions on CAPEX/OPEX",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Review draft CAPEX budget - Base Building and Units",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-58",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Bode Adunbarin",
+    "external_party": "Jacques",
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Prepare questions, recommendations for CC to discuss with APR",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-59",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Let Seller know we need to be on all RCS communications",
+    "outside_date_raw": "2025-12-23T00:00:00.000Z",
+    "outside_date": "2025-12-23",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-60",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Bode Adunbarin",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Toured on 1/15 w/ Frank Molis (APR).",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Tour portfolio and review draft Rent Comp Study w/ APR",
+    "outside_date_raw": "2026-02-07T00:00:00.000Z",
+    "outside_date": "2026-02-07",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-61",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "AS/BA",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Pay APR for the RCS",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-62",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Title and Zoning review",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-63",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Draft is FINAL until signed before closing.",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "ALTA Survey",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-64",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "DONE",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Title Commitment",
+    "outside_date_raw": "2026-06-15T00:00:00.000Z",
+    "outside_date": "2026-06-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-65",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Redemption of tax taking to be recorded by Seller prior to closing.",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Lot L Tax Issue",
+    "outside_date_raw": "2026-09-01T00:00:00.000Z",
+    "outside_date": "2026-09-01",
+    "is_internal": false,
+    "is_critical_path": true
+  },
+  {
+    "item_id": "dd-66",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Lender requires zoning cert. Sam at Nixon is getting ($400/property)",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Zoning certification",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-67",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "All City/State permits",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-68",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Easement Documents (if applicable)",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-69",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Feldman will confirm as part of ALTA work. Not a req from Northmarq",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Confirm FEMA Flood Vulnerable Status",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-70",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Permits Required for Property Operation (e.g. flammable fuel storage)",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-71",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Environmental Information review",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-72",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "EBI released 3/20. Finalized",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Phase 1 ESA",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-73",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Hazardous Materials report",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-74",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Geotechnical soils report",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-75",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Letter of Full Deleading Compliance, 11/17/1998",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Lead abatement/compliance report",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-76",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Mold reports/remediation",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-77",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Indoor air quality reports",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-78",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Water intrusion/moisture issues",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-79",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Request Drawings + confirm building Specs",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-80",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Site Plans/Building Plans / Construction Plans / As-Builts",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-81",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Building Permits",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-82",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Received all but one. 63 Lambert does not exist.  See Zoning Cert from Title Company's attorney. CC to decide whether to clean up post-closing",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Certificates of Occupancy",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-83",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Building areas - Building GSF, Unit RSF's",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-84",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "CC",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Rec'd 2025, Seller: Only one score from past 5 years",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "REAC reports and scores from prior 3 years",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-85",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": "UHM",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Finalized and submitted to HUD",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Capital Needs Assessment",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-86",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Keith Construction budget",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-87",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Latest sent on 4/1",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Finalize pre-dev budget costs",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-88",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Physical DD + CapEx Plan",
+    "phase": "Active Due Diligence",
+    "action_item": "Prepare microsoft GANTT chart from DD to closing",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-89",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Closed",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Rec'd House Rules, Form Lease, need all leases, LEASES ON SITE NEED TO REVIEW",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Review Residential Leases & House Rules",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-90",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Review License Agreements (if applicable)",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-91",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Review Indemnities (if applicable)",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-92",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Bode Adunbarin",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Intro call on 1/21. Held pre-DD prelim calls to discuss MOR/AR & delinquencies, 2026 budget, 2025 actuals. Walk through set for 4/17",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Schedule calls with UHM to review (DD materials, budget). Walk property with onsite team",
+    "outside_date_raw": "2026-04-17T00:00:00.000Z",
+    "outside_date": "2026-04-17",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-93",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "DS/BA",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "2026 Operating Budget",
+    "outside_date_raw": "2026-04-14T00:00:00.000Z",
+    "outside_date": "2026-04-14",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-94",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "CC",
+    "external_party": "Jacques",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Jacques + CC reviewed. Discussed with UHM on 1/29",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Management & Occupancy Review past 3 years",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-95",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Personal Property Inventory",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-96",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Photographs",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-97",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Review UHM's in-place management process",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-98",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Sample 50059 files including one current resident with recertification and one former tenant",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-99",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "CC",
+    "external_party": "Nixon",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "CC to review. Need to read in person as PDF is ineligible. AS to abstract ",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Original HAP Contract",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-100",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "HAP Billing Files (HUD 52670A) - YTD and prior year",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-101",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Tenant Selection Plan",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-102",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": "Jacques",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Document says existing plan expired 1/31/2021. Latest plan per UHM",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Affirmative Fair Housing Marketing Plan",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-103",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Requires HUD approval, need update from UHM",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Enterprise Income Verification (EIV) Master File",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-104",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Extended Use Agreement (if applicable)",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-105",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Current Waitlist",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-106",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": "Jacques",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Date of report is 8/18/25 but document says expiration 4/30/2018? Please confirm there were no other MORs completed under current ownership. And confirm the difference between this document and (29) MOR. This is a typo - these reports don't expire; The report in this folder should be with the other MOR reports",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Recent Management and Occupancy Review (MOR) reports from last 3 years",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-107",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Any non-compliance agency or audit findings from last 3 years",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-108",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Darryl Settles",
+    "external_party": "Jacques",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "UpLVL declined",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Get sample audit of UHM files with UpLvL",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-109",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Bode Adunbarin",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Have RCS from 2020. Confirm if any other RCS available. Received draft RCS supporting underwritten rents.",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Most recent RCS & any relevant information provided; General update to progress of new RCS",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-110",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "DS/BA",
+    "external_party": "Jacques",
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Review UHM tenant selection plan and Affordable Fair market housing plan (AFMHP)",
+    "outside_date_raw": "2026-03-15T00:00:00.000Z",
+    "outside_date": "2026-03-15",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-111",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Patrick Kimble",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Set up weekly meeting with UHM team to discuss",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-112",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": "Jacques",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Materials sent; MG reviewing",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Management DD",
+    "phase": "Active Due Diligence",
+    "action_item": "JVA to prepare summary of findings on review of UHM",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-113",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Review of Property Tax, Legal, Insurance docs",
+    "outside_date_raw": null,
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-114",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "GNY GL, Excess Policy from GNY & AXIS. Expires 10/2026, Travelers Property Insurance",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Insurance Policies/Summary Docs/Exclusions",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-115",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "McGriff  - Property Insurance. Getting pricing this week. W&D is reviewing Freddie reqs on what is needed that is differenet from inplace policy. In-place works for Freddie.",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Submit/get property insurance quotes for RAP",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-116",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Confirmed 7/3",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Cross Insurance - confirm in-place meets Freddie",
+    "outside_date_raw": "2026-07-03T00:00:00.000Z",
+    "outside_date": "2026-07-03",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-117",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Cross Insurance - provide standalone quote",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-118",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "5 tenants pending litigation",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Summary of Litigation Pending or in Progress",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-119",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Summary of Outstanding Insurance Claims",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-120",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Tax Appeals / Reduction History",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-121",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Tax Bills YTD + 3 prior years (including unsecured personal property)",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-122",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Total Insured Value (TIV) / Claims and Loss History - prior 3 years",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-123",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Property Management Agreement",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-124",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Review Historical Financials (Accounting/Finance)",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-125",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Bode Adunbarin",
+    "external_party": "Jacques",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Continue to track",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Aged Receivable / Delinquency Report YTD (update if available) + 3 prior years",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-126",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Bode Adunbarin",
+    "external_party": "Jacques",
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Appraisals",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-127",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Bode Adunbarin",
+    "external_party": "Jacques",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Met on 1/30 to review with UHM. Review cleaned budget Jeff Caputi sent on 3/11",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Detailed Operating Budget YTD + 3 prior years",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-128",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "BA/DS",
+    "external_party": "Jacques",
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Capital Expenditures - Historical (3 prior years) & 2026 Budget",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-129",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Bode Adunbarin",
+    "external_party": "Jacques",
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Deferred Maintenance",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-130",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Bode Adunbarin",
+    "external_party": "Jacques",
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Rent Statements YTD + 3 prior years",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-131",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Bode Adunbarin",
+    "external_party": "Jacques",
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Security Deposits Schedule",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-132",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Bode Adunbarin",
+    "external_party": "Jacques",
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Tenant Billing Register YTD + 3 prior years",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-133",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Bode Adunbarin",
+    "external_party": "Jacques",
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Utility Bills - 12 months",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-134",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Bode Adunbarin",
+    "external_party": "Jacques",
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Vendor Bills - 3 prior years",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-135",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "$2,000 for full portfolio. Ryan can kick invoice to sale. Sent latest estimates on 5/18",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Reach out to Ryan Tax for property tax analysis; confirm pricing",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-136",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": "Jacques",
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Provide cost cutting recommends to CC",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-137",
+    "source_tab": "DD Full Checklist",
+    "status": "Closed",
+    "responsible_party": "Bode Adunbarin",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Schedule call to review financials with Seller/UHM post initial DD review",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-138",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Darryl Settles",
+    "external_party": "Nixon",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "Nixon is preparing request forms. Will be confirmed closer to closing",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "HUD Withdrawl Request for CAPEX Reserve",
+    "outside_date_raw": "2026-06-15T00:00:00.000Z",
+    "outside_date": "2026-06-15",
+    "is_internal": false,
+    "is_critical_path": true
+  },
+  {
+    "item_id": "dd-139",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Darryl Settles",
+    "external_party": "Nixon",
+    "comments": [
+      {
+        "author": "CC Comment",
+        "text": "To be submitted after Withdrawal request is approved.  Requires confirmation of Lender reserve amount.",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "HUD Suspension Request for CAPEX Reserve",
+    "outside_date_raw": "2026-08-01T00:00:00.000Z",
+    "outside_date": "2026-08-01",
+    "is_internal": false,
+    "is_critical_path": true
+  },
+  {
+    "item_id": "dd-140",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Bode Adunbarin",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Property Financial DD",
+    "phase": "Active Due Diligence",
+    "action_item": "Finalize base case underwriting model",
+    "outside_date_raw": "2026-05-19T00:00:00.000Z",
+    "outside_date": "2026-05-19",
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-141",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Asset Management",
+    "phase": "Active Due Diligence",
+    "action_item": "Create 'Property Folder' in share drive",
+    "outside_date_raw": "Ongoing",
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-142",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Asset Management",
+    "phase": "Active Due Diligence",
+    "action_item": "Extract Acquisition DD files and add to Prop. Folder",
+    "outside_date_raw": "Ongoing",
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-143",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Asset Management",
+    "phase": "Active Due Diligence",
+    "action_item": "Set up weekly Project Team meetings",
+    "outside_date_raw": "Ongoing",
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  },
+  {
+    "item_id": "dd-144",
+    "source_tab": "DD Full Checklist",
+    "status": "Open",
+    "responsible_party": "Alex Schultz",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "category": "Asset Management",
+    "phase": "Active Due Diligence",
+    "action_item": "Closing Model into AM Template (inc. Bridge)",
+    "outside_date_raw": "Ongoing",
+    "outside_date": null,
+    "is_internal": false,
+    "is_critical_path": false
+  }
+]
