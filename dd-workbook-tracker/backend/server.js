@@ -13,12 +13,14 @@ import {
 import {
   validateItem,
   validateDdFullChecklistItem,
+  validateDdRequestListItem,
   emptyDealConfig,
   DEAL_CONFIG_FIELDS,
   SOURCE_TABS,
   STATUSES,
   CATEGORIES,
   PHASES,
+  DEPARTMENTS,
   today,
 } from "./schema.js";
 
@@ -37,11 +39,13 @@ async function requireDeal(req, res, next) {
 }
 
 function validatorFor(sourceTab) {
-  return sourceTab === "DD Full Checklist" ? validateDdFullChecklistItem : validateItem;
+  if (sourceTab === "DD Full Checklist") return validateDdFullChecklistItem;
+  if (sourceTab === "Internal DD Request List" || sourceTab === "External DD List") return validateDdRequestListItem;
+  return validateItem;
 }
 
 app.get("/api/meta", (req, res) => {
-  res.json({ sourceTabs: SOURCE_TABS, statuses: STATUSES, categories: CATEGORIES, phases: PHASES });
+  res.json({ sourceTabs: SOURCE_TABS, statuses: STATUSES, categories: CATEGORIES, phases: PHASES, departments: DEPARTMENTS });
 });
 
 app.get("/api/deals", async (req, res) => {
@@ -54,6 +58,13 @@ app.get("/api/deals/:dealId/items", requireDeal, async (req, res) => {
   const { source_tab } = req.query;
   const filtered = source_tab ? items.filter((i) => i.source_tab === source_tab) : items;
   res.json(filtered);
+});
+
+app.get("/api/deals/:dealId/items/:itemId", requireDeal, async (req, res) => {
+  const items = await readItems(req.params.dealId);
+  const item = items.find((i) => i.item_id === req.params.itemId);
+  if (!item) return res.status(404).json({ error: "item not found" });
+  res.json(item);
 });
 
 app.post("/api/deals/:dealId/items", requireDeal, async (req, res) => {
@@ -136,6 +147,40 @@ app.post("/api/deals/:dealId/items/:itemId/comments", requireDeal, async (req, r
   items[index] = updated;
   await writeItems(req.params.dealId, items);
   res.status(201).json(updated);
+});
+
+// Confirms a suggested cross-tab link (Step 3): the frontend computes
+// document-name similarity client-side and only calls this when the user
+// clicks "Link" - nothing gets linked automatically. Bidirectional so either
+// item's detail view shows the relationship.
+app.post("/api/deals/:dealId/items/:itemId/link", requireDeal, async (req, res) => {
+  const { itemId } = req.params;
+  const { target_item_id } = req.body;
+  if (!target_item_id) return res.status(400).json({ error: "target_item_id is required" });
+
+  const items = await readItems(req.params.dealId);
+  const a = items.find((i) => i.item_id === itemId);
+  const b = items.find((i) => i.item_id === target_item_id);
+  if (!a || !b) return res.status(404).json({ error: "item not found" });
+
+  const now = today();
+  const link = (item, otherId) => {
+    const existing = item.linked_items ?? [];
+    if (existing.includes(otherId)) return item;
+    return { ...item, linked_items: [...existing, otherId], last_updated: now };
+  };
+
+  const updatedItems = items.map((i) => {
+    if (i.item_id === itemId) return link(i, target_item_id);
+    if (i.item_id === target_item_id) return link(i, itemId);
+    return i;
+  });
+
+  await writeItems(req.params.dealId, updatedItems);
+  res.json({
+    a: updatedItems.find((i) => i.item_id === itemId),
+    b: updatedItems.find((i) => i.item_id === target_item_id),
+  });
 });
 
 app.get("/api/deals/:dealId/deal-config", requireDeal, async (req, res) => {

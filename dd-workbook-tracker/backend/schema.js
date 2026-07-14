@@ -39,6 +39,18 @@ export const PHASES = [
   "Post-Closing",
 ];
 
+// Internal/External DD Request List taxonomy - derived from this workbook's
+// section header rows, not an inherent property of the schema, but fixed
+// enough across the two DD list tabs to enforce (Step 9's New Deal template
+// reuses this same taxonomy for a blank deal).
+export const DEPARTMENTS = [
+  "Leasing / Marketing",
+  "Development",
+  "Prop Mgmt",
+  "Legal/Ins/Tax",
+  "Accounting",
+];
+
 export const DEAL_CONFIG_FIELDS = [
   "deal_name",
   "loi_date",
@@ -128,6 +140,29 @@ export function validateDdFullChecklistItem(item, { partial = false } = {}) {
   required("phase");
 
   required("action_item");
+
+  return errors;
+}
+
+export function validateDdRequestListItem(item, { partial = false } = {}) {
+  const errors = validateItem(item, { partial });
+  const required = (field) => {
+    if (!partial && (item[field] === undefined || item[field] === null || item[field] === "")) {
+      errors.push(`${field} is required`);
+    }
+  };
+
+  required("document");
+
+  // Deleted rows keep a null department (there's no real department for a
+  // row whose content was blanked out in the source) - only validate the
+  // enum when a department is actually present.
+  if (item.department !== undefined && item.department !== null && !DEPARTMENTS.includes(item.department)) {
+    errors.push(`department must be one of: ${DEPARTMENTS.join(", ")}`);
+  }
+  if (!partial && item.department === undefined && item.status !== "Deleted") {
+    errors.push("department is required");
+  }
 
   return errors;
 }

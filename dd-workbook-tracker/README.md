@@ -9,11 +9,23 @@ for storage (no database).
 
 ## Status
 
-**Step 1 (shared workflow engine + Deal Team directory) and Step 2 (Master DD
-Tracker) are built and working end-to-end.** Steps 3-10 (Internal/External DD
-lists, HAP Assignment Checklist, Lender Checklist, Cost Schedule, dashboard,
-dependency view, deal cloning, workflow automation, reporting) are not yet
-built.
+**Steps 1-3 are built and working end-to-end**: shared workflow engine, Deal
+Team directory, Master DD Tracker, and the Internal/External DD Request
+Lists (with cross-tab link suggestions). The UI has an Apple-style visual
+design (SF-like type, muted neutrals with a single blue accent, translucent
+sticky nav, rounded cards). Steps 4-10 (dedicated dependency/critical-path
+view, HAP Assignment Checklist, Lender Checklist, Cost Schedule, dashboard,
+deal cloning, workflow automation, reporting) are not yet built.
+
+Every item (any tab) has a detail page at `/items/:itemId` — click any table
+row to get there. It shows all fields, comments (with add-comment), full
+change history, and linked items. For Internal/External DD list items it
+also surfaces **suggested links**: documents in the opposite list with a
+similar name, scored by name overlap, with a one-click "Link" button. Links
+are bidirectional and nothing is ever auto-linked. If a linked item isn't
+"Closed," a "Blocked by open dependencies" banner appears — this is
+technically Step 4 scope but fell out naturally from the linked-items model
+built for Step 3's suggestions.
 
 ## Running locally
 
@@ -42,10 +54,10 @@ npm run import-workbook
 # or: node scripts/import-workbook.js <path-to-xlsx> <deal-id>
 ```
 
-Only the **Deal Team** and **DD Full Checklist** tabs are imported so far.
-The script prints anomalies it hit along the way (data-entry issues in the
-source file, fields it couldn't confidently map) rather than silently
-guessing at them.
+The **Deal Team**, **DD Full Checklist**, **Internal - DD Request List**, and
+**External - DD List** tabs are imported so far. The script prints anomalies
+it hit along the way (data-entry issues in the source file, fields it
+couldn't confidently map) rather than silently guessing at them.
 
 ### Import assumptions worth knowing about
 
@@ -72,6 +84,15 @@ guessing at them.
 - Responsible Party initials (`PK`, `BA`, `AS`, `DS`) are resolved to full
   names against the Deal Team roster; combos (`AS/BA`) and org-level tags
   (`CC`) are left as raw text.
+- **`status: "Received"`** appears on 28 of the 78 Internal DD Request List
+  items (not a schema status). Per your call, these are mapped to `"Closed"`
+  with the original `"Received"` value preserved as a comment on each item.
+- The literal **"Deleted" placeholder rows** in both DD Request List tabs
+  (item #6 in each) import with `status: "Deleted"`, `document: "[Deleted]"`,
+  `department: null` — the row/number is preserved, not the fake text.
+- **`department`** on both DD Request List tabs is carried down from
+  section-header rows where the source left the per-row Department column
+  blank (5 items on Internal, 3 on External).
 
 ## Data layout
 
@@ -92,8 +113,10 @@ backend/data/
 
 - `GET /api/deals`
 - `GET /api/deals/:dealId/items?source_tab=...`
+- `GET /api/deals/:dealId/items/:itemId`
 - `POST /api/deals/:dealId/items`
 - `PUT /api/deals/:dealId/items/:itemId` — auto-appends to `history[]` when `status` changes
 - `POST /api/deals/:dealId/items/:itemId/comments` — appends a comment + history entry
+- `POST /api/deals/:dealId/items/:itemId/link` — `{ target_item_id }`, bidirectional, only fires on explicit user confirmation
 - `GET /api/deals/:dealId/deal-config`, `PUT ...`
 - `GET /api/deals/:dealId/deal-team?q=...`, `PUT ...`

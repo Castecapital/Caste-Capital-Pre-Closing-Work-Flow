@@ -5,25 +5,25 @@ import StatusBadge from "../components/StatusBadge";
 
 const ALL = "All";
 
-export default function MasterDdTracker() {
+export default function DdRequestList({ sourceTab, title }) {
   const navigate = useNavigate();
   const [items, setItems] = useState(null);
   const [error, setError] = useState(null);
-  const [category, setCategory] = useState(ALL);
+  const [department, setDepartment] = useState(ALL);
   const [status, setStatus] = useState(ALL);
-  const [internalOnly, setInternalOnly] = useState(ALL);
   const [sortDir, setSortDir] = useState("desc");
   const [showDeleted, setShowDeleted] = useState(false);
 
   useEffect(() => {
+    setItems(null);
     api
-      .getItems("deal-1", "DD Full Checklist")
+      .getItems("deal-1", sourceTab)
       .then(setItems)
       .catch((e) => setError(e.message));
-  }, []);
+  }, [sourceTab]);
 
-  const categories = useMemo(
-    () => (items ? [ALL, ...new Set(items.map((i) => i.category))].sort() : [ALL]),
+  const departments = useMemo(
+    () => (items ? [ALL, ...new Set(items.map((i) => i.department).filter(Boolean))].sort() : [ALL]),
     [items]
   );
   const statuses = useMemo(
@@ -35,14 +35,13 @@ export default function MasterDdTracker() {
     if (!items) return [];
     return items
       .filter((i) => showDeleted || i.status !== "Deleted")
-      .filter((i) => category === ALL || i.category === category)
+      .filter((i) => department === ALL || i.department === department)
       .filter((i) => status === ALL || i.status === status)
-      .filter((i) => internalOnly === ALL || (internalOnly === "Internal" ? i.is_internal : !i.is_internal))
       .sort((a, b) => {
         const cmp = a.last_updated.localeCompare(b.last_updated);
         return sortDir === "asc" ? cmp : -cmp;
       });
-  }, [items, category, status, internalOnly, sortDir, showDeleted]);
+  }, [items, department, status, sortDir, showDeleted]);
 
   if (error) return <p className="text-[#e0393e]">Failed to load items: {error}</p>;
   if (!items) return <p className="text-[#86868b]">Loading…</p>;
@@ -51,9 +50,7 @@ export default function MasterDdTracker() {
     <div>
       <div className="flex items-end justify-between mb-8">
         <div>
-          <h1 className="text-[32px] font-semibold tracking-tight text-[#1d1d1f] dark:text-white">
-            Master DD Tracker
-          </h1>
+          <h1 className="text-[32px] font-semibold tracking-tight text-[#1d1d1f] dark:text-white">{title}</h1>
           <p className="text-[15px] text-[#86868b] mt-1">
             {filtered.length} of {items.length} items
           </p>
@@ -61,14 +58,8 @@ export default function MasterDdTracker() {
       </div>
 
       <div className="flex flex-wrap items-end gap-3 mb-6">
-        <FilterSelect label="Category" value={category} onChange={setCategory} options={categories} />
+        <FilterSelect label="Department" value={department} onChange={setDepartment} options={departments} />
         <FilterSelect label="Status" value={status} onChange={setStatus} options={statuses} />
-        <FilterSelect
-          label="Internal"
-          value={internalOnly}
-          onChange={setInternalOnly}
-          options={[ALL, "Internal", "External"]}
-        />
         <label className="flex items-center gap-2 text-[13px] text-[#6e6e73] dark:text-white/60 pb-2.5 cursor-pointer select-none">
           <input
             type="checkbox"
@@ -86,12 +77,11 @@ export default function MasterDdTracker() {
             <thead>
               <tr className="border-b border-black/5 dark:border-white/10 text-left text-[11px] uppercase tracking-wide text-[#86868b]">
                 <Th>#</Th>
-                <Th>Category</Th>
-                <Th>Action Item</Th>
+                <Th>DIV Folder</Th>
+                <Th>Document</Th>
+                <Th>Department</Th>
                 <Th>Status</Th>
                 <Th>Responsible</Th>
-                <Th>External</Th>
-                <Th>Outside Date</Th>
                 <Th
                   sortable
                   sortDir={sortDir}
@@ -99,7 +89,6 @@ export default function MasterDdTracker() {
                 >
                   Last Updated
                 </Th>
-                <Th>Flags</Th>
               </tr>
             </thead>
             <tbody className="divide-y divide-black/5 dark:divide-white/5">
@@ -110,30 +99,14 @@ export default function MasterDdTracker() {
                   className="cursor-pointer transition-colors duration-150 hover:bg-[#f5f5f7] dark:hover:bg-white/5"
                 >
                   <Td className="text-[#86868b] font-mono text-[11px]">{item.item_id}</Td>
-                  <Td className="text-[#6e6e73] dark:text-white/60">{item.category}</Td>
-                  <Td className="max-w-xs">
-                    <div className="font-medium text-[#1d1d1f] dark:text-white">{item.action_item}</div>
-                    {item.comments.length > 0 && (
-                      <div className="text-[12px] text-[#86868b] truncate mt-0.5">
-                        {item.comments[0].text}
-                      </div>
-                    )}
-                  </Td>
+                  <Td className="text-[#6e6e73] dark:text-white/60">{item.div_folder ?? "—"}</Td>
+                  <Td className="font-medium text-[#1d1d1f] dark:text-white max-w-sm">{item.document}</Td>
+                  <Td className="text-[#6e6e73] dark:text-white/60">{item.department ?? "—"}</Td>
                   <Td>
                     <StatusBadge status={item.status} />
                   </Td>
                   <Td>{item.responsible_party}</Td>
-                  <Td>{item.external_party ?? "—"}</Td>
-                  <Td className="text-[#6e6e73] dark:text-white/60">
-                    {item.outside_date ?? (item.outside_date_raw || "—")}
-                  </Td>
                   <Td className="text-[#6e6e73] dark:text-white/60">{item.last_updated}</Td>
-                  <Td>
-                    <div className="flex gap-1">
-                      {item.is_critical_path && <Flag color="red">Critical</Flag>}
-                      {item.is_internal && <Flag color="gray">Internal</Flag>}
-                    </div>
-                  </Td>
                 </tr>
               ))}
             </tbody>
@@ -163,6 +136,10 @@ function FilterSelect({ label, value, onChange, options }) {
   );
 }
 
+function Td({ children, className = "" }) {
+  return <td className={`px-4 py-3 align-top ${className}`}>{children}</td>;
+}
+
 function Th({ children, sortable, sortDir, onClick }) {
   return (
     <th
@@ -172,21 +149,5 @@ function Th({ children, sortable, sortDir, onClick }) {
       {children}
       {sortable && <span className="ml-1">{sortDir === "asc" ? "↑" : "↓"}</span>}
     </th>
-  );
-}
-
-function Td({ children, className = "" }) {
-  return <td className={`px-4 py-3 align-top ${className}`}>{children}</td>;
-}
-
-function Flag({ color, children }) {
-  const colors = {
-    red: "bg-[#e0393e]/10 text-[#e0393e]",
-    gray: "bg-black/5 text-[#6e6e73] dark:bg-white/10 dark:text-white/60",
-  };
-  return (
-    <span className={`text-[10px] font-semibold uppercase tracking-wide rounded-full px-2 py-0.5 ${colors[color]}`}>
-      {children}
-    </span>
   );
 }

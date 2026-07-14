@@ -42,17 +42,22 @@ export default function DealSetup() {
     }
   }
 
-  if (error && !config) return <p className="text-red-600">Failed to load deal setup: {error}</p>;
-  if (!config) return <p className="text-slate-500">Loading…</p>;
+  if (error && !config) return <p className="text-[#e0393e]">Failed to load deal setup: {error}</p>;
+  if (!config) return <p className="text-[#86868b]">Loading…</p>;
 
   return (
     <div className="max-w-2xl">
-      <h1 className="text-xl font-semibold mb-1">Deal Setup</h1>
-      <p className="text-sm text-slate-500 mb-6">
+      <h1 className="text-[32px] font-semibold tracking-tight text-[#1d1d1f] dark:text-white mb-1">
+        Deal Setup
+      </h1>
+      <p className="text-[15px] text-[#86868b] mb-8">
         All fields are optional — leave anything blank and the rest of the app still works.
       </p>
 
-      <form onSubmit={handleSave} className="space-y-4">
+      <form
+        onSubmit={handleSave}
+        className="rounded-2xl bg-white dark:bg-[#1d1d1f] shadow-[0_1px_3px_rgba(0,0,0,0.06)] ring-1 ring-black/5 dark:ring-white/10 divide-y divide-black/5 dark:divide-white/5 overflow-hidden"
+      >
         <Field
           label={FIELD_LABELS.deal_name}
           type="text"
@@ -71,16 +76,16 @@ export default function DealSetup() {
             />
           ))}
 
-        <div className="flex items-center gap-3 pt-2">
+        <div className="flex items-center gap-3 px-5 py-4 bg-[#f5f5f7] dark:bg-white/[0.03]">
           <button
             type="submit"
             disabled={saving}
-            className="rounded-md bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 px-4 py-2 text-sm font-medium disabled:opacity-50"
+            className="rounded-full bg-[#0071e3] hover:bg-[#0077ed] active:bg-[#006edb] text-white px-5 py-2 text-[13px] font-medium transition-colors disabled:opacity-50"
           >
             {saving ? "Saving…" : "Save"}
           </button>
-          {savedAt && <span className="text-xs text-slate-500">Saved at {savedAt}</span>}
-          {error && <span className="text-xs text-red-600">{error}</span>}
+          {savedAt && <span className="text-[12px] text-[#86868b]">Saved at {savedAt}</span>}
+          {error && <span className="text-[12px] text-[#e0393e]">{error}</span>}
         </div>
       </form>
     </div>
@@ -89,13 +94,13 @@ export default function DealSetup() {
 
 function Field({ label, type, value, onChange }) {
   return (
-    <label className="flex items-center justify-between gap-4 text-sm">
-      <span className="text-slate-600 dark:text-slate-300 w-56 shrink-0">{label}</span>
+    <label className="flex items-center justify-between gap-4 px-5 py-3.5 text-[13px]">
+      <span className="text-[#6e6e73] dark:text-white/60 w-56 shrink-0">{label}</span>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="flex-1 rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-1.5 text-slate-900 dark:text-slate-100"
+        className="flex-1 rounded-lg border-0 ring-1 ring-black/10 dark:ring-white/15 bg-[#f5f5f7] dark:bg-white/5 px-3 py-1.5 text-[#1d1d1f] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0071e3] transition-shadow"
       />
     </label>
   );

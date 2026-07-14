@@ -3296,5 +3296,2771 @@
     "outside_date": null,
     "is_internal": false,
     "is_critical_path": false
+  },
+  {
+    "item_id": "idd-1",
+    "source_tab": "Internal DD Request List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Rec'd House Rules, Form Lease, need all leases, LEASES ON SITE NEED TO REVIEW",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Review Residential Leases & House Rules",
+    "department": "Leasing / Marketing"
+  },
+  {
+    "item_id": "idd-2",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Review License Agreements (if applicable)",
+    "department": "Leasing / Marketing"
+  },
+  {
+    "item_id": "idd-3",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Review Indemnities (if applicable)",
+    "department": "Leasing / Marketing"
+  },
+  {
+    "item_id": "idd-4",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "ALTA Survey",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-5",
+    "source_tab": "Internal DD Request List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Owners & Lender Policy",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Title Commitment",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-6",
+    "source_tab": "Internal DD Request List",
+    "status": "Deleted",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "[Deleted]",
+    "department": null
+  },
+  {
+    "item_id": "idd-7",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "All City/State permits",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-8",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Easement Documents (if applicable)",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-9",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Confirm FEMA Flood Vulnerable Status",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-10",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Permits Required for Property Operation (e.g. flammable fuel storage)",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-11",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Phase 1 ESA",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-12",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Hazardous Materials report",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-13",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Geotechnical soils report",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-14",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Notes",
+        "text": "Letter of Full Deleading Compliance, 11/17/1998",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Lead abatement/compliance report",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-15",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Mold reports/remediation",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-16",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Indoor air quality reports",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-17",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Water intrusion/moisture issues",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-18",
+    "source_tab": "Internal DD Request List",
+    "status": "Deleted",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "[Deleted]",
+    "department": null
+  },
+  {
+    "item_id": "idd-19",
+    "source_tab": "Internal DD Request List",
+    "status": "Deleted",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "[Deleted]",
+    "department": null
+  },
+  {
+    "item_id": "idd-20",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Site Plans/Building Plans / Construction Plans / As-Builts",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-21",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Building Permits",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-22",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Notes",
+        "text": "Received all but one. 63 Lambert does not exist.  See Zoning Cert from Title Company's attorney. CC to decide whether to clean up post-closing",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Certificates of Occupancy",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-23",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Building areas - Building GSF, Unit RSF's",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-24",
+    "source_tab": "Internal DD Request List",
+    "status": "Deleted",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "[Deleted]",
+    "department": null
+  },
+  {
+    "item_id": "idd-25",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Rec'd 2025, Seller: Only one score from past 5 years",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "REAC reports and scores from prior 3 years",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-26",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "2021, Seller: CNA good for 10 years",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Capital Needs Assessment",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-27",
+    "source_tab": "Internal DD Request List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Keith Construction budget",
+    "department": "Development"
+  },
+  {
+    "item_id": "idd-28",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "2026 Operating Budget",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-29",
+    "source_tab": "Internal DD Request List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Received 2023 and 2025; No 2024 report exists",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Management & Occupancy Review past 3 years",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-30",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Personal Property Inventory",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-31",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Photographs",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-32",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Physical Reports / Property Condition Reports",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-33",
+    "source_tab": "Internal DD Request List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Feb 2025 inspection reports for all roofs. No R&M info. Seller: Requested",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Roof Reports/Repairs/Maintenance",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-34",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Structural & Seismic Reports",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-35",
+    "source_tab": "Internal DD Request List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Rec'd Detailed Worklog 1/1-1/12, Summary 2025.  UHM is working with IT to get detailed log for 2025.",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Work Orders/PM Logs (HVAC, R&M, Roof, etc.)",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-36",
+    "source_tab": "Internal DD Request List",
+    "status": "Deleted",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "[Deleted]",
+    "department": null
+  },
+  {
+    "item_id": "idd-37",
+    "source_tab": "Internal DD Request List",
+    "status": "Deleted",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "[Deleted]",
+    "department": null
+  },
+  {
+    "item_id": "idd-38",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Notes",
+        "text": "Received: pest control, snow removal and janitorial. No others",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Service Agreements (list)",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-39",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Warranties (list)",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-40",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Vendor Contact List",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-41",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Utility Account Numbers List & Identification",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-42",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Utility Allowance Schedule",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-43",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Special Claims History",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-44",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Repayment Agreements (if any)",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-45",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "VAWA Transfer Log (if applicable)",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-46",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Reasonable Accomodation Request Log (if applicable)",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-47",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Fire Escape (5 year certs)",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-48",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "HVAC Unit Inventory and Description",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-49",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Infra-red/Thermographic Scan",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-50",
+    "source_tab": "Internal DD Request List",
+    "status": "Deleted",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "[Deleted]",
+    "department": null
+  },
+  {
+    "item_id": "idd-51",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Sample 50059 files including one current resident with recertification and one former tenant",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-52",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Original HAP Contract",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-53",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "HAP Billing Files (HUD 52670A) - YTD and prior year",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-54",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Tenant Selection Plan",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-55",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Notes",
+        "text": "Document says existing plan expired 1/31/2021. Latest plan per UHM",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Affirmative Fair Housing Marketing Plan",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-56",
+    "source_tab": "Internal DD Request List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Requires HUD approval, need update from UHM",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Enterprise Income Verification (EIV) Master File",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-57",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Extended Use Agreement (if applicable)",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-58",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Notes",
+        "text": "Dated 1/6/26",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Current Waitlist",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-59",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Notes",
+        "text": "Date of report is 8/18/25 but document says expiration 4/30/2018? Please confirm there were no other MORs completed under current ownership. And confirm the difference between this document and (29) MOR. This is a typo - these reports don't expire; The report in this folder should be with the other MOR reports",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Recent Management and Occupancy Review (MOR) reports from last 3 years",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-60",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "Seller: N/A",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Any non-compliance agency or audit findings from last 3 years",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-61",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Notes",
+        "text": "In progress, Contract with CC. ",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Most recent RCS & any relevant information provided; General update to progress of new RCS",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "idd-62",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Notes",
+        "text": "GNY GL, Excess Policy from GNY & AXIS. Expires 10/2026, Travelers Property Insurance",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Insurance Policies/Summary Docs/Exclusions",
+    "department": "Legal/Ins/Tax"
+  },
+  {
+    "item_id": "idd-63",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Notes",
+        "text": "5 tenants pending litigation",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Summary of Litigation Pending or in Progress",
+    "department": "Legal/Ins/Tax"
+  },
+  {
+    "item_id": "idd-64",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Notes",
+        "text": "None",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Summary of Outstanding Insurance Claims",
+    "department": "Legal/Ins/Tax"
+  },
+  {
+    "item_id": "idd-65",
+    "source_tab": "Internal DD Request List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Tax Appeals / Reduction History",
+    "department": "Legal/Ins/Tax"
+  },
+  {
+    "item_id": "idd-66",
+    "source_tab": "Internal DD Request List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Notes",
+        "text": "2025: Only Q2 and Q3 provided?\n2024: Only Q1 and Q3 provided?\n2023: Only Q3 provided?\n2022: Only Q4 provided?",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Tax Bills YTD + 3 prior years (including unsecured personal property)",
+    "department": "Legal/Ins/Tax"
+  },
+  {
+    "item_id": "idd-67",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Total Insured Value (TIV) / Claims and Loss History - prior 3 years",
+    "department": "Legal/Ins/Tax"
+  },
+  {
+    "item_id": "idd-68",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Property Management Agreement",
+    "department": "Legal/Ins/Tax"
+  },
+  {
+    "item_id": "idd-69",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Notes",
+        "text": "2023,2024, 2025, YTD thru 1/5",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Aged Receivable / Delinquency Report YTD (update if available) + 3 prior years",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "idd-70",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Appraisals",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "idd-71",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Detailed Operating Budget YTD + 3 prior years",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "idd-72",
+    "source_tab": "Internal DD Request List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Capital Expenditures - Historical (3 prior years) & 2026 Budget",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "idd-73",
+    "source_tab": "Internal DD Request List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Deferred Maintenance",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "idd-74",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      },
+      {
+        "author": "Notes",
+        "text": "2023, 2024, 2025",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Rent Statements YTD + 3 prior years",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "idd-75",
+    "source_tab": "Internal DD Request List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Security Deposits Schedule",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "idd-76",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Tenant Billing Register YTD + 3 prior years",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "idd-77",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Utility Bills - 12 months",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "idd-78",
+    "source_tab": "Internal DD Request List",
+    "status": "Closed",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [
+      {
+        "author": "Original Status",
+        "text": "Received",
+        "timestamp": "2026-07-14"
+      }
+    ],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Vendor Bills - 3 prior years",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "xdd-1",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Residential Leases & House Rules",
+    "department": "Leasing / Marketing"
+  },
+  {
+    "item_id": "xdd-2",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "License Agreements (if applicable)",
+    "department": "Leasing / Marketing"
+  },
+  {
+    "item_id": "xdd-3",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Indemnities (if applicable)",
+    "department": "Leasing / Marketing"
+  },
+  {
+    "item_id": "xdd-4",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "ALTA Survey",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-5",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Existing Title Insurance Policy",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-6",
+    "source_tab": "External DD List",
+    "status": "Deleted",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "[Deleted]",
+    "department": null
+  },
+  {
+    "item_id": "xdd-7",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "All City/State permits",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-8",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Easement Documents (if applicable)",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-9",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Confirm FEMA Flood Vulnerable Status",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-10",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Permits Required for Property Operation (e.g. flammable fuel storage)",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-11",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Phase 1 and 2 ESA",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-12",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Hazardous Materials report",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-13",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Geotechnical soils report",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-14",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Lead abatement/compliance report",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-15",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Mold reports/remediation",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-16",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Indoor air quality reports",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-17",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Water intrusion/moisture issues",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-18",
+    "source_tab": "External DD List",
+    "status": "Deleted",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "[Deleted]",
+    "department": null
+  },
+  {
+    "item_id": "xdd-19",
+    "source_tab": "External DD List",
+    "status": "Deleted",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "[Deleted]",
+    "department": null
+  },
+  {
+    "item_id": "xdd-20",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Site Plans/Building Plans / Construction Plans / As-Builts",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-21",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Building Permits",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-22",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Certificates of Occupancy",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-23",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Building areas - Building GSF, Unit RSF's",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-24",
+    "source_tab": "External DD List",
+    "status": "Deleted",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "[Deleted]",
+    "department": null
+  },
+  {
+    "item_id": "xdd-25",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "REAC reports and scores from prior 3 years",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-26",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Capital Needs Assessment",
+    "department": "Development"
+  },
+  {
+    "item_id": "xdd-27",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "2026 Operating Budget",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-28",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Management & Occupancy Review past 3 years",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-29",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Personal Property Inventory",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-30",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Photographs",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-31",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Physical Reports / Property Condition Reports",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-32",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Roof Reports/Repairs/Maintenance",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-33",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Structural & Seismic Reports",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-34",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Work Orders/PM Logs (HVAC, R&M, Roof, etc.)",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-35",
+    "source_tab": "External DD List",
+    "status": "Deleted",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "[Deleted]",
+    "department": null
+  },
+  {
+    "item_id": "xdd-36",
+    "source_tab": "External DD List",
+    "status": "Deleted",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "[Deleted]",
+    "department": null
+  },
+  {
+    "item_id": "xdd-37",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Service Agreements (list)",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-38",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Warranties (list)",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-39",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Vendor Contact List",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-40",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Utility Account Numbers List & Identification",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-41",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Utility Allowance Schedule",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-42",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Special Claims History",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-43",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Repayment Agreements (if any)",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-44",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "VAWA Transfer Log (if applicable)",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-45",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Reasonable Accomodation Request Log (if applicable)",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-46",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Fire Escape (5 year certs)",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-47",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "HVAC Unit Inventory and Description",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-48",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Infra-red/Thermographic Scan",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-49",
+    "source_tab": "External DD List",
+    "status": "Deleted",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "[Deleted]",
+    "department": null
+  },
+  {
+    "item_id": "xdd-50",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Sample 50059 files including one current resident with recertification and one former tenant",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-51",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Original HAP Contract",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-52",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "HAP Billing Files (HUD 52670A) - YTD and prior year",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-53",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Tenant Selection Plan",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-54",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Affirmative Fair Housing Marketing Plan",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-55",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Enterprise Income Verification (EIV) Master File",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-56",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Extended Use Agreement (if applicable)",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-57",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Current Waitlist",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-58",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Recent Management and Occupancy Review (MOR) reports from last 3 years",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-59",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Any non-compliance agency or audit findings from last 3 years",
+    "department": "Prop Mgmt"
+  },
+  {
+    "item_id": "xdd-60",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Insurance Policies/Summary Docs/Exclusions",
+    "department": "Legal/Ins/Tax"
+  },
+  {
+    "item_id": "xdd-61",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Summary of Litigation Pending or in Progress",
+    "department": "Legal/Ins/Tax"
+  },
+  {
+    "item_id": "xdd-62",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Summary of Outstanding Insurance Claims",
+    "department": "Legal/Ins/Tax"
+  },
+  {
+    "item_id": "xdd-63",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Tax Appeals / Reduction History",
+    "department": "Legal/Ins/Tax"
+  },
+  {
+    "item_id": "xdd-64",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Tax Bills YTD + 3 prior years (including unsecured personal property)",
+    "department": "Legal/Ins/Tax"
+  },
+  {
+    "item_id": "xdd-65",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Total Insured Value (TIV) / Claims and Loss History - prior 3 years",
+    "department": "Legal/Ins/Tax"
+  },
+  {
+    "item_id": "xdd-66",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Property Management Agreement",
+    "department": "Legal/Ins/Tax"
+  },
+  {
+    "item_id": "xdd-67",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Aged Receivable / Delinquency Report YTD (update if available) + 3 prior years",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "xdd-68",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Appraisals",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "xdd-69",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Detailed Operating Budget YTD + 3 prior years",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "xdd-70",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Capital Expenditures - Historical (3 prior years) & 2026 Budget",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "xdd-71",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Deferred Maintenance",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "xdd-72",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Rent Statements YTD + 3 prior years",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "xdd-73",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Security Deposits Schedule",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "xdd-74",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Tenant Billing Register YTD + 3 prior years",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "xdd-75",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Utility Bills - 12 months",
+    "department": "Accounting"
+  },
+  {
+    "item_id": "xdd-76",
+    "source_tab": "External DD List",
+    "status": "Open",
+    "responsible_party": "Unassigned",
+    "external_party": null,
+    "comments": [],
+    "linked_items": null,
+    "opened_date": "2026-07-14",
+    "last_updated": "2026-07-14",
+    "history": [],
+    "div_folder": null,
+    "document": "Vendor Bills - 3 prior years",
+    "department": "Accounting"
   }
 ]

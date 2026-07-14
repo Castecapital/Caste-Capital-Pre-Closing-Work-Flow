@@ -21,10 +21,16 @@ export const api = {
   getDeals: () => request("/deals"),
   getItems: (dealId = DEAL_ID, sourceTab) =>
     request(`/deals/${dealId}/items${sourceTab ? `?source_tab=${encodeURIComponent(sourceTab)}` : ""}`),
+  getItem: (itemId, dealId = DEAL_ID) => request(`/deals/${dealId}/items/${itemId}`),
   updateItem: (itemId, patch, dealId = DEAL_ID) =>
     request(`/deals/${dealId}/items/${itemId}`, { method: "PUT", body: JSON.stringify(patch) }),
   addComment: (itemId, comment, dealId = DEAL_ID) =>
     request(`/deals/${dealId}/items/${itemId}/comments`, { method: "POST", body: JSON.stringify(comment) }),
+  linkItems: (itemId, targetItemId, dealId = DEAL_ID) =>
+    request(`/deals/${dealId}/items/${itemId}/link`, {
+      method: "POST",
+      body: JSON.stringify({ target_item_id: targetItemId }),
+    }),
   getDealConfig: (dealId = DEAL_ID) => request(`/deals/${dealId}/deal-config`),
   updateDealConfig: (patch, dealId = DEAL_ID) =>
     request(`/deals/${dealId}/deal-config`, { method: "PUT", body: JSON.stringify(patch) }),

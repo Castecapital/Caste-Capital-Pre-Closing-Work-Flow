@@ -1,10 +1,10 @@
 // One-time import: RAP UP DD Work Log (Internal).xlsx -> deal-1 seed data.
 //
-// Only handles the "Deal Team" and "DD Full Checklist" tabs (Step 1 + Step 2
-// of the workbook build). The other five tabs (Internal/External DD lists,
-// HAP Assignment Checklist, Lender Checklist, Cost Schedule) are structurally
-// irregular in their own ways and are imported in later steps once the core
-// engine is proven against this tab.
+// Handles the "Deal Team", "DD Full Checklist", "Internal - DD Request List"
+// and "External - DD List" tabs (Steps 1-3 of the workbook build). The
+// remaining tabs (HAP Assignment Checklist, Lender Checklist, Cost Schedule)
+// are structurally irregular in their own ways and are imported in later
+// steps once the core engine is proven against these four.
 //
 // Usage: node scripts/import-workbook.js [path-to-xlsx] [deal-id]
 
@@ -37,6 +37,20 @@ const CATEGORY_NORMALIZE = {
 // matching - text matching on phrases like "JV OA" false-positives against
 // unrelated rows that happen to contain "oa" as a substring.
 const CRITICAL_PATH_ITEM_NUMBERS = new Set([11, 17, 18, 24, 28, 25, 31, 34, 65, 138, 139]);
+
+// Department header rows in both DD Request List sheets carry a differently-
+// cased label than the per-row Department column value actually uses (e.g.
+// header "PHYSICAL / PROPERTY" but every row under it is Department
+// "Development"). Rows with a blank Department column fall back to this map
+// keyed by the department header text seen above them.
+const DEPT_HEADER_TO_DEPARTMENT = {
+  "leasing & marketing": "Leasing / Marketing",
+  "physical / property": "Development",
+  "property management": "Prop Mgmt",
+  affordable: "Prop Mgmt",
+  "legal, insurance and tax documents": "Legal/Ins/Tax",
+  "accounting / finance": "Accounting",
+};
 
 function cellText(cell) {
   let v = cell?.value;
@@ -174,7 +188,101 @@ async function importDdFullChecklist(workbook, dealTeam) {
     });
   }
 
-  await writeItems(DEAL_ID, items);
+  return { items, anomalies };
+}
+
+// Shared shape between "Internal - DD Request List" and "External - DD List":
+// C=DIV Folder, D=Item#, E=Document, F=Status, G=Department, H=Responsible
+// Party, I=DIV Comment, J=Partner Comment, K=Notes (Internal only - External
+// has no Notes column, which is expected, not a bug).
+async function importDdRequestList(workbook, { sheetName, sourceTab, idPrefix, lastRow }) {
+  const ws = workbook.getWorksheet(sheetName);
+  const importDate = today();
+  const items = [];
+  const anomalies = [];
+  let currentDeptHeader = null;
+
+  for (let r = 6; r <= lastRow; r++) {
+    const row = ws.getRow(r);
+    const itemNoRaw = cellText(row.getCell(4)); // D
+    const document = cellText(row.getCell(5)); // E
+    const statusRaw = cellText(row.getCell(6)); // F
+
+    if (itemNoRaw === null && document === null) continue;
+
+    // Department header row: Item# column holds the department label, no document.
+    if (typeof itemNoRaw === "string" && document === null) {
+      currentDeptHeader = itemNoRaw.trim().toLowerCase();
+      continue;
+    }
+
+    // Sub-section label row (e.g. "Environmental Information review"): no
+    // item#, has a document-column label but no status - informational only,
+    // and the Department column is already explicit on every real item row
+    // beneath it, so nothing is lost by skipping these.
+    if (itemNoRaw === null) continue;
+
+    if (typeof itemNoRaw !== "number") continue; // stray/blank row
+
+    const itemNo = itemNoRaw;
+    const divFolder = cellText(row.getCell(3)); // C
+    let departmentRaw = cellText(row.getCell(7)); // G
+    const responsiblePartyRaw = cellText(row.getCell(8)); // H
+    const divComment = cellText(row.getCell(9)); // I
+    const partnerComment = cellText(row.getCell(10)); // J
+    const notes = sheetName.startsWith("Internal") ? cellText(row.getCell(11)) : null; // K
+
+    let status = typeof statusRaw === "string" ? statusRaw.trim() : statusRaw;
+    const comments = [];
+
+    // The literal "Deleted" placeholder row: document/department text is
+    // itself just "Deleted" in the source - preserve the item number and
+    // status, but don't carry a fake department or document string forward.
+    const isDeletedRow = status === "Deleted";
+    let documentText = document ? String(document).trim() : null;
+    let department = null;
+
+    if (isDeletedRow) {
+      documentText = "[Deleted]";
+      department = null;
+    } else {
+      department = departmentRaw ? String(departmentRaw).trim() : DEPT_HEADER_TO_DEPARTMENT[currentDeptHeader] ?? null;
+      if (!department) {
+        anomalies.push(`${sourceTab} row ${r} (item ${itemNo}): no department resolved, importing with department=null`);
+      }
+    }
+
+    if (status === "Received") {
+      comments.push({ author: "Original Status", text: "Received", timestamp: importDate });
+      status = "Closed";
+      anomalies.push(`${sourceTab} row ${r} (item ${itemNo}): status "Received" mapped to "Closed" (not a schema status), original value preserved in comments`);
+    } else if (!status) {
+      status = "Open";
+    } else if (!["Open", "Closed", "Deleted"].includes(status)) {
+      anomalies.push(`${sourceTab} row ${r} (item ${itemNo}): unexpected status "${status}", importing as-is`);
+    }
+
+    if (divComment) comments.push({ author: "DIV Comment", text: String(divComment), timestamp: importDate });
+    if (partnerComment) comments.push({ author: "Partner Comment", text: String(partnerComment), timestamp: importDate });
+    if (notes) comments.push({ author: "Notes", text: String(notes), timestamp: importDate });
+
+    items.push({
+      item_id: `${idPrefix}-${itemNo}`,
+      source_tab: sourceTab,
+      status,
+      responsible_party: responsiblePartyRaw ? String(responsiblePartyRaw).trim() : "Unassigned",
+      external_party: null,
+      comments,
+      linked_items: null,
+      opened_date: importDate,
+      last_updated: importDate,
+      history: [],
+      div_folder: divFolder ? String(divFolder).trim() : null,
+      document: documentText,
+      department,
+    });
+  }
+
   return { items, anomalies };
 }
 
@@ -225,23 +333,42 @@ async function main() {
   const team = await importDealTeam(workbook);
   console.log(`Deal Team: imported ${team.length} members`);
 
-  const { items, anomalies: itemAnomalies } = await importDdFullChecklist(workbook, team);
-  console.log(`DD Full Checklist: imported ${items.length} items`);
+  const ddFull = await importDdFullChecklist(workbook, team);
+  console.log(`DD Full Checklist: imported ${ddFull.items.length} items`);
+
+  const internalDd = await importDdRequestList(workbook, {
+    sheetName: "Internal - DD Request List",
+    sourceTab: "Internal DD Request List",
+    idPrefix: "idd",
+    lastRow: 97,
+  });
+  console.log(`Internal DD Request List: imported ${internalDd.items.length} items`);
+
+  const externalDd = await importDdRequestList(workbook, {
+    sheetName: "External - DD List",
+    sourceTab: "External DD List",
+    idPrefix: "xdd",
+    lastRow: 90,
+  });
+  console.log(`External DD List: imported ${externalDd.items.length} items`);
+
+  const allItems = [...ddFull.items, ...internalDd.items, ...externalDd.items];
+  await writeItems(DEAL_ID, allItems);
 
   const { config, anomalies: configAnomalies } = await importDealConfig(workbook);
   console.log(`Deal Setup: ${Object.entries(config).filter(([, v]) => v !== null).length}/${Object.keys(config).length} fields populated`);
 
-  const allAnomalies = [...itemAnomalies, ...configAnomalies];
+  const allAnomalies = [...ddFull.anomalies, ...internalDd.anomalies, ...externalDd.anomalies, ...configAnomalies];
   if (allAnomalies.length) {
     console.log(`\n${allAnomalies.length} note(s) from import:`);
     for (const a of allAnomalies) console.log(`  - ${a}`);
   }
 
-  const critical = items.filter((i) => i.is_critical_path);
+  const critical = ddFull.items.filter((i) => i.is_critical_path);
   console.log(`\nCritical path items flagged: ${critical.map((i) => i.item_id).join(", ")}`);
 
   const verify = await readItems(DEAL_ID);
-  console.log(`\nVerification: ${verify.length} items on disk for deal '${DEAL_ID}'`);
+  console.log(`\nVerification: ${verify.length} total items on disk for deal '${DEAL_ID}'`);
 }
 
 main().catch((err) => {
