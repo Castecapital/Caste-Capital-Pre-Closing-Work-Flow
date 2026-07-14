@@ -106,6 +106,7 @@ export default function ItemDetail() {
         {item.category && ` · ${item.category}`}
         {item.department && ` · ${item.department}`}
         {item.section_number && ` · ${item.section_number}`}
+        {item.entity_group && ` · ${item.entity_group}`}
       </p>
 
       {unclosedLinks.length > 0 && (

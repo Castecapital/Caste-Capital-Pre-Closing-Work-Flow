@@ -97,6 +97,31 @@ export const HAP_SECTION_TOPICS = [
   "Property Information",
 ];
 
+export const LENDER_CONFIG_FIELDS = ["lender_name"];
+
+export function emptyLenderConfig() {
+  const config = {};
+  for (const field of LENDER_CONFIG_FIELDS) config[field] = null;
+  return config;
+}
+
+// Lender Checklist entity_group taxonomy. The source's "PRIORITY CREDIT
+// ITEMS FOR RATE LOCK" section has 4 entity-type sub-groups; the rest of the
+// sheet (property-level, insurance/legal, closing items) is a different kind
+// of grouping entirely but uses the same item columns, so it's folded into
+// this same field rather than left unmodeled. "Supplemental Requests" is the
+// separate document list tucked into later columns of the same sheet.
+export const ENTITY_GROUPS = [
+  "Borrowing Entity",
+  "Key Principal / Guarantor",
+  "Principal Individuals",
+  "Principal Entities",
+  "Operating Statements",
+  "Insurance/Legal/Third-Party",
+  "Other",
+  "Supplemental Requests",
+];
+
 export function today() {
   return new Date().toISOString().slice(0, 10);
 }
@@ -207,6 +232,26 @@ export function validateHapItem(item, { partial = false } = {}) {
   required("sub_item_letter");
   required("item_description");
   required("proposed_owner_info");
+
+  return errors;
+}
+
+export function validateLenderItem(item, { partial = false } = {}) {
+  const errors = validateItem(item, { partial });
+  const required = (field) => {
+    if (!partial && (item[field] === undefined || item[field] === null || item[field] === "")) {
+      errors.push(`${field} is required`);
+    }
+  };
+
+  required("document");
+
+  if (!partial || item.entity_group !== undefined) {
+    if (item.entity_group !== undefined && !ENTITY_GROUPS.includes(item.entity_group)) {
+      errors.push(`entity_group must be one of: ${ENTITY_GROUPS.join(", ")}`);
+    }
+  }
+  required("entity_group");
 
   return errors;
 }

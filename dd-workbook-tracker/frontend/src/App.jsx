@@ -3,10 +3,12 @@ import Layout from "./components/Layout";
 import MasterDdTracker from "./pages/MasterDdTracker";
 import DdRequestList from "./pages/DdRequestList";
 import HapChecklist from "./pages/HapChecklist";
+import LenderChecklist from "./pages/LenderChecklist";
 import ItemDetail from "./pages/ItemDetail";
 import DealTeam from "./pages/DealTeam";
 import DealSetup from "./pages/DealSetup";
 import HapInfo from "./pages/HapInfo";
+import LenderInfo from "./pages/LenderInfo";
 
 export default function App() {
   return (
@@ -23,10 +25,12 @@ export default function App() {
             element={<DdRequestList sourceTab="External DD List" title="External DD List" />}
           />
           <Route path="hap-checklist" element={<HapChecklist />} />
+          <Route path="lender-checklist" element={<LenderChecklist />} />
           <Route path="items/:itemId" element={<ItemDetail />} />
           <Route path="deal-team" element={<DealTeam />} />
           <Route path="deal-setup" element={<DealSetup />} />
           <Route path="hap-info" element={<HapInfo />} />
+          <Route path="lender-info" element={<LenderInfo />} />
         </Route>
       </Routes>
     </BrowserRouter>

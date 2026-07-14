@@ -9,14 +9,15 @@ for storage (no database).
 
 ## Status
 
-**Steps 1-4 are built and working end-to-end**: shared workflow engine, Deal
+**Steps 1-5 are built and working end-to-end**: shared workflow engine, Deal
 Team directory, Master DD Tracker, Internal/External DD Request Lists (with
-cross-tab link suggestions), and the HAP Assignment Checklist (grouped by
-section, with a HAP General Info panel). The UI has an Apple-style visual
-design (SF-like type, muted neutrals with a single blue accent, translucent
-sticky two-row nav, rounded cards). Steps 5-10 (dedicated dependency/
-critical-path view, Lender Checklist, Cost Schedule, dashboard, deal
-cloning, workflow automation, reporting) are not yet built.
+cross-tab link suggestions), HAP Assignment Checklist (grouped by section,
+with a HAP General Info panel), and the Lender Checklist (grouped by entity
+group, including the separate supplemental-requests list, with a Lender Info
+panel). The UI has an Apple-style visual design (SF-like type, muted
+neutrals with a single blue accent, translucent sticky two-row nav, rounded
+cards). Steps 6-10 (Cost Schedule, dashboard, dedicated dependency/critical-
+path view, deal cloning, workflow automation, reporting) are not yet built.
 
 Every item (any tab) has a detail page at `/items/:itemId` — click any table
 row to get there. It shows all fields, comments (with add-comment), full
@@ -56,10 +57,10 @@ npm run import-workbook
 ```
 
 The **Deal Team**, **DD Full Checklist**, **Internal - DD Request List**,
-**External - DD List**, and **HAP Assignment Checklist** tabs are imported so
-far. The script prints anomalies it hit along the way (data-entry issues in
-the source file, fields it couldn't confidently map) rather than silently
-guessing at them.
+**External - DD List**, **HAP Assignment Checklist**, and **Lender
+Checklist** tabs are imported so far. The script prints anomalies it hit
+along the way (data-entry issues in the source file, fields it couldn't
+confidently map) rather than silently guessing at them.
 
 ### Import assumptions worth knowing about
 
@@ -109,6 +110,18 @@ guessing at them.
 - One source quirk: HAP item **hap-4l**'s letter cell reads `"l ."` (stray
   space before the period). The `item_id` strips it correctly; the raw
   `sub_item_letter` field keeps the source text as-is.
+- **`entity_group`** on the Lender Checklist has 8 values, not the 4 in the
+  original spec — per your call, expanded to match the sheet exactly:
+  Borrowing Entity, Key Principal / Guarantor, Principal Individuals,
+  Principal Entities, Operating Statements, Insurance/Legal/Third-Party,
+  Other, and Supplemental Requests (the separate document list tucked into
+  column M of the same sheet, imported as its own 7 items rather than
+  merged into the primary 44-item checklist).
+- **`lender_name`** ("Northmarq") is parsed from the sheet's title cell
+  (`"Northmarq - Lender Checklist"`), not a labeled field in the source.
+- All 44 primary Lender Checklist items have Responsible Party = Alex
+  Schultz in the source (resolved to his full name); the 7 supplemental
+  items have no responsible party and import as `"Unassigned"`.
 
 ## Data layout
 
@@ -124,6 +137,7 @@ backend/data/
       deal_config.json         # deal_name + key dates, all nullable
       deal_team.json           # role/organization/name roster
       hap_config.json          # HAP General Info, all nullable
+      lender_config.json       # Lender Info (lender_name), nullable
 ```
 
 ## API
@@ -138,3 +152,4 @@ backend/data/
 - `GET /api/deals/:dealId/deal-config`, `PUT ...`
 - `GET /api/deals/:dealId/deal-team?q=...`, `PUT ...`
 - `GET /api/deals/:dealId/hap-config`, `PUT ...`
+- `GET /api/deals/:dealId/lender-config`, `PUT ...`

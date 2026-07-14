@@ -11,21 +11,27 @@ import {
   writeDealTeam,
   readHapConfig,
   writeHapConfig,
+  readLenderConfig,
+  writeLenderConfig,
 } from "./store.js";
 import {
   validateItem,
   validateDdFullChecklistItem,
   validateDdRequestListItem,
   validateHapItem,
+  validateLenderItem,
   emptyDealConfig,
   emptyHapConfig,
+  emptyLenderConfig,
   DEAL_CONFIG_FIELDS,
   HAP_CONFIG_FIELDS,
+  LENDER_CONFIG_FIELDS,
   SOURCE_TABS,
   STATUSES,
   CATEGORIES,
   PHASES,
   DEPARTMENTS,
+  ENTITY_GROUPS,
   today,
 } from "./schema.js";
 
@@ -47,11 +53,38 @@ function validatorFor(sourceTab) {
   if (sourceTab === "DD Full Checklist") return validateDdFullChecklistItem;
   if (sourceTab === "Internal DD Request List" || sourceTab === "External DD List") return validateDdRequestListItem;
   if (sourceTab === "HAP Assignment Checklist") return validateHapItem;
+  if (sourceTab === "Lender Checklist") return validateLenderItem;
   return validateItem;
 }
 
+// Deal Setup, HAP Info, and Lender Info are all the same shape: a flat,
+// nullable key/value config scoped to the deal. Registers GET/PUT for one.
+function registerConfigRoutes(path, { read, write, fields, empty }) {
+  app.get(`/api/deals/:dealId/${path}`, requireDeal, async (req, res) => {
+    const config = await read(req.params.dealId);
+    res.json(config ?? empty());
+  });
+
+  app.put(`/api/deals/:dealId/${path}`, requireDeal, async (req, res) => {
+    const existing = (await read(req.params.dealId)) ?? empty();
+    const updated = { ...existing };
+    for (const field of fields) {
+      if (field in req.body) updated[field] = req.body[field] || null;
+    }
+    await write(req.params.dealId, updated);
+    res.json(updated);
+  });
+}
+
 app.get("/api/meta", (req, res) => {
-  res.json({ sourceTabs: SOURCE_TABS, statuses: STATUSES, categories: CATEGORIES, phases: PHASES, departments: DEPARTMENTS });
+  res.json({
+    sourceTabs: SOURCE_TABS,
+    statuses: STATUSES,
+    categories: CATEGORIES,
+    phases: PHASES,
+    departments: DEPARTMENTS,
+    entityGroups: ENTITY_GROUPS,
+  });
 });
 
 app.get("/api/deals", async (req, res) => {
@@ -189,34 +222,25 @@ app.post("/api/deals/:dealId/items/:itemId/link", requireDeal, async (req, res) 
   });
 });
 
-app.get("/api/deals/:dealId/deal-config", requireDeal, async (req, res) => {
-  const config = await readDealConfig(req.params.dealId);
-  res.json(config ?? emptyDealConfig());
+registerConfigRoutes("deal-config", {
+  read: readDealConfig,
+  write: writeDealConfig,
+  fields: DEAL_CONFIG_FIELDS,
+  empty: emptyDealConfig,
 });
 
-app.put("/api/deals/:dealId/deal-config", requireDeal, async (req, res) => {
-  const existing = (await readDealConfig(req.params.dealId)) ?? emptyDealConfig();
-  const updated = { ...existing };
-  for (const field of DEAL_CONFIG_FIELDS) {
-    if (field in req.body) updated[field] = req.body[field] || null;
-  }
-  await writeDealConfig(req.params.dealId, updated);
-  res.json(updated);
+registerConfigRoutes("hap-config", {
+  read: readHapConfig,
+  write: writeHapConfig,
+  fields: HAP_CONFIG_FIELDS,
+  empty: emptyHapConfig,
 });
 
-app.get("/api/deals/:dealId/hap-config", requireDeal, async (req, res) => {
-  const config = await readHapConfig(req.params.dealId);
-  res.json(config ?? emptyHapConfig());
-});
-
-app.put("/api/deals/:dealId/hap-config", requireDeal, async (req, res) => {
-  const existing = (await readHapConfig(req.params.dealId)) ?? emptyHapConfig();
-  const updated = { ...existing };
-  for (const field of HAP_CONFIG_FIELDS) {
-    if (field in req.body) updated[field] = req.body[field] || null;
-  }
-  await writeHapConfig(req.params.dealId, updated);
-  res.json(updated);
+registerConfigRoutes("lender-config", {
+  read: readLenderConfig,
+  write: writeLenderConfig,
+  fields: LENDER_CONFIG_FIELDS,
+  empty: emptyLenderConfig,
 });
 
 app.get("/api/deals/:dealId/deal-team", requireDeal, async (req, res) => {

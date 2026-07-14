@@ -5,9 +5,11 @@ const tabs = [
   { to: "/internal-dd-list", label: "Internal DD List" },
   { to: "/external-dd-list", label: "External DD List" },
   { to: "/hap-checklist", label: "HAP Checklist" },
+  { to: "/lender-checklist", label: "Lender Checklist" },
   { to: "/deal-team", label: "Deal Team" },
   { to: "/deal-setup", label: "Deal Setup" },
   { to: "/hap-info", label: "HAP Info" },
+  { to: "/lender-info", label: "Lender Info" },
 ];
 
 function navLinkClass({ isActive }) {

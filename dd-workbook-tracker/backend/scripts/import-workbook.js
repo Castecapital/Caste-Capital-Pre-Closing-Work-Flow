@@ -1,18 +1,18 @@
 // One-time import: RAP UP DD Work Log (Internal).xlsx -> deal-1 seed data.
 //
 // Handles the "Deal Team", "DD Full Checklist", "Internal - DD Request List",
-// "External - DD List", and "HAP Assignment Checklist" tabs (Steps 1-4 of the
-// workbook build). The remaining tabs (Lender Checklist, Cost Schedule) are
-// structurally irregular in their own ways and are imported in later steps
-// once the core engine is proven against these five.
+// "External - DD List", "HAP Assignment Checklist", and "Lender Checklist"
+// tabs (Steps 1-5 of the workbook build). Only "Cost Schedule" remains - it's
+// a budget/Gantt tracker, not a document checklist, and gets its own module
+// (Step 6) rather than forcing it into the shared workflow-item shape.
 //
 // Usage: node scripts/import-workbook.js [path-to-xlsx] [deal-id]
 
 import ExcelJS from "exceljs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { writeItems, writeDealConfig, writeDealTeam, writeHapConfig, readItems } from "../store.js";
-import { emptyDealConfig, emptyHapConfig, today } from "../schema.js";
+import { writeItems, writeDealConfig, writeDealTeam, writeHapConfig, writeLenderConfig, readItems } from "../store.js";
+import { emptyDealConfig, emptyHapConfig, emptyLenderConfig, today } from "../schema.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -372,6 +372,123 @@ async function importHapConfig() {
   return emptyHapConfig();
 }
 
+// "Lender Checklist" tab, column E: header rows carry the entity_group
+// label (rows 6/12/20/26 for the 4 entity types, rows 32/45/62 for the
+// 3 non-entity groups sharing the same item columns). Umbrella section
+// titles (rows 5/31/44/61, e.g. "PROPERTY-LEVEL ITEMS FOR RATE LOCK") don't
+// map to a group themselves - they're skipped without resetting
+// currentGroup, so the group carried from the last recognized header stays
+// in effect until the next real sub-header.
+const ENTITY_GROUP_HEADER_MAP = {
+  "tbd borrowing entity": "Borrowing Entity",
+  "tbd key principal / guarantor": "Key Principal / Guarantor",
+  "tbd princial individuals": "Principal Individuals", // source typo, preserved for matching only
+  "tbd principal entities": "Principal Entities",
+  "operating statements": "Operating Statements",
+  "insurance, legal, & third-party items": "Insurance/Legal/Third-Party",
+  other: "Other",
+};
+
+async function importLenderChecklist(workbook, dealTeam) {
+  const ws = workbook.getWorksheet("Lender Checklist");
+  const initialsMap = buildInitialsMap(dealTeam);
+  const importDate = today();
+  const items = [];
+  const anomalies = [];
+  let currentGroup = null;
+
+  for (let r = 6; r <= 65; r++) {
+    const row = ws.getRow(r);
+    const itemNoRaw = cellText(row.getCell(5)); // E
+    const document = cellText(row.getCell(6)); // F
+
+    if (itemNoRaw === null && document === null) continue;
+
+    // Header/label row: E holds text, F (Document) is blank.
+    if (typeof itemNoRaw === "string" && document === null) {
+      const mapped = ENTITY_GROUP_HEADER_MAP[itemNoRaw.trim().toLowerCase()];
+      if (mapped) currentGroup = mapped;
+      else anomalies.push(`Lender Checklist row ${r}: unmapped header "${itemNoRaw}" - carrying forward previous entity_group`);
+      continue;
+    }
+
+    if (typeof itemNoRaw !== "number") continue; // stray/blank row
+
+    if (!currentGroup) {
+      anomalies.push(`Lender Checklist row ${r} (item ${itemNoRaw}): no entity_group header seen yet, skipping`);
+      continue;
+    }
+
+    const statusRaw = cellText(row.getCell(7)); // G
+    const responsiblePartyRaw = cellText(row.getCell(8)); // H
+    const externalParty = cellText(row.getCell(9)); // I
+    const comment = cellText(row.getCell(11)); // K
+
+    const status = typeof statusRaw === "string" && statusRaw.trim() ? statusRaw.trim() : "Open";
+    let responsibleParty = responsiblePartyRaw ? String(responsiblePartyRaw).trim() : "Unassigned";
+    if (initialsMap[responsibleParty]) responsibleParty = initialsMap[responsibleParty];
+
+    const comments = [];
+    if (comment) comments.push({ author: "Comment", text: String(comment).trim(), timestamp: importDate });
+
+    items.push({
+      item_id: `lender-${itemNoRaw}`,
+      source_tab: "Lender Checklist",
+      status,
+      responsible_party: responsibleParty,
+      external_party: externalParty ? String(externalParty).trim() : null,
+      comments,
+      linked_items: null,
+      opened_date: importDate,
+      last_updated: importDate,
+      history: [],
+      entity_group: currentGroup,
+      document: String(document).trim(),
+    });
+  }
+
+  // Supplemental document requests: a second, unrelated list tucked into
+  // column M of the same sheet (rows 7-13), with no item numbers or status
+  // of its own - imported as its own set of items tagged "Supplemental
+  // Requests" so nothing from it gets lost or conflated with the primary
+  // checklist above. Row 5's column M value ("Walker" - a person's name,
+  // not a document) is noise from the sheet's layout, not a real entry, and
+  // is excluded.
+  let supplementalIndex = 0;
+  for (let r = 7; r <= 13; r++) {
+    const doc = cellText(ws.getRow(r).getCell(13)); // M
+    if (!doc) continue;
+    supplementalIndex += 1;
+    items.push({
+      item_id: `lender-s${supplementalIndex}`,
+      source_tab: "Lender Checklist",
+      status: "Open",
+      responsible_party: "Unassigned",
+      external_party: null,
+      comments: [],
+      linked_items: null,
+      opened_date: importDate,
+      last_updated: importDate,
+      history: [],
+      entity_group: "Supplemental Requests",
+      document: String(doc).trim(),
+    });
+  }
+
+  return { items, anomalies };
+}
+
+async function importLenderConfig(workbook) {
+  const ws = workbook.getWorksheet("Lender Checklist");
+  const title = cellText(ws.getRow(3).getCell(5)); // E3, e.g. "Northmarq - Lender Checklist"
+  const config = emptyLenderConfig();
+  if (typeof title === "string") {
+    const match = title.match(/^(.*?)\s*-\s*Lender Checklist/i);
+    config.lender_name = match ? match[1].trim() : title.trim();
+  }
+  return config;
+}
+
 async function importDealConfig(workbook) {
   const ws = workbook.getWorksheet("DD Full Checklist");
   const config = emptyDealConfig();
@@ -441,16 +558,23 @@ async function main() {
   const hap = await importHapAssignmentChecklist(workbook);
   console.log(`HAP Assignment Checklist: imported ${hap.items.length} items`);
 
-  const allItems = [...ddFull.items, ...internalDd.items, ...externalDd.items, ...hap.items];
+  const lender = await importLenderChecklist(workbook, team);
+  console.log(`Lender Checklist: imported ${lender.items.length} items`);
+
+  const allItems = [...ddFull.items, ...internalDd.items, ...externalDd.items, ...hap.items, ...lender.items];
   await writeItems(DEAL_ID, allItems);
 
   const hapConfig = await importHapConfig();
   await writeHapConfig(DEAL_ID, hapConfig);
 
+  const lenderConfig = await importLenderConfig(workbook);
+  await writeLenderConfig(DEAL_ID, lenderConfig);
+  console.log(`Lender Info: lender_name = ${JSON.stringify(lenderConfig.lender_name)}`);
+
   const { config, anomalies: configAnomalies } = await importDealConfig(workbook);
   console.log(`Deal Setup: ${Object.entries(config).filter(([, v]) => v !== null).length}/${Object.keys(config).length} fields populated`);
 
-  const allAnomalies = [...ddFull.anomalies, ...internalDd.anomalies, ...externalDd.anomalies, ...hap.anomalies, ...configAnomalies];
+  const allAnomalies = [...ddFull.anomalies, ...internalDd.anomalies, ...externalDd.anomalies, ...hap.anomalies, ...lender.anomalies, ...configAnomalies];
   if (allAnomalies.length) {
     console.log(`\n${allAnomalies.length} note(s) from import:`);
     for (const a of allAnomalies) console.log(`  - ${a}`);

@@ -39,5 +39,8 @@ export const api = {
   getHapConfig: (dealId = DEAL_ID) => request(`/deals/${dealId}/hap-config`),
   updateHapConfig: (patch, dealId = DEAL_ID) =>
     request(`/deals/${dealId}/hap-config`, { method: "PUT", body: JSON.stringify(patch) }),
+  getLenderConfig: (dealId = DEAL_ID) => request(`/deals/${dealId}/lender-config`),
+  updateLenderConfig: (patch, dealId = DEAL_ID) =>
+    request(`/deals/${dealId}/lender-config`, { method: "PUT", body: JSON.stringify(patch) }),
   getMeta: () => request("/meta"),
 };
