@@ -13,6 +13,8 @@ import {
   writeHapConfig,
   readLenderConfig,
   writeLenderConfig,
+  readCostSchedule,
+  writeCostSchedule,
 } from "./store.js";
 import {
   validateItem,
@@ -20,6 +22,7 @@ import {
   validateDdRequestListItem,
   validateHapItem,
   validateLenderItem,
+  validateCostTask,
   emptyDealConfig,
   emptyHapConfig,
   emptyLenderConfig,
@@ -188,38 +191,72 @@ app.post("/api/deals/:dealId/items/:itemId/comments", requireDeal, async (req, r
   res.status(201).json(updated);
 });
 
-// Confirms a suggested cross-tab link (Step 3): the frontend computes
-// document-name similarity client-side and only calls this when the user
-// clicks "Link" - nothing gets linked automatically. Bidirectional so either
-// item's detail view shows the relationship.
+// Confirms a suggested or manually-picked cross-tab link (Step 3 + Step 6):
+// the frontend computes document-name similarity (Step 3) or lets the user
+// search-and-pick (Step 6, for linking to a Cost Schedule task) and only
+// calls this on explicit confirmation - nothing gets linked automatically.
+// Bidirectional so either side's detail view shows the relationship. The
+// target can live in either items.json or cost_schedule.json (Cost Schedule
+// tasks don't extend the shared workflow-item shape but do carry their own
+// linked_items array for exactly this purpose).
 app.post("/api/deals/:dealId/items/:itemId/link", requireDeal, async (req, res) => {
   const { itemId } = req.params;
   const { target_item_id } = req.body;
   if (!target_item_id) return res.status(400).json({ error: "target_item_id is required" });
 
   const items = await readItems(req.params.dealId);
-  const a = items.find((i) => i.item_id === itemId);
-  const b = items.find((i) => i.item_id === target_item_id);
-  if (!a || !b) return res.status(404).json({ error: "item not found" });
+  const sourceIndex = items.findIndex((i) => i.item_id === itemId);
+  if (sourceIndex === -1) return res.status(404).json({ error: "item not found" });
 
   const now = today();
-  const link = (item, otherId) => {
-    const existing = item.linked_items ?? [];
-    if (existing.includes(otherId)) return item;
-    return { ...item, linked_items: [...existing, otherId], last_updated: now };
+  const link = (entity, otherId) => {
+    const existing = entity.linked_items ?? [];
+    if (existing.includes(otherId)) return entity;
+    return { ...entity, linked_items: [...existing, otherId], last_updated: now };
   };
 
-  const updatedItems = items.map((i) => {
-    if (i.item_id === itemId) return link(i, target_item_id);
-    if (i.item_id === target_item_id) return link(i, itemId);
-    return i;
-  });
+  const targetInItems = items.findIndex((i) => i.item_id === target_item_id);
+  if (targetInItems !== -1) {
+    items[sourceIndex] = link(items[sourceIndex], target_item_id);
+    items[targetInItems] = link(items[targetInItems], itemId);
+    await writeItems(req.params.dealId, items);
+    return res.json({ a: items[sourceIndex], b: items[targetInItems] });
+  }
 
-  await writeItems(req.params.dealId, updatedItems);
-  res.json({
-    a: updatedItems.find((i) => i.item_id === itemId),
-    b: updatedItems.find((i) => i.item_id === target_item_id),
-  });
+  const costTasks = await readCostSchedule(req.params.dealId);
+  const targetTaskIndex = costTasks.findIndex((t) => t.task_id === target_item_id);
+  if (targetTaskIndex === -1) return res.status(404).json({ error: "target item not found" });
+
+  items[sourceIndex] = link(items[sourceIndex], target_item_id);
+  costTasks[targetTaskIndex] = link(costTasks[targetTaskIndex], itemId);
+  await Promise.all([writeItems(req.params.dealId, items), writeCostSchedule(req.params.dealId, costTasks)]);
+  res.json({ a: items[sourceIndex], b: costTasks[targetTaskIndex] });
+});
+
+app.get("/api/deals/:dealId/cost-schedule", requireDeal, async (req, res) => {
+  const tasks = await readCostSchedule(req.params.dealId);
+  res.json(tasks);
+});
+
+app.get("/api/deals/:dealId/cost-schedule/:taskId", requireDeal, async (req, res) => {
+  const tasks = await readCostSchedule(req.params.dealId);
+  const task = tasks.find((t) => t.task_id === req.params.taskId);
+  if (!task) return res.status(404).json({ error: "task not found" });
+  res.json(task);
+});
+
+app.put("/api/deals/:dealId/cost-schedule/:taskId", requireDeal, async (req, res) => {
+  const { taskId } = req.params;
+  const tasks = await readCostSchedule(req.params.dealId);
+  const index = tasks.findIndex((t) => t.task_id === taskId);
+  if (index === -1) return res.status(404).json({ error: "task not found" });
+
+  const errors = validateCostTask(req.body, { partial: true });
+  if (errors.length) return res.status(400).json({ errors });
+
+  tasks[index] = { ...tasks[index], ...req.body, task_id: taskId };
+  await writeCostSchedule(req.params.dealId, tasks);
+  res.json(tasks[index]);
 });
 
 registerConfigRoutes("deal-config", {

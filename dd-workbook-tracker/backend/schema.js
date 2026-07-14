@@ -255,3 +255,40 @@ export function validateLenderItem(item, { partial = false } = {}) {
 
   return errors;
 }
+
+// Cost Schedule (Step 6) is structurally a budget/Gantt tracker, not a
+// document checklist - it deliberately does NOT extend the shared
+// workflow-item model (no status, no comments, no source_tab). It keeps its
+// own linked_items array so other tabs' items can still point at a specific
+// cost-tracker task (e.g. a DD Full Checklist item linking to the task that
+// funds it), which is the only piece it shares with the workflow-item shape.
+export function validateCostTask(task, { partial = false } = {}) {
+  const errors = [];
+  const required = (field) => {
+    if (!partial && (task[field] === undefined || task[field] === null || task[field] === "")) {
+      errors.push(`${field} is required`);
+    }
+  };
+
+  required("phase");
+  required("start_date");
+  required("end_date");
+
+  for (const field of ["duration_days", "budget", "proposal_cost", "spent", "remaining"]) {
+    if (!partial && (task[field] === undefined || task[field] === null)) {
+      errors.push(`${field} is required`);
+    } else if (task[field] !== undefined && task[field] !== null && typeof task[field] !== "number") {
+      errors.push(`${field} must be a number`);
+    }
+  }
+
+  if (task.monthly_spend !== undefined && !Array.isArray(task.monthly_spend)) {
+    errors.push("monthly_spend must be an array of {month, amount}");
+  }
+
+  if (task.linked_items !== undefined && task.linked_items !== null && !Array.isArray(task.linked_items)) {
+    errors.push("linked_items must be an array of item_id or null");
+  }
+
+  return errors;
+}

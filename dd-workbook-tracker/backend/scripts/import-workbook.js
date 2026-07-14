@@ -1,17 +1,23 @@
 // One-time import: RAP UP DD Work Log (Internal).xlsx -> deal-1 seed data.
 //
-// Handles the "Deal Team", "DD Full Checklist", "Internal - DD Request List",
-// "External - DD List", "HAP Assignment Checklist", and "Lender Checklist"
-// tabs (Steps 1-5 of the workbook build). Only "Cost Schedule" remains - it's
-// a budget/Gantt tracker, not a document checklist, and gets its own module
-// (Step 6) rather than forcing it into the shared workflow-item shape.
+// Handles all 7 tabs: "Deal Team", "DD Full Checklist", "Internal - DD
+// Request List", "External - DD List", "HAP Assignment Checklist", "Lender
+// Checklist", and "Cost Schedule" (Steps 1-6 of the workbook build).
 //
 // Usage: node scripts/import-workbook.js [path-to-xlsx] [deal-id]
 
 import ExcelJS from "exceljs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { writeItems, writeDealConfig, writeDealTeam, writeHapConfig, writeLenderConfig, readItems } from "../store.js";
+import {
+  writeItems,
+  writeDealConfig,
+  writeDealTeam,
+  writeHapConfig,
+  writeLenderConfig,
+  writeCostSchedule,
+  readItems,
+} from "../store.js";
 import { emptyDealConfig, emptyHapConfig, emptyLenderConfig, today } from "../schema.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -489,6 +495,95 @@ async function importLenderConfig(workbook) {
   return config;
 }
 
+// "Cost Schedule" tab: columns C=Phase, D=Task, E=Party, F=Start, G=Duration,
+// H=End, I=Budget, J=Proposal Cost, K=Spent, L=Remaining, then one column
+// per month (O onward, header = that month's end date) through X. Rows
+// 26-27 are precomputed "Total (Incl./Excl. Deposits)" rows and 29-31 are a
+// "Note:" aside - neither are tasks, both excluded. Row 23 ("Contingency")
+// has a phase and dollar figures but no task/party - imported with
+// task: null rather than invented text.
+async function importCostSchedule(workbook) {
+  const ws = workbook.getWorksheet("Cost Schedule");
+  const anomalies = [];
+
+  // Month columns run from O (15) to whatever the last populated header is,
+  // rather than a hardcoded end column, so this doesn't silently drop a
+  // month if the sheet grows.
+  const monthColumns = [];
+  const headerRow = ws.getRow(4);
+  for (let c = 15; c <= 30; c++) {
+    const header = cellText(headerRow.getCell(c));
+    if (header instanceof Date) monthColumns.push({ col: c, month: header.toISOString().slice(0, 7) });
+  }
+
+  const tasks = [];
+  for (let r = 5; r <= 25; r++) {
+    const row = ws.getRow(r);
+    const phase = cellText(row.getCell(3)); // C
+    if (!phase) continue;
+
+    const task = cellText(row.getCell(4)); // D
+    const party = cellText(row.getCell(5)); // E
+    const startDate = cellText(row.getCell(6)); // F
+    const durationDays = cellText(row.getCell(7)); // G
+    const endDate = cellText(row.getCell(8)); // H
+    const budget = cellText(row.getCell(9)); // I
+    const proposalCost = cellText(row.getCell(10)); // J
+    const spent = cellText(row.getCell(11)); // K
+    const remaining = cellText(row.getCell(12)); // L
+
+    if (!(startDate instanceof Date) || !(endDate instanceof Date)) {
+      anomalies.push(`Cost Schedule row ${r} (phase "${phase}"): missing start/end date, skipping - likely a totals/notes row, not a task`);
+      continue;
+    }
+
+    // A handful of monthly-spend cells are shared-formula references with no
+    // cached result at all (e.g. row 5's Dec-2025 column caches 0.0001, but
+    // every other month on that row is just "same formula as O5" with
+    // nothing cached). Since these are date-range-conditional formulas that
+    // dump the task's cost into whichever month it falls in, and every task
+    // here only actually spans one or two months, an uncached cell reliably
+    // means "this month is outside the task's range" - 0, not missing data.
+    const monthlySpend = monthColumns.map(({ col, month }) => {
+      const raw = cellText(row.getCell(col));
+      return { month, amount: typeof raw === "number" ? raw : 0 };
+    });
+
+    const proposalCostNum = typeof proposalCost === "number" ? proposalCost : 0;
+    const spentNum = typeof spent === "number" ? spent : 0;
+
+    // The "Remaining" column is a shared Excel formula (+ProposalCost-Spent);
+    // exceljs doesn't cache a result on the formula's master cell in a few
+    // rows (5, 11, 16), so those come through as a formula object rather
+    // than a number - computed directly rather than left as 0.
+    let remainingNum;
+    if (typeof remaining === "number") {
+      remainingNum = remaining;
+    } else {
+      remainingNum = proposalCostNum - spentNum;
+      anomalies.push(`Cost Schedule row ${r} (phase "${phase}"): Remaining had no cached formula result in source, computed as Proposal Cost - Spent`);
+    }
+
+    tasks.push({
+      task_id: `cost-${tasks.length + 1}`,
+      phase: String(phase).trim(),
+      task: task ? String(task).trim() : null,
+      party: party ? String(party).trim() : null,
+      start_date: toIsoDate(startDate),
+      end_date: toIsoDate(endDate),
+      duration_days: typeof durationDays === "number" ? durationDays : null,
+      budget: typeof budget === "number" ? budget : 0,
+      proposal_cost: proposalCostNum,
+      spent: spentNum,
+      remaining: remainingNum,
+      monthly_spend: monthlySpend,
+      linked_items: null,
+    });
+  }
+
+  return { tasks, anomalies };
+}
+
 async function importDealConfig(workbook) {
   const ws = workbook.getWorksheet("DD Full Checklist");
   const config = emptyDealConfig();
@@ -564,6 +659,14 @@ async function main() {
   const allItems = [...ddFull.items, ...internalDd.items, ...externalDd.items, ...hap.items, ...lender.items];
   await writeItems(DEAL_ID, allItems);
 
+  const costSchedule = await importCostSchedule(workbook);
+  await writeCostSchedule(DEAL_ID, costSchedule.tasks);
+  const totalBudget = costSchedule.tasks.reduce((sum, t) => sum + t.budget, 0);
+  const totalSpent = costSchedule.tasks.reduce((sum, t) => sum + t.spent, 0);
+  console.log(
+    `Cost Schedule: imported ${costSchedule.tasks.length} tasks, total budget $${totalBudget.toLocaleString()}, total spent $${totalSpent.toLocaleString()}`
+  );
+
   const hapConfig = await importHapConfig();
   await writeHapConfig(DEAL_ID, hapConfig);
 
@@ -574,7 +677,15 @@ async function main() {
   const { config, anomalies: configAnomalies } = await importDealConfig(workbook);
   console.log(`Deal Setup: ${Object.entries(config).filter(([, v]) => v !== null).length}/${Object.keys(config).length} fields populated`);
 
-  const allAnomalies = [...ddFull.anomalies, ...internalDd.anomalies, ...externalDd.anomalies, ...hap.anomalies, ...lender.anomalies, ...configAnomalies];
+  const allAnomalies = [
+    ...ddFull.anomalies,
+    ...internalDd.anomalies,
+    ...externalDd.anomalies,
+    ...hap.anomalies,
+    ...lender.anomalies,
+    ...costSchedule.anomalies,
+    ...configAnomalies,
+  ];
   if (allAnomalies.length) {
     console.log(`\n${allAnomalies.length} note(s) from import:`);
     for (const a of allAnomalies) console.log(`  - ${a}`);

@@ -6,6 +6,7 @@ const tabs = [
   { to: "/external-dd-list", label: "External DD List" },
   { to: "/hap-checklist", label: "HAP Checklist" },
   { to: "/lender-checklist", label: "Lender Checklist" },
+  { to: "/cost-schedule", label: "Cost Schedule" },
   { to: "/deal-team", label: "Deal Team" },
   { to: "/deal-setup", label: "Deal Setup" },
   { to: "/hap-info", label: "HAP Info" },

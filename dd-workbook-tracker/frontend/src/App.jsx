@@ -4,6 +4,7 @@ import MasterDdTracker from "./pages/MasterDdTracker";
 import DdRequestList from "./pages/DdRequestList";
 import HapChecklist from "./pages/HapChecklist";
 import LenderChecklist from "./pages/LenderChecklist";
+import CostSchedule from "./pages/CostSchedule";
 import ItemDetail from "./pages/ItemDetail";
 import DealTeam from "./pages/DealTeam";
 import DealSetup from "./pages/DealSetup";
@@ -26,6 +27,7 @@ export default function App() {
           />
           <Route path="hap-checklist" element={<HapChecklist />} />
           <Route path="lender-checklist" element={<LenderChecklist />} />
+          <Route path="cost-schedule" element={<CostSchedule />} />
           <Route path="items/:itemId" element={<ItemDetail />} />
           <Route path="deal-team" element={<DealTeam />} />
           <Route path="deal-setup" element={<DealSetup />} />

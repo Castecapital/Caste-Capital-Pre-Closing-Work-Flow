@@ -59,6 +59,10 @@ function lenderConfigFile(dealId) {
   return path.join(dealDir(dealId), "lender_config.json");
 }
 
+function costScheduleFile(dealId) {
+  return path.join(dealDir(dealId), "cost_schedule.json");
+}
+
 export async function readDealsRegistry() {
   return readJson(DEALS_REGISTRY_FILE, []);
 }
@@ -110,4 +114,12 @@ export async function readLenderConfig(dealId) {
 
 export async function writeLenderConfig(dealId, config) {
   return writeJson(lenderConfigFile(dealId), config);
+}
+
+export async function readCostSchedule(dealId) {
+  return readJson(costScheduleFile(dealId), []);
+}
+
+export async function writeCostSchedule(dealId, tasks) {
+  return writeJson(costScheduleFile(dealId), tasks);
 }

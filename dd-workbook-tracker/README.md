@@ -9,25 +9,31 @@ for storage (no database).
 
 ## Status
 
-**Steps 1-5 are built and working end-to-end**: shared workflow engine, Deal
-Team directory, Master DD Tracker, Internal/External DD Request Lists (with
-cross-tab link suggestions), HAP Assignment Checklist (grouped by section,
-with a HAP General Info panel), and the Lender Checklist (grouped by entity
-group, including the separate supplemental-requests list, with a Lender Info
-panel). The UI has an Apple-style visual design (SF-like type, muted
-neutrals with a single blue accent, translucent sticky two-row nav, rounded
-cards). Steps 6-10 (Cost Schedule, dashboard, dedicated dependency/critical-
-path view, deal cloning, workflow automation, reporting) are not yet built.
+**All 6 per-tab imports are built and working end-to-end**: shared workflow
+engine, Deal Team directory, Master DD Tracker, Internal/External DD Request
+Lists (with cross-tab link suggestions), HAP Assignment Checklist (grouped
+by section, with a HAP General Info panel), Lender Checklist (grouped by
+entity group, including the separate supplemental-requests list, with a
+Lender Info panel), and Cost Schedule (its own module — a budget/Gantt
+tracker, not a document checklist — with a budget/spent/remaining rollup).
+The UI has an Apple-style visual design (SF-like type, muted neutrals with a
+single blue accent, translucent sticky two-row nav, rounded cards). Steps
+7-10 (dashboard, dedicated dependency/critical-path view, deal cloning,
+workflow automation, reporting) are not yet built.
 
 Every item (any tab) has a detail page at `/items/:itemId` — click any table
 row to get there. It shows all fields, comments (with add-comment), full
 change history, and linked items. For Internal/External DD list items it
 also surfaces **suggested links**: documents in the opposite list with a
-similar name, scored by name overlap, with a one-click "Link" button. Links
-are bidirectional and nothing is ever auto-linked. If a linked item isn't
-"Closed," a "Blocked by open dependencies" banner appears — this is
-technically Step 4 scope but fell out naturally from the linked-items model
-built for Step 3's suggestions.
+similar name, scored by name overlap, with a one-click "Link" button. Every
+item's detail page also has a manual **"Link to Cost Schedule"** search
+widget, so e.g. a Master DD Tracker item can be pointed at its corresponding
+budget task even though Cost Schedule tasks live in a separate collection
+with no shared fields. Links are bidirectional either way, and nothing is
+ever auto-linked. If a linked item isn't "Closed," a "Blocked by open
+dependencies" banner appears (Cost Schedule tasks, having no status, never
+trigger it) — this is technically Step 4/8 scope but fell out naturally
+from the linked-items model built for Step 3's suggestions.
 
 ## Running locally
 
@@ -56,11 +62,11 @@ npm run import-workbook
 # or: node scripts/import-workbook.js <path-to-xlsx> <deal-id>
 ```
 
-The **Deal Team**, **DD Full Checklist**, **Internal - DD Request List**,
-**External - DD List**, **HAP Assignment Checklist**, and **Lender
-Checklist** tabs are imported so far. The script prints anomalies it hit
-along the way (data-entry issues in the source file, fields it couldn't
-confidently map) rather than silently guessing at them.
+All 7 tabs (**Deal Team**, **DD Full Checklist**, **Internal - DD Request
+List**, **External - DD List**, **HAP Assignment Checklist**, **Lender
+Checklist**, and **Cost Schedule**) are imported. The script prints
+anomalies it hit along the way (data-entry issues in the source file, fields
+it couldn't confidently map) rather than silently guessing at them.
 
 ### Import assumptions worth knowing about
 
@@ -122,6 +128,23 @@ confidently map) rather than silently guessing at them.
 - All 44 primary Lender Checklist items have Responsible Party = Alex
   Schultz in the source (resolved to his full name); the 7 supplemental
   items have no responsible party and import as `"Unassigned"`.
+- **Cost Schedule's "Remaining" column** is a shared Excel formula
+  (`Proposal Cost - Spent`); 3 of the 21 rows (source rows 5, 11, 16 - the
+  first row of each shared-formula group) have no cached formula result at
+  all in the file, so those are computed directly rather than imported as 0.
+- **Monthly spend cells** with no cached formula result (common - most of
+  these are date-range-conditional formulas Excel only caches a result for
+  in one cell per shared group) import as `0` rather than being dropped from
+  `monthly_spend`, since every task here only actually spans 1-2 months and
+  the one cached sibling cell per row confirms 0 is the correct value for
+  the rest, not just a fallback guess.
+- Row 23 ("**Contingency**") has dollar figures but no task/party in the
+  source — imports with `task: null`, `party: null` rather than inventing
+  text; the list view shows "—" for both.
+- `budget`/`proposal_cost`/`spent`/`remaining` totals across all 21 tasks
+  ($545,000 / $463,075 / $0 / $463,075) match the source sheet's own
+  precomputed "Total (Incl. Deposits)" row exactly, which cross-checks the
+  import — those two source rows themselves are not imported as tasks.
 
 ## Data layout
 
@@ -138,6 +161,8 @@ backend/data/
       deal_team.json           # role/organization/name roster
       hap_config.json          # HAP General Info, all nullable
       lender_config.json       # Lender Info (lender_name), nullable
+      cost_schedule.json       # Cost Schedule tasks - separate module, not
+                                # a workflow item (no status/comments/tab)
 ```
 
 ## API
@@ -148,8 +173,10 @@ backend/data/
 - `POST /api/deals/:dealId/items`
 - `PUT /api/deals/:dealId/items/:itemId` — auto-appends to `history[]` when `status` changes
 - `POST /api/deals/:dealId/items/:itemId/comments` — appends a comment + history entry
-- `POST /api/deals/:dealId/items/:itemId/link` — `{ target_item_id }`, bidirectional, only fires on explicit user confirmation
+- `POST /api/deals/:dealId/items/:itemId/link` — `{ target_item_id }`, bidirectional, only fires on explicit user confirmation, resolves the target against items.json or cost_schedule.json
 - `GET /api/deals/:dealId/deal-config`, `PUT ...`
 - `GET /api/deals/:dealId/deal-team?q=...`, `PUT ...`
 - `GET /api/deals/:dealId/hap-config`, `PUT ...`
 - `GET /api/deals/:dealId/lender-config`, `PUT ...`
+- `GET /api/deals/:dealId/cost-schedule`
+- `GET /api/deals/:dealId/cost-schedule/:taskId`, `PUT ...`

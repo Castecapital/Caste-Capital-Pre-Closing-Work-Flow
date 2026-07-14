@@ -42,5 +42,7 @@ export const api = {
   getLenderConfig: (dealId = DEAL_ID) => request(`/deals/${dealId}/lender-config`),
   updateLenderConfig: (patch, dealId = DEAL_ID) =>
     request(`/deals/${dealId}/lender-config`, { method: "PUT", body: JSON.stringify(patch) }),
+  getCostSchedule: (dealId = DEAL_ID) => request(`/deals/${dealId}/cost-schedule`),
+  getCostTask: (taskId, dealId = DEAL_ID) => request(`/deals/${dealId}/cost-schedule/${taskId}`),
   getMeta: () => request("/meta"),
 };

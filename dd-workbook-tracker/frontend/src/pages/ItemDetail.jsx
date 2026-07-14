@@ -12,7 +12,22 @@ const OPPOSITE_TAB = {
 const STATUSES = ["Open", "Closed", "Blocked", "At Risk", "Deleted"];
 
 function itemTitle(item) {
-  return item.action_item ?? item.document ?? item.item_description ?? item.item_id;
+  return item.action_item ?? item.document ?? item.item_description ?? item.task ?? item.item_id;
+}
+
+// Cost Schedule tasks don't extend the shared workflow-item shape (no
+// status, no source_tab) but can still appear in linked_items (Step 6).
+async function resolveLinkedEntity(id) {
+  try {
+    return await api.getItem(id);
+  } catch {
+    try {
+      const task = await api.getCostTask(id);
+      return { ...task, item_id: task.task_id, isCostTask: true };
+    } catch {
+      return null;
+    }
+  }
 }
 
 export default function ItemDetail() {
@@ -24,6 +39,8 @@ export default function ItemDetail() {
   const [commentText, setCommentText] = useState("");
   const [savingComment, setSavingComment] = useState(false);
   const [linking, setLinking] = useState(null);
+  const [costTasks, setCostTasks] = useState([]);
+  const [costTaskQuery, setCostTaskQuery] = useState("");
 
   const load = useCallback(async () => {
     setError(null);
@@ -32,11 +49,13 @@ export default function ItemDetail() {
       setItem(loaded);
 
       if (loaded.linked_items?.length) {
-        const linked = await Promise.all(loaded.linked_items.map((id) => api.getItem(id).catch(() => null)));
+        const linked = await Promise.all(loaded.linked_items.map(resolveLinkedEntity));
         setLinkedItems(linked.filter(Boolean));
       } else {
         setLinkedItems([]);
       }
+
+      api.getCostSchedule().then(setCostTasks).catch(() => setCostTasks([]));
 
       const oppositeTab = OPPOSITE_TAB[loaded.source_tab];
       if (oppositeTab && loaded.document) {
@@ -88,7 +107,18 @@ export default function ItemDetail() {
   if (error) return <p className="text-[#e0393e]">Failed to load item: {error}</p>;
   if (!item) return <p className="text-[#86868b]">Loading…</p>;
 
-  const unclosedLinks = linkedItems.filter((l) => l.status !== "Closed");
+  // Cost Schedule tasks have no status, so they never contribute to the
+  // "blocked by open dependencies" signal - being unfinished on a budget
+  // line doesn't mean the same thing as an open workflow item.
+  const unclosedLinks = linkedItems.filter((l) => !l.isCostTask && l.status !== "Closed");
+
+  const alreadyLinkedCostTaskIds = new Set(linkedItems.filter((l) => l.isCostTask).map((l) => l.item_id));
+  const costTaskMatches = costTaskQuery.trim()
+    ? costTasks
+        .filter((t) => !alreadyLinkedCostTaskIds.has(t.task_id))
+        .filter((t) => (t.task ?? t.phase).toLowerCase().includes(costTaskQuery.trim().toLowerCase()))
+        .slice(0, 6)
+    : [];
 
   return (
     <div className="max-w-3xl">
@@ -195,18 +225,66 @@ export default function ItemDetail() {
             {linkedItems.map((l) => (
               <Link
                 key={l.item_id}
-                to={`/items/${l.item_id}`}
+                to={l.isCostTask ? `/cost-schedule` : `/items/${l.item_id}`}
                 className="flex items-center justify-between gap-3 rounded-xl bg-[#f5f5f7] dark:bg-white/5 px-4 py-2.5 hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
               >
                 <span className="text-[13px] font-medium text-[#1d1d1f] dark:text-white truncate">
                   {l.item_id}: {itemTitle(l)}
                 </span>
-                <StatusBadge status={l.status} />
+                {l.isCostTask ? (
+                  <span className="text-[12px] text-[#86868b] tabular-nums shrink-0">
+                    {l.spent.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 })}
+                    {" spent / "}
+                    {l.budget.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 })}
+                    {" budget"}
+                  </span>
+                ) : (
+                  <StatusBadge status={l.status} />
+                )}
               </Link>
             ))}
           </div>
         </Section>
       )}
+
+      <Section title="Link to Cost Schedule">
+        <p className="text-[13px] text-[#86868b] mb-3">
+          Point this item at its corresponding budget/Gantt task.
+        </p>
+        <input
+          type="text"
+          value={costTaskQuery}
+          onChange={(e) => setCostTaskQuery(e.target.value)}
+          placeholder="Search cost schedule tasks…"
+          className="w-full max-w-sm rounded-lg border-0 ring-1 ring-black/10 dark:ring-white/15 bg-white dark:bg-[#1d1d1f] px-3 py-1.5 text-[13px] text-[#1d1d1f] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#0071e3] transition-shadow"
+        />
+        {costTaskMatches.length > 0 && (
+          <div className="space-y-2 mt-3">
+            {costTaskMatches.map((t) => (
+              <div
+                key={t.task_id}
+                className="flex items-center justify-between gap-3 rounded-xl bg-[#f5f5f7] dark:bg-white/5 px-4 py-2.5"
+              >
+                <div className="min-w-0">
+                  <p className="text-[13px] font-medium text-[#1d1d1f] dark:text-white truncate">
+                    {t.task ?? t.phase}
+                  </p>
+                  <p className="text-[11px] text-[#86868b]">
+                    {t.task_id} · {t.phase}
+                  </p>
+                </div>
+                <button
+                  onClick={() => handleLink(t.task_id)}
+                  disabled={linking === t.task_id}
+                  className="shrink-0 rounded-full bg-[#0071e3] hover:bg-[#0077ed] text-white px-3.5 py-1.5 text-[12px] font-medium transition-colors disabled:opacity-50"
+                >
+                  {linking === t.task_id ? "Linking…" : "Link"}
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </Section>
 
       <Section title="Comments">
         <div className="space-y-3 mb-4">
