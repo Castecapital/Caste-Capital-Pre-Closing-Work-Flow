@@ -1,98 +1,108 @@
 # Deployment Checklist
 
 The recommended setup is a **single service** (Railway or Render both
-work): the Express backend serves both the `/api` routes and the built
-frontend as static files from one origin, so there's no CORS or
-cross-origin cookie configuration to get right. (The app also supports
+work) backed by a **managed Postgres database**: the Express backend
+serves both the `/api` routes and the built frontend as static files from
+one origin, so there's no CORS or cross-origin cookie configuration to get
+right, and deal data lives in Postgres rather than on the service's own
+disk. That means no persistent volume/disk to attach and no risk of data
+loss on redeploy, restart, or (on Render's free tier) spin-down - the
+database is a separate, always-persistent resource. (The app also supports
 deploying the frontend and backend as two separate services if you ever
 want that - see the bottom of this doc - but single-service is simpler and
 is what the walkthroughs below cover.)
 
-## Railway walkthrough (single service)
+## Railway walkthrough (single service + managed Postgres)
 
 1. **New Project → Deploy from GitHub repo** and pick
    `castecapital/caste-capital-pre-closing-work-flow`.
-2. In the service's **Settings**:
+2. **Add a Postgres database**: in the same project, **New → Database →
+   Add PostgreSQL**. Railway provisions it and exposes a `DATABASE_URL`
+   variable on the Postgres service itself.
+3. In the **backend service's** Settings:
    - **Root Directory**: `dd-workbook-tracker/backend`
    - **Build Command**: `npm install && npm run build` (the `build` script
      builds the frontend into `frontend/dist` - see `backend/package.json`)
    - **Start Command**: `npm start`
-3. **Add a Volume** to the service (Settings → Volumes → New Volume).
-   Mount it at `/data`. This is the step most likely to be missed and the
-   one most likely to cause silent data loss: Railway's default filesystem
-   is ephemeral, so without a volume the SQLite database is wiped on every
-   redeploy or restart. Railway does **not** attach one automatically - you
-   have to add it explicitly.
-4. **Set environment variables** (Settings → Variables):
+4. **Set environment variables** (Settings → Variables) on the **backend
+   service**:
    | Variable | Value |
    | --- | --- |
    | `APP_PASSWORD` | Your chosen shared team password. The backend refuses to start without this. |
-   | `DATABASE_PATH` | `/data/app.db` (inside the volume you just mounted) |
+   | `DATABASE_URL` | Reference the Postgres service's connection string: `${{Postgres.DATABASE_URL}}` (Railway's variable-reference syntax - pick it from the variable autocomplete rather than typing it by hand). |
    | `NODE_ENV` | `production` |
 
    `PORT` is injected automatically by Railway - don't set it yourself.
 5. **Deploy.** Railway builds and starts the service; watch the deploy log
-   for `dd-workbook-tracker backend listening on http://localhost:<port>`.
+   for `Applied migration: 001_init.sql` (schema created automatically on
+   first boot - see "Migrations" in the main README) followed by
+   `dd-workbook-tracker backend listening on http://localhost:<port>`.
 6. **Generate a domain**: Settings → Networking → Generate Domain. This
    gives you a `*.up.railway.app` URL serving the whole app (login screen,
    API, everything).
-7. **Seed the database.** The volume starts empty - `Deploy → View Logs`
-   won't show any deal data yet. Run the import once against the deployed
+7. **Seed the database.** The schema exists (migrations ran automatically)
+   but it's empty - no deals yet. Run the import once against the deployed
    instance, not your local machine:
    - Open a shell against the running service (Railway CLI: `railway run
      npm run import-workbook` from `dd-workbook-tracker/backend`, or
      Railway's web shell), or
-   - If you already have deal data locally in JSON files from before the
-     SQLite migration, use `npm run migrate-json-to-sqlite` instead - see
-     the main README's "Data layout" section.
+   - If you have deal data in an old SQLite file from before the Postgres
+     migration, run `npm run migrate-sqlite-to-postgres <path-to-file>`
+     instead - see the main README's "Data layout" section.
 8. **Verify**: visit the generated domain, confirm the login screen loads,
    log in with `APP_PASSWORD`, confirm deal data appears, refresh on a
    non-root route (e.g. Master DD Tracker) and confirm it still renders
    (this exercises the catch-all route that lets client-side routing
    survive a hard refresh), and confirm the session survives a reload.
 
-## Render walkthrough (single service)
+## Render walkthrough (single service + managed Postgres)
 
 1. **New → Web Service** and connect the
    `castecapital/caste-capital-pre-closing-work-flow` GitHub repo.
-2. In the create form (or **Settings → Build & Deploy** afterward):
+2. **Provision (or reuse) a Render Postgres instance**: New → PostgreSQL,
+   or use one you already have. Once it's up, open it and copy the
+   **Internal Database URL** - not the External one. The internal URL only
+   works from services in the same Render region/private network, which
+   is exactly where your Web Service runs, and it's faster and doesn't
+   count against external connection limits. (The External Database URL
+   would also work, e.g. for connecting from your laptop to inspect data,
+   but don't use it as the app's `DATABASE_URL`.)
+3. In the Web Service's create form (or **Settings → Build & Deploy**
+   afterward):
    - **Root Directory**: `dd-workbook-tracker/backend`
    - **Runtime**: Node
    - **Build Command**: `npm install && npm run build` (the `build` script
      builds the frontend into `frontend/dist` - see `backend/package.json`)
    - **Start Command**: `npm start`
-   - **Instance Type**: anything **except Free** - Render's free instances
-     don't support persistent disks at all, and you need one for the
-     database (next step). Starter is enough for an internal tool.
-3. **Add a Disk** (Settings → Disks → Add Disk). Mount path `/data`, 1 GB
-   is plenty. This is the step most likely to be missed and the one most
-   likely to cause silent data loss: Render's default filesystem is
-   ephemeral, so without a disk the SQLite database is wiped on every
-   deploy or restart. Render does **not** attach one automatically, and
-   (as above) it isn't even available on the Free plan - you have to pick
-   a paid instance type and add the disk explicitly.
+   - **Instance Type**: Free is fine now - unlike the old SQLite-on-disk
+     setup, there's no persistent disk requirement forcing a paid plan.
 4. **Set environment variables** (Settings → Environment):
    | Variable | Value |
    | --- | --- |
    | `APP_PASSWORD` | Your chosen shared team password. The backend refuses to start without this. |
-   | `DATABASE_PATH` | `/data/app.db` (inside the disk you just mounted) |
+   | `DATABASE_URL` | The Postgres instance's **Internal Database URL** from step 2. |
    | `NODE_ENV` | `production` |
 
    `PORT` is injected automatically by Render - don't set it yourself.
 5. **Deploy.** Render builds and starts the service; watch the deploy log
-   for `dd-workbook-tracker backend listening on http://localhost:<port>`.
+   for `Applied migration: 001_init.sql` (schema created automatically on
+   first boot - see "Migrations" in the main README) followed by
+   `dd-workbook-tracker backend listening on http://localhost:<port>`.
    Render assigns a `*.onrender.com` URL automatically - no separate
    "generate domain" step like Railway.
-6. **Seed the database.** The disk starts empty. Use the **Shell** tab on
-   the service (available on paid instance types) to run the import once
-   against the deployed instance, not your local machine:
+6. **Seed the database.** The schema exists (migrations ran automatically)
+   but it's empty - no deals yet. Use the **Shell** tab on the Web Service
+   to run the import once against the deployed instance, not your local
+   machine:
    ```bash
    cd dd-workbook-tracker/backend  # if the shell doesn't already start there
    npm run import-workbook
    ```
-   If you already have deal data locally in JSON files from before the
-   SQLite migration, run `npm run migrate-json-to-sqlite` instead - see
-   the main README's "Data layout" section.
+   If you have deal data in an old SQLite file from before the Postgres
+   migration, run `npm run migrate-sqlite-to-postgres <path-to-file>`
+   instead (you'd need to get that file onto the instance first, e.g. via
+   the External Database URL from your laptop) - see the main README's
+   "Data layout" section.
 7. **Verify**: visit the `*.onrender.com` URL, confirm the login screen
    loads, log in with `APP_PASSWORD`, confirm deal data appears, refresh
    on a non-root route (e.g. Master DD Tracker) and confirm it still
@@ -102,13 +112,14 @@ is what the walkthroughs below cover.)
 
 ## Post-deploy checklist
 
-- [ ] Persistent volume/disk attached and mounted at `/data` (Railway:
-      also make sure a volume was actually added, not just referenced;
-      Render: also make sure the instance type isn't Free)
-- [ ] `DATABASE_PATH=/data/app.db` set
+- [ ] Postgres instance provisioned (Railway plugin or Render Postgres)
+- [ ] `DATABASE_URL` set on the backend service to that instance's
+      connection string (Render: the **Internal** URL specifically)
 - [ ] `APP_PASSWORD` set
 - [ ] `NODE_ENV=production` set
 - [ ] Public URL/domain reachable
+- [ ] Deploy log shows migrations applying successfully (no
+      `Migration ... failed` errors) before the "listening on" line
 - [ ] Login screen loads at `/`, and `GET /api/session` with no cookie
       returns `401` rather than a 500 or connection error
 - [ ] Logging in works and the session survives a page reload
@@ -137,8 +148,7 @@ extra configuration the single-service setup above avoids entirely:
 - Deploy `dd-workbook-tracker/backend` as its own service (Railway
   service or Render Web Service). Skip its `build` script (nothing to
   build) - Build Command: `npm install`, Start Command: `npm start`. Same
-  `APP_PASSWORD`/`DATABASE_PATH`/`NODE_ENV`/volume-or-disk requirements as
-  above.
+  `APP_PASSWORD`/`DATABASE_URL`/`NODE_ENV` requirements as above.
 - Deploy `dd-workbook-tracker/frontend` as a static site (Railway's
   static hosting, or Render's **Static Site** service type - not a Web
   Service). Build Command: `npm install && npm run build`, publish

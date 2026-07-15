@@ -4,16 +4,17 @@ Internal tool for managing the Section 8 / HUD multifamily acquisition due
 diligence workbook, from PSA execution through closing. Built as a reusable
 template — no dates or deal-specific data are hardcoded into the app itself.
 
-Stack: React + Vite + Tailwind (frontend), Node/Express (backend), SQLite via
-better-sqlite3 for storage. Gated behind a single shared-password login (see
+Stack: React + Vite + Tailwind (frontend), Node/Express (backend), PostgreSQL
+via `pg` for storage. Gated behind a single shared-password login (see
 [Authentication](#authentication) below).
 
 ## Status
 
 **All 10 steps of the original spec are built and working end-to-end**,
-plus a follow-up infrastructure pass: storage migrated from JSON files to
-SQLite (deploy-safe with a persistent volume) and a shared-password login
-gate (see [Authentication](#authentication)):
+plus two follow-up infrastructure passes: storage migrated from JSON files
+to SQLite and then to PostgreSQL (deploy-safe with no disk/volume needed -
+see [Data layout](#data-layout)) and a shared-password login gate (see
+[Authentication](#authentication)):
 shared workflow engine, Deal Team directory, Master DD Tracker,
 Internal/External DD Request Lists (with cross-tab link suggestions), HAP
 Assignment Checklist (grouped by section, with a HAP General Info panel),
@@ -127,12 +128,37 @@ Lender Checklist, and HAP items, not just the Master DD Tracker.
 
 ## Running locally
 
+Needs a Postgres database to connect to. Two ways to get one:
+
+**Docker (recommended)** - a `docker-compose.yml` at the repo root starts a
+local Postgres matching the backend's built-in fallback connection string
+exactly, so you don't need to set `DATABASE_URL` at all for local dev:
+
+```bash
+cd dd-workbook-tracker
+docker compose up -d   # starts Postgres on localhost:5432
+```
+
+**Local Postgres install** - if you'd rather not use Docker, install
+Postgres yourself and create a role/database matching the same fallback
+the backend expects:
+
+```bash
+createuser postgres --superuser   # if a postgres role doesn't already exist
+psql -U postgres -c "ALTER USER postgres PASSWORD 'postgres';"
+psql -U postgres -c "CREATE DATABASE dd_workbook_tracker;"
+```
+
+Either way, once Postgres is reachable at
+`postgres://postgres:postgres@localhost:5432/dd_workbook_tracker`:
+
 ```bash
 # backend
 cd backend
 npm install
 cp .env.example .env   # then edit .env and set APP_PASSWORD - see Authentication below
-npm start               # http://localhost:3001
+                        # leave DATABASE_URL unset to use the local fallback above
+npm start               # http://localhost:3001 - applies pending migrations on startup
 
 # frontend (separate terminal)
 cd frontend
@@ -140,16 +166,18 @@ npm install
 npm run dev              # http://localhost:5173, proxies /api to the backend
 ```
 
-The backend refuses to start without `APP_PASSWORD` set.
+The backend refuses to start without `APP_PASSWORD` set. If you have an
+existing local deal database to seed from (an old SQLite file, or the
+source workbook), see "Re-running the import" and "Data layout" below.
 
 ## Deploying
 
 See [`DEPLOYMENT.md`](./DEPLOYMENT.md) for step-by-step Railway and Render
 walkthroughs (single service - the backend serves both the API and the
-built frontend from one origin), the persistent-volume/disk requirement
-for the SQLite database (neither platform provides this automatically -
-and Render's Free tier doesn't support it at all), and production
-build/start commands.
+built frontend from one origin) and production build/start commands. Both
+platforms offer managed Postgres, which this app is built to use - no
+persistent disk/volume needed (that was only ever a workaround for SQLite's
+single-file-on-disk model).
 
 ## Authentication
 
@@ -182,7 +210,7 @@ users table).
 
 The one-time import script (`backend/scripts/import-workbook.js`) parses
 `backend/scripts/source-data/RAP_UP_DD_Work_Log_Internal.xlsx` and seeds
-deal-1 in the SQLite database (registering the deal itself first, then its
+deal-1 in Postgres (registering the deal itself first, then its
 items/config/team/cost-schedule tables). It's safe to re-run on a fresh
 database or an existing one — each table it touches is fully replaced, not
 appended to.
@@ -279,33 +307,60 @@ it couldn't confidently map) rather than silently guessing at them.
 
 ## Data layout
 
-Everything lives in one SQLite file (`backend/data/app.db` by default,
-configurable via `DATABASE_PATH`), deal-scoped via a `deal_id` foreign key
-(`ON DELETE CASCADE`) on every child table rather than separate files per
-deal - this is what Step 9's "New Deal" cloning and any future multi-deal
-feature key off of:
+Everything lives in one Postgres database (`DATABASE_URL`, or the local
+fallback described in "Running locally" above), deal-scoped via a `deal_id`
+foreign key (`ON DELETE CASCADE`) on every child table - this is what Step
+9's "New Deal" cloning and any future multi-deal feature key off of:
 
 ```
 deals            # registry: id, name, created_at
-items            # all workflow items, tagged by source_tab, deal_id FK
+items            # all workflow items, tagged by source_tab, deal_id FK -
+                 # comments/linked_items/history are JSONB
 deal_config      # deal_name + key dates, all nullable, deal_id is the PK
 deal_team        # role/organization/name roster, deal_id FK
 hap_config       # HAP General Info, all nullable, deal_id is the PK
 lender_config    # Lender Info (lender_name), nullable, deal_id is the PK
 cost_schedule    # Cost Schedule tasks - separate module, not a workflow
-                 # item (no status/comments/tab), deal_id FK
+                 # item (no status/comments/tab), deal_id FK - monthly_spend
+                 # and linked_items are JSONB
 reports          # every generated report, content included, deal_id FK
 ```
 
-**Deploying somewhere with an ephemeral filesystem** (Render, Railway, etc.):
-the SQLite file itself must sit on a persistent/mounted volume, or all deal
-data is lost on every redeploy/restart - see `DEPLOYMENT.md`.
+Because it's a real managed database rather than a single file, there's no
+disk/volume to mount for deal data to survive redeploys, restarts, or
+Render's free-tier spin-down cycle (unlike the SQLite era of this app) -
+see `DEPLOYMENT.md`.
 
-Schema lives in `backend/db.js`; all reads/writes go through `backend/store.js`.
-`backend/scripts/migrate-json-to-sqlite.js` is a one-time, re-runnable script
-for migrating an older JSON-file-based copy of this app's data into SQLite -
-not needed for a fresh setup, only relevant if you have pre-existing JSON
-data to carry over.
+**Migrations**: `backend/migrations/*.sql`, numbered and applied in order,
+tracked in a `schema_migrations` table so each one runs at most once.
+Applied automatically on every server startup (`backend/migrations/migrate.js`,
+called from `db.js`) - no separate manual migration step needed on deploy.
+Run them by hand with `npm run migrate`. Add new migrations as new numbered
+`.sql` files, never by editing an already-applied one.
+
+All reads/writes go through `backend/store.js`, using a connection pool
+(`pg.Pool`) rather than individual client connections, since this is a web
+service handling concurrent requests.
+
+**Prior storage migrations** (not needed for a fresh setup - only relevant
+if you have pre-existing data to carry over):
+- `backend/scripts/migrate-json-to-sqlite.js` - an older JSON-file-based
+  copy of this app's data into SQLite.
+- `backend/scripts/migrate-sqlite-to-postgres.js` - a SQLite database
+  (from before this Postgres migration) into Postgres. Reads the SQLite
+  file directly, copies every row from every table, and prints a summary
+  (source vs. copied vs. destination-table-total row counts per table) so
+  it's easy to confirm nothing was dropped:
+  ```bash
+  cd backend
+  npm run migrate-sqlite-to-postgres
+  # or: node scripts/migrate-sqlite-to-postgres.js /path/to/app.db
+  ```
+  Safe to run against a fresh Postgres database - it never modifies or
+  deletes the source SQLite file. Postgres is stricter about types than
+  SQLite was, so a row failing with a clear table/key in the error (e.g. an
+  empty-string date) is expected on a first attempt, not a sign the script
+  is broken - fix the offending value and re-run against a fresh database.
 
 ## API
 

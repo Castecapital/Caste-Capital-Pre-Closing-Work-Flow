@@ -1,9 +1,9 @@
-// SQLite-backed storage. Every function here keeps the exact same async
-// signature the old fs-based version had, so server.js, dealTemplate.js,
-// reports.js, and import-workbook.js needed zero changes for this
-// migration - only this file's internals changed.
+// PostgreSQL-backed storage. Every function here keeps the exact same async
+// signature the SQLite (and, before that, fs-based) version had, so
+// server.js, dealTemplate.js, reports.js, and import-workbook.js needed
+// zero changes for this migration - only this file's internals changed.
 
-import { db } from "./db.js";
+import { pool } from "./db.js";
 
 // Which extra (tab-specific) columns belong on an item, by source_tab. The
 // base fields below are common to every item; readItems only includes a
@@ -34,6 +34,10 @@ const EXTRA_FIELDS_BY_TAB = {
 };
 
 const BOOLEAN_FIELDS = new Set(["is_internal", "is_critical_path"]);
+// Stored as JSONB. Written pre-stringified (see itemToRow) because pg's
+// parameter serialization treats a raw JS array as a Postgres array literal,
+// not JSON - but read back already parsed, since pg parses jsonb columns
+// into native JS values automatically.
 const JSON_FIELDS = new Set(["comments", "linked_items", "history"]);
 
 const ALL_ITEM_COLUMNS = [
@@ -55,12 +59,42 @@ const ALL_ITEM_COLUMNS = [
   "entity_group",
 ];
 
+// $1, $2, ... $n for however many columns are being bound - built once per
+// query shape rather than per call.
+function placeholders(n, offset = 0) {
+  return Array.from({ length: n }, (_, i) => `$${i + 1 + offset}`).join(", ");
+}
+
+// SQLite's TEXT columns were happy to store "" for a cleared date field;
+// Postgres's DATE columns reject it outright ("invalid input syntax for
+// type date"). Nothing upstream reliably normalizes "" to null before it
+// reaches here (registerConfigRoutes in server.js does, but item PUTs spread
+// req.body straight through), so every raw value binds through this first.
+function nullIfEmpty(value) {
+  return value === "" ? null : value;
+}
+
+async function withTransaction(fn) {
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
+    const result = await fn(client);
+    await client.query("COMMIT");
+    return result;
+  } catch (err) {
+    await client.query("ROLLBACK");
+    throw err;
+  } finally {
+    client.release();
+  }
+}
+
 function rowToItem(row) {
   const fields = [...BASE_ITEM_FIELDS, ...(EXTRA_FIELDS_BY_TAB[row.source_tab] ?? [])];
   const item = {};
   for (const field of fields) {
     let value = row[field];
-    if (JSON_FIELDS.has(field)) value = value === null ? (field === "linked_items" ? null : []) : JSON.parse(value);
+    if (JSON_FIELDS.has(field)) value = value === null ? (field === "linked_items" ? null : []) : value;
     else if (BOOLEAN_FIELDS.has(field)) value = !!value;
     item[field] = value;
   }
@@ -70,114 +104,142 @@ function rowToItem(row) {
 function itemToRow(dealId, item) {
   const row = { deal_id: dealId };
   for (const col of ALL_ITEM_COLUMNS) {
-    let value = item[col] ?? null;
+    let value = nullIfEmpty(item[col] ?? null);
     if (JSON_FIELDS.has(col)) value = value === null ? (col === "linked_items" ? null : "[]") : JSON.stringify(value);
-    else if (BOOLEAN_FIELDS.has(col)) value = value ? 1 : 0;
+    else if (BOOLEAN_FIELDS.has(col)) value = value === null ? null : !!value;
     row[col] = value;
   }
   return row;
 }
 
 export async function readDealsRegistry() {
-  return db.prepare("SELECT id, name, created_at FROM deals ORDER BY rowid ASC").all();
+  const { rows } = await pool.query("SELECT id, name, created_at FROM deals ORDER BY seq ASC");
+  return rows;
 }
 
 export async function writeDealsRegistry(deals) {
   // The one caller (dealTemplate.js) always passes the full desired list
   // (existing entries + one new one) and never removes a deal, so this
   // upserts every entry rather than delete-and-reinsert - deleting a deals
-  // row would CASCADE-delete that deal's items via the foreign key.
-  const upsert = db.prepare(`
-    INSERT INTO deals (id, name, created_at) VALUES (@id, @name, @created_at)
-    ON CONFLICT(id) DO UPDATE SET name = excluded.name, created_at = excluded.created_at
-  `);
-  const txn = db.transaction((rows) => rows.forEach((r) => upsert.run(r)));
-  txn(deals);
+  // row would CASCADE-delete that deal's items via the foreign key. `seq`
+  // is deliberately left out of the UPDATE SET so an existing deal's
+  // registry position never shifts when it's re-upserted.
+  await withTransaction(async (client) => {
+    for (const d of deals) {
+      await client.query(
+        `INSERT INTO deals (id, name, created_at) VALUES ($1, $2, $3)
+         ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name, created_at = EXCLUDED.created_at`,
+        [d.id, d.name, nullIfEmpty(d.created_at ?? null)]
+      );
+    }
+  });
 }
 
 export async function dealExists(dealId) {
-  return !!db.prepare("SELECT 1 FROM deals WHERE id = ?").get(dealId);
+  const { rows } = await pool.query("SELECT 1 FROM deals WHERE id = $1", [dealId]);
+  return rows.length > 0;
 }
 
 export async function readItems(dealId) {
-  const rows = db.prepare("SELECT * FROM items WHERE deal_id = ? ORDER BY rowid ASC").all(dealId);
+  const { rows } = await pool.query("SELECT * FROM items WHERE deal_id = $1 ORDER BY id ASC", [dealId]);
   return rows.map(rowToItem);
 }
 
 export async function writeItems(dealId, items) {
   const columns = ["deal_id", ...ALL_ITEM_COLUMNS];
-  const placeholders = columns.map((c) => `@${c}`).join(", ");
-  const insert = db.prepare(`INSERT INTO items (${columns.join(", ")}) VALUES (${placeholders})`);
-  const txn = db.transaction((rows) => {
-    db.prepare("DELETE FROM items WHERE deal_id = ?").run(dealId);
-    for (const item of rows) insert.run(itemToRow(dealId, item));
+  const sql = `INSERT INTO items (${columns.join(", ")}) VALUES (${placeholders(columns.length)})`;
+  await withTransaction(async (client) => {
+    await client.query("DELETE FROM items WHERE deal_id = $1", [dealId]);
+    for (const item of items) {
+      const row = itemToRow(dealId, item);
+      await client.query(sql, columns.map((c) => row[c]));
+    }
   });
-  txn(items);
 }
 
 export async function readDealConfig(dealId) {
-  const row = db.prepare("SELECT * FROM deal_config WHERE deal_id = ?").get(dealId);
-  if (!row) return null;
-  const { deal_id, ...config } = row;
+  const { rows } = await pool.query("SELECT * FROM deal_config WHERE deal_id = $1", [dealId]);
+  if (!rows.length) return null;
+  const { deal_id, ...config } = rows[0];
   return config;
 }
 
+const DEAL_CONFIG_COLUMNS = [
+  "deal_name",
+  "loi_date",
+  "psa_execution_date",
+  "initial_deposit_date",
+  "rollover_ts_date",
+  "dd_exit_deposit_date",
+  "projected_hud_approval_date",
+  "projected_closing_date",
+  "outside_closing_date",
+];
+
 export async function writeDealConfig(dealId, config) {
-  db.prepare(`
-    INSERT INTO deal_config (deal_id, deal_name, loi_date, psa_execution_date, initial_deposit_date, rollover_ts_date, dd_exit_deposit_date, projected_hud_approval_date, projected_closing_date, outside_closing_date)
-    VALUES (@deal_id, @deal_name, @loi_date, @psa_execution_date, @initial_deposit_date, @rollover_ts_date, @dd_exit_deposit_date, @projected_hud_approval_date, @projected_closing_date, @outside_closing_date)
-    ON CONFLICT(deal_id) DO UPDATE SET
-      deal_name = excluded.deal_name, loi_date = excluded.loi_date, psa_execution_date = excluded.psa_execution_date,
-      initial_deposit_date = excluded.initial_deposit_date, rollover_ts_date = excluded.rollover_ts_date,
-      dd_exit_deposit_date = excluded.dd_exit_deposit_date, projected_hud_approval_date = excluded.projected_hud_approval_date,
-      projected_closing_date = excluded.projected_closing_date, outside_closing_date = excluded.outside_closing_date
-  `).run({ deal_id: dealId, ...config });
+  const columns = ["deal_id", ...DEAL_CONFIG_COLUMNS];
+  const updateSet = DEAL_CONFIG_COLUMNS.map((c) => `${c} = EXCLUDED.${c}`).join(", ");
+  await pool.query(
+    `INSERT INTO deal_config (${columns.join(", ")}) VALUES (${placeholders(columns.length)})
+     ON CONFLICT (deal_id) DO UPDATE SET ${updateSet}`,
+    [dealId, ...DEAL_CONFIG_COLUMNS.map((c) => nullIfEmpty(config[c] ?? null))]
+  );
 }
 
 export async function readDealTeam(dealId) {
-  return db
-    .prepare("SELECT role, organization, name FROM deal_team WHERE deal_id = ? ORDER BY id ASC")
-    .all(dealId);
+  const { rows } = await pool.query(
+    "SELECT role, organization, name FROM deal_team WHERE deal_id = $1 ORDER BY id ASC",
+    [dealId]
+  );
+  return rows;
 }
 
 export async function writeDealTeam(dealId, team) {
-  const insert = db.prepare("INSERT INTO deal_team (deal_id, role, organization, name) VALUES (?, ?, ?, ?)");
-  const txn = db.transaction((members) => {
-    db.prepare("DELETE FROM deal_team WHERE deal_id = ?").run(dealId);
-    for (const m of members) insert.run(dealId, m.role ?? "", m.organization ?? "", m.name ?? "");
+  await withTransaction(async (client) => {
+    await client.query("DELETE FROM deal_team WHERE deal_id = $1", [dealId]);
+    for (const m of team) {
+      await client.query("INSERT INTO deal_team (deal_id, role, organization, name) VALUES ($1, $2, $3, $4)", [
+        dealId,
+        m.role ?? "",
+        m.organization ?? "",
+        m.name ?? "",
+      ]);
+    }
   });
-  txn(team);
 }
 
 export async function readHapConfig(dealId) {
-  const row = db.prepare("SELECT * FROM hap_config WHERE deal_id = ?").get(dealId);
-  if (!row) return null;
-  const { deal_id, ...config } = row;
+  const { rows } = await pool.query("SELECT * FROM hap_config WHERE deal_id = $1", [dealId]);
+  if (!rows.length) return null;
+  const { deal_id, ...config } = rows[0];
   return config;
 }
 
+const HAP_CONFIG_COLUMNS = ["name", "address", "contract", "new_owner", "seller", "fha_number", "pbca", "hud_ae"];
+
 export async function writeHapConfig(dealId, config) {
-  db.prepare(`
-    INSERT INTO hap_config (deal_id, name, address, contract, new_owner, seller, fha_number, pbca, hud_ae)
-    VALUES (@deal_id, @name, @address, @contract, @new_owner, @seller, @fha_number, @pbca, @hud_ae)
-    ON CONFLICT(deal_id) DO UPDATE SET
-      name = excluded.name, address = excluded.address, contract = excluded.contract, new_owner = excluded.new_owner,
-      seller = excluded.seller, fha_number = excluded.fha_number, pbca = excluded.pbca, hud_ae = excluded.hud_ae
-  `).run({ deal_id: dealId, ...config });
+  const columns = ["deal_id", ...HAP_CONFIG_COLUMNS];
+  const updateSet = HAP_CONFIG_COLUMNS.map((c) => `${c} = EXCLUDED.${c}`).join(", ");
+  await pool.query(
+    `INSERT INTO hap_config (${columns.join(", ")}) VALUES (${placeholders(columns.length)})
+     ON CONFLICT (deal_id) DO UPDATE SET ${updateSet}`,
+    [dealId, ...HAP_CONFIG_COLUMNS.map((c) => config[c] ?? null)]
+  );
 }
 
 export async function readLenderConfig(dealId) {
-  const row = db.prepare("SELECT * FROM lender_config WHERE deal_id = ?").get(dealId);
-  if (!row) return null;
-  const { deal_id, ...config } = row;
+  const { rows } = await pool.query("SELECT * FROM lender_config WHERE deal_id = $1", [dealId]);
+  if (!rows.length) return null;
+  const { deal_id, ...config } = rows[0];
   return config;
 }
 
 export async function writeLenderConfig(dealId, config) {
-  db.prepare(`
-    INSERT INTO lender_config (deal_id, lender_name) VALUES (@deal_id, @lender_name)
-    ON CONFLICT(deal_id) DO UPDATE SET lender_name = excluded.lender_name
-  `).run({ deal_id: dealId, ...config });
+  await pool.query(
+    `INSERT INTO lender_config (deal_id, lender_name) VALUES ($1, $2)
+     ON CONFLICT (deal_id) DO UPDATE SET lender_name = EXCLUDED.lender_name`,
+    [dealId, config.lender_name ?? null]
+  );
 }
 
 function rowToCostTask(row) {
@@ -193,65 +255,83 @@ function rowToCostTask(row) {
     proposal_cost: row.proposal_cost,
     spent: row.spent,
     remaining: row.remaining,
-    monthly_spend: row.monthly_spend ? JSON.parse(row.monthly_spend) : [],
-    linked_items: row.linked_items ? JSON.parse(row.linked_items) : null,
+    monthly_spend: row.monthly_spend ?? [],
+    linked_items: row.linked_items ?? null,
   };
 }
 
 export async function readCostSchedule(dealId) {
-  const rows = db.prepare("SELECT * FROM cost_schedule WHERE deal_id = ? ORDER BY rowid ASC").all(dealId);
+  const { rows } = await pool.query("SELECT * FROM cost_schedule WHERE deal_id = $1 ORDER BY id ASC", [dealId]);
   return rows.map(rowToCostTask);
 }
 
+const COST_TASK_COLUMNS = [
+  "task_id",
+  "phase",
+  "task",
+  "party",
+  "start_date",
+  "end_date",
+  "duration_days",
+  "budget",
+  "proposal_cost",
+  "spent",
+  "remaining",
+  "monthly_spend",
+  "linked_items",
+];
+
 export async function writeCostSchedule(dealId, tasks) {
-  const insert = db.prepare(`
-    INSERT INTO cost_schedule (deal_id, task_id, phase, task, party, start_date, end_date, duration_days, budget, proposal_cost, spent, remaining, monthly_spend, linked_items)
-    VALUES (@deal_id, @task_id, @phase, @task, @party, @start_date, @end_date, @duration_days, @budget, @proposal_cost, @spent, @remaining, @monthly_spend, @linked_items)
-  `);
-  const txn = db.transaction((rows) => {
-    db.prepare("DELETE FROM cost_schedule WHERE deal_id = ?").run(dealId);
-    for (const t of rows) {
-      insert.run({
-        deal_id: dealId,
-        task_id: t.task_id,
-        phase: t.phase ?? null,
-        task: t.task ?? null,
-        party: t.party ?? null,
-        start_date: t.start_date ?? null,
-        end_date: t.end_date ?? null,
-        duration_days: t.duration_days ?? null,
-        budget: t.budget ?? null,
-        proposal_cost: t.proposal_cost ?? null,
-        spent: t.spent ?? null,
-        remaining: t.remaining ?? null,
-        monthly_spend: JSON.stringify(t.monthly_spend ?? []),
-        linked_items: t.linked_items ? JSON.stringify(t.linked_items) : null,
-      });
+  const columns = ["deal_id", ...COST_TASK_COLUMNS];
+  const sql = `INSERT INTO cost_schedule (${columns.join(", ")}) VALUES (${placeholders(columns.length)})`;
+  await withTransaction(async (client) => {
+    await client.query("DELETE FROM cost_schedule WHERE deal_id = $1", [dealId]);
+    for (const t of tasks) {
+      const params = [
+        dealId,
+        t.task_id,
+        t.phase ?? null,
+        t.task ?? null,
+        t.party ?? null,
+        nullIfEmpty(t.start_date ?? null),
+        nullIfEmpty(t.end_date ?? null),
+        t.duration_days ?? null,
+        t.budget ?? null,
+        t.proposal_cost ?? null,
+        t.spent ?? null,
+        t.remaining ?? null,
+        JSON.stringify(t.monthly_spend ?? []),
+        t.linked_items ? JSON.stringify(t.linked_items) : null,
+      ];
+      await client.query(sql, params);
     }
   });
-  txn(tasks);
 }
 
 // Reports (Step 10) are saved permanently in the same database as
-// everything else now, content included - not as loose files on disk -
-// so a single persistent-volume mount covers the whole app's state, reports
-// included, on platforms with an otherwise ephemeral filesystem.
+// everything else - not as loose files on disk - so the whole app's state,
+// reports included, survives redeploys/restarts without needing a mounted
+// disk (Postgres migration; previously this needed a persistent volume for
+// the SQLite file - see DEPLOYMENT.md).
 export async function readReportsIndex(dealId) {
-  return db
-    .prepare("SELECT id, type, label, filename, generated_at FROM reports WHERE deal_id = ? ORDER BY generated_at DESC")
-    .all(dealId);
+  const { rows } = await pool.query(
+    "SELECT id, type, label, filename, generated_at FROM reports WHERE deal_id = $1 ORDER BY generated_at DESC",
+    [dealId]
+  );
+  return rows;
 }
 
 export async function saveReport(dealId, { id, type, label, filename, content, generatedAt }) {
-  db.prepare(`
-    INSERT INTO reports (id, deal_id, type, label, filename, generated_at, content)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
-  `).run(id, dealId, type, label, filename, generatedAt, content);
+  await pool.query(
+    `INSERT INTO reports (id, deal_id, type, label, filename, generated_at, content)
+     VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+    [id, dealId, type, label, filename, generatedAt, content]
+  );
   return { id, type, label, filename, generated_at: generatedAt };
 }
 
 export async function readReportContent(dealId, filename) {
-  const row = db.prepare("SELECT content FROM reports WHERE deal_id = ? AND filename = ?").get(dealId, filename);
-  if (!row) throw new Error(`report file '${filename}' not found for deal '${dealId}'`);
-  return row.content;
+  const { rows } = await pool.query("SELECT content FROM reports WHERE deal_id = $1 AND filename = $2", [dealId, filename]);
+  if (!rows.length) throw new Error(`report file '${filename}' not found for deal '${dealId}'`);
+  return rows[0].content;
 }

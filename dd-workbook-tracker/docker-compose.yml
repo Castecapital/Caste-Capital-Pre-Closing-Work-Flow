@@ -1,0 +1,19 @@
+# Local dev Postgres, matching db.js's fallback connection string exactly
+# (postgres://postgres:postgres@localhost:5432/dd_workbook_tracker) - so
+# `docker compose up -d` is enough to test against Postgres locally without
+# DATABASE_URL set and without a deployed database. See README.md.
+services:
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dd_workbook_tracker
+    ports:
+      - "5432:5432"
+    volumes:
+      - dd-workbook-tracker-pgdata:/var/lib/postgresql/data
+
+volumes:
+  dd-workbook-tracker-pgdata:

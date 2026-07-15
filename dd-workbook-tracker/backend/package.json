@@ -8,18 +8,20 @@
     "start": "node server.js",
     "build": "cd ../frontend && npm install && npm run build",
     "import-workbook": "node scripts/import-workbook.js",
-    "migrate-json-to-sqlite": "node scripts/migrate-json-to-sqlite.js"
+    "migrate-json-to-sqlite": "node scripts/migrate-json-to-sqlite.js",
+    "migrate-sqlite-to-postgres": "node scripts/migrate-sqlite-to-postgres.js",
+    "migrate": "node scripts/run-migrations.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "better-sqlite3": "^12.11.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "exceljs": "^4.4.0",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "pg": "^8.22.0"
   },
   "overrides": {
     "uuid": "^11.1.1"
