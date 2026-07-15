@@ -142,6 +142,12 @@ npm run dev              # http://localhost:5173, proxies /api to the backend
 
 The backend refuses to start without `APP_PASSWORD` set.
 
+## Deploying
+
+See [`DEPLOYMENT.md`](./DEPLOYMENT.md) for required environment variables,
+the persistent-volume requirement for the SQLite database (Render/Railway
+don't provide this automatically), and production build/start commands.
+
 ## Authentication
 
 The app is gated behind a single shared password for the whole team - not

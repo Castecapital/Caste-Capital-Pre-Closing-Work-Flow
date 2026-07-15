@@ -15,8 +15,14 @@ export function setCurrentDealId(dealId) {
   localStorage.setItem(STORAGE_KEY, dealId);
 }
 
+// Same-origin by default (blank), which is all the Vite dev proxy or a
+// single reverse-proxied production origin needs. Only set when the
+// frontend is deployed on a different origin than the backend (e.g. a
+// static host + a separately deployed Node service) - see DEPLOYMENT.md.
+const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "";
+
 async function request(path, options) {
-  const res = await fetch(`/api${path}`, {
+  const res = await fetch(`${API_BASE}/api${path}`, {
     headers: { "Content-Type": "application/json" },
     credentials: "include",
     ...options,
@@ -75,6 +81,6 @@ export const api = {
     request(`/deals/${dealId}/reports/weekly-agenda`, { method: "POST" }),
   generateCsv: (sourceTab, dealId = CURRENT_DEAL_ID) =>
     request(`/deals/${dealId}/reports/csv/${encodeURIComponent(sourceTab)}`, { method: "POST" }),
-  reportDownloadUrl: (reportId, dealId = CURRENT_DEAL_ID) => `/api/deals/${dealId}/reports/${reportId}/download`,
+  reportDownloadUrl: (reportId, dealId = CURRENT_DEAL_ID) => `${API_BASE}/api/deals/${dealId}/reports/${reportId}/download`,
   getMeta: () => request("/meta"),
 };
