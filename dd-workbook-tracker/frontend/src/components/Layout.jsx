@@ -1,4 +1,5 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
+import DealSwitcher from "./DealSwitcher";
 
 const tabs = [
   { to: "/", label: "Dashboard", end: true },
@@ -30,7 +31,7 @@ export default function Layout() {
           <Link to="/" className="text-[15px] font-semibold text-white tracking-tight shrink-0">
             DD Workbook Tracker
           </Link>
-          <span className="hidden sm:inline text-[13px] text-white/40 shrink-0">RAP UP Portfolio, Roxbury, MA</span>
+          <DealSwitcher />
         </div>
         <div className="mx-auto max-w-6xl px-6 h-9 flex items-center border-t border-white/5">
           <nav className="flex items-center gap-1 overflow-x-auto">

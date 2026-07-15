@@ -17,7 +17,7 @@ export default function MasterDdTracker() {
 
   useEffect(() => {
     api
-      .getItems("deal-1", "DD Full Checklist")
+      .getItems("DD Full Checklist")
       .then(setItems)
       .catch((e) => setError(e.message));
   }, []);

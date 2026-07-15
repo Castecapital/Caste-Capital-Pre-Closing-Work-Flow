@@ -16,6 +16,7 @@ import {
   readCostSchedule,
   writeCostSchedule,
 } from "./store.js";
+import { createDealFromTemplate } from "./dealTemplate.js";
 import {
   validateItem,
   validateDdFullChecklistItem,
@@ -93,6 +94,16 @@ app.get("/api/meta", (req, res) => {
 app.get("/api/deals", async (req, res) => {
   const deals = await readDealsRegistry();
   res.json(deals);
+});
+
+// "New Deal" (Step 9): clones deal-1's checklist taxonomy into a fresh deal
+// with everything deal-specific reset - see dealTemplate.js for exactly
+// what's kept vs. cleared.
+app.post("/api/deals", async (req, res) => {
+  const { name } = req.body;
+  if (!name || !name.trim()) return res.status(400).json({ error: "name is required" });
+  const entry = await createDealFromTemplate(name.trim());
+  res.status(201).json(entry);
 });
 
 app.get("/api/deals/:dealId/items", requireDeal, async (req, res) => {

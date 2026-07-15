@@ -10,7 +10,7 @@ export default function HapChecklist() {
 
   useEffect(() => {
     api
-      .getItems("deal-1", "HAP Assignment Checklist")
+      .getItems("HAP Assignment Checklist")
       .then(setItems)
       .catch((e) => setError(e.message));
   }, []);

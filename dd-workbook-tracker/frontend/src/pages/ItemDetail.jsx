@@ -60,7 +60,7 @@ export default function ItemDetail() {
 
       const oppositeTab = OPPOSITE_TAB[loaded.source_tab];
       if (oppositeTab && loaded.document) {
-        const candidates = await api.getItems("deal-1", oppositeTab);
+        const candidates = await api.getItems(oppositeTab);
         const alreadyLinked = new Set(loaded.linked_items ?? []);
         const pool = candidates.filter((c) => c.status !== "Deleted" && !alreadyLinked.has(c.item_id));
         setSuggestions(suggestLinks(loaded, pool));

@@ -16,11 +16,11 @@ suggestions), HAP Assignment Checklist (grouped by section, with a HAP
 General Info panel), Lender Checklist (grouped by entity group, including
 the separate supplemental-requests list, with a Lender Info panel), Cost
 Schedule (its own module — a budget/Gantt tracker, not a document checklist
-— with a budget/spent/remaining rollup), a Dashboard home view, and a
-dedicated Critical Path page. The UI has an Apple-style visual design
-(SF-like type, muted neutrals with a single blue accent, translucent sticky
-two-row nav, rounded cards). Steps 9-10 (deal cloning, workflow automation,
-reporting) are not yet built.
+— with a budget/spent/remaining rollup), a Dashboard home view, a dedicated
+Critical Path page, and a deal-switcher with "New Deal" cloning. The UI has
+an Apple-style visual design (SF-like type, muted neutrals with a single
+blue accent, translucent sticky two-row nav, rounded cards). Step 10
+(workflow automation, reporting) is not yet built.
 
 **Dashboard** (`/`, the new home page — Master DD Tracker moved to
 `/master-dd-tracker`):
@@ -47,6 +47,28 @@ dependencies" note appears per critical item when any of those relevant
 links isn't Closed. Verified the tab-filtering by linking a critical item to
 one entity in each of the 4 tabs at once and confirming only the 3 in-scope
 ones rendered.
+
+**Deal switcher & "New Deal" cloning**: the deal name in the top nav (next
+to the app title) is a dropdown listing every deal, plus a "+ New Deal"
+form. Creating a deal clones `deal-1`'s 5 checklist tabs (400 items) as a
+reusable template — taxonomy fields (category, phase→reset to "PSA
+Execution", department, section/topic, entity_group, is_critical_path,
+is_internal, the item text itself) are kept, everything deal-specific is
+reset: `status` → `"Open"`, `responsible_party` → `"Unassigned"`,
+`external_party`/`linked_items` → `null`, `comments`/`history` → `[]`,
+`opened_date`/`last_updated` → the new deal's creation date,
+`outside_date`/`outside_date_raw` → `null`. `deal_config.json`,
+`hap_config.json`, and `lender_config.json` start blank (only `deal_name`
+set, to whatever the team typed). Cost Schedule and Deal Team are **not**
+templated — both start empty, since a budget's dollar figures and a deal
+team's people are inherently per-deal, not a reusable taxonomy the way
+category/department/entity_group are. Switching deals is a full page
+reload back to the Dashboard (the app has no cross-page shared state to
+otherwise invalidate); the current deal persists in `localStorage`, not the
+URL. Verified end-to-end via the actual UI (not just the API): created a
+test deal, confirmed all 400 items came through as a blank "Open" template
+with the real taxonomy intact, switched back to deal-1, and confirmed its
+real data (statuses, comments, dates) was completely unaffected.
 
 The general "given any item, show its linked_items across tabs and their
 current status" dependency view from this same step is the **Linked Items**
@@ -201,6 +223,7 @@ backend/data/
 ## API
 
 - `GET /api/deals`
+- `POST /api/deals` — `{ name }`, clones deal-1's checklist tabs as a blank template (see dealTemplate.js)
 - `GET /api/deals/:dealId/items?source_tab=...`
 - `GET /api/deals/:dealId/items/:itemId`
 - `POST /api/deals/:dealId/items`

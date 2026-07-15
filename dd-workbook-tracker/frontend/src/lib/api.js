@@ -1,4 +1,19 @@
-const DEAL_ID = "deal-1"; // TODO: replace with deal-switcher state (Step 9)
+const STORAGE_KEY = "dd-workbook-tracker:currentDealId";
+
+// A `let` binding, not `const` - default parameter expressions below
+// (`dealId = CURRENT_DEAL_ID`) are re-evaluated on every call, so switching
+// deals here immediately changes what every api.* call without an explicit
+// dealId talks to, no prop-drilling or context provider needed.
+let CURRENT_DEAL_ID = localStorage.getItem(STORAGE_KEY) || "deal-1";
+
+export function getCurrentDealId() {
+  return CURRENT_DEAL_ID;
+}
+
+export function setCurrentDealId(dealId) {
+  CURRENT_DEAL_ID = dealId;
+  localStorage.setItem(STORAGE_KEY, dealId);
+}
 
 async function request(path, options) {
   const res = await fetch(`/api${path}`, {
@@ -13,36 +28,33 @@ async function request(path, options) {
   return res.json();
 }
 
-export function currentDealId() {
-  return DEAL_ID;
-}
-
 export const api = {
   getDeals: () => request("/deals"),
-  getItems: (dealId = DEAL_ID, sourceTab) =>
+  createDeal: (name) => request("/deals", { method: "POST", body: JSON.stringify({ name }) }),
+  getItems: (sourceTab, dealId = CURRENT_DEAL_ID) =>
     request(`/deals/${dealId}/items${sourceTab ? `?source_tab=${encodeURIComponent(sourceTab)}` : ""}`),
-  getItem: (itemId, dealId = DEAL_ID) => request(`/deals/${dealId}/items/${itemId}`),
-  updateItem: (itemId, patch, dealId = DEAL_ID) =>
+  getItem: (itemId, dealId = CURRENT_DEAL_ID) => request(`/deals/${dealId}/items/${itemId}`),
+  updateItem: (itemId, patch, dealId = CURRENT_DEAL_ID) =>
     request(`/deals/${dealId}/items/${itemId}`, { method: "PUT", body: JSON.stringify(patch) }),
-  addComment: (itemId, comment, dealId = DEAL_ID) =>
+  addComment: (itemId, comment, dealId = CURRENT_DEAL_ID) =>
     request(`/deals/${dealId}/items/${itemId}/comments`, { method: "POST", body: JSON.stringify(comment) }),
-  linkItems: (itemId, targetItemId, dealId = DEAL_ID) =>
+  linkItems: (itemId, targetItemId, dealId = CURRENT_DEAL_ID) =>
     request(`/deals/${dealId}/items/${itemId}/link`, {
       method: "POST",
       body: JSON.stringify({ target_item_id: targetItemId }),
     }),
-  getDealConfig: (dealId = DEAL_ID) => request(`/deals/${dealId}/deal-config`),
-  updateDealConfig: (patch, dealId = DEAL_ID) =>
+  getDealConfig: (dealId = CURRENT_DEAL_ID) => request(`/deals/${dealId}/deal-config`),
+  updateDealConfig: (patch, dealId = CURRENT_DEAL_ID) =>
     request(`/deals/${dealId}/deal-config`, { method: "PUT", body: JSON.stringify(patch) }),
-  getDealTeam: (dealId = DEAL_ID, q) =>
+  getDealTeam: (dealId = CURRENT_DEAL_ID, q) =>
     request(`/deals/${dealId}/deal-team${q ? `?q=${encodeURIComponent(q)}` : ""}`),
-  getHapConfig: (dealId = DEAL_ID) => request(`/deals/${dealId}/hap-config`),
-  updateHapConfig: (patch, dealId = DEAL_ID) =>
+  getHapConfig: (dealId = CURRENT_DEAL_ID) => request(`/deals/${dealId}/hap-config`),
+  updateHapConfig: (patch, dealId = CURRENT_DEAL_ID) =>
     request(`/deals/${dealId}/hap-config`, { method: "PUT", body: JSON.stringify(patch) }),
-  getLenderConfig: (dealId = DEAL_ID) => request(`/deals/${dealId}/lender-config`),
-  updateLenderConfig: (patch, dealId = DEAL_ID) =>
+  getLenderConfig: (dealId = CURRENT_DEAL_ID) => request(`/deals/${dealId}/lender-config`),
+  updateLenderConfig: (patch, dealId = CURRENT_DEAL_ID) =>
     request(`/deals/${dealId}/lender-config`, { method: "PUT", body: JSON.stringify(patch) }),
-  getCostSchedule: (dealId = DEAL_ID) => request(`/deals/${dealId}/cost-schedule`),
-  getCostTask: (taskId, dealId = DEAL_ID) => request(`/deals/${dealId}/cost-schedule/${taskId}`),
+  getCostSchedule: (dealId = CURRENT_DEAL_ID) => request(`/deals/${dealId}/cost-schedule`),
+  getCostTask: (taskId, dealId = CURRENT_DEAL_ID) => request(`/deals/${dealId}/cost-schedule/${taskId}`),
   getMeta: () => request("/meta"),
 };

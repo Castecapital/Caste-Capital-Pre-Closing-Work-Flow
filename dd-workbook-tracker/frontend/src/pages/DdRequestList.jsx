@@ -17,7 +17,7 @@ export default function DdRequestList({ sourceTab, title }) {
   useEffect(() => {
     setItems(null);
     api
-      .getItems("deal-1", sourceTab)
+      .getItems(sourceTab)
       .then(setItems)
       .catch((e) => setError(e.message));
   }, [sourceTab]);

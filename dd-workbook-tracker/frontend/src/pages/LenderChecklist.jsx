@@ -10,7 +10,7 @@ export default function LenderChecklist() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    Promise.all([api.getItems("deal-1", "Lender Checklist"), api.getMeta()])
+    Promise.all([api.getItems("Lender Checklist"), api.getMeta()])
       .then(([loadedItems, meta]) => {
         setItems(loadedItems);
         setGroupOrder(meta.entityGroups);
