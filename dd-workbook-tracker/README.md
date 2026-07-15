@@ -16,11 +16,11 @@ suggestions), HAP Assignment Checklist (grouped by section, with a HAP
 General Info panel), Lender Checklist (grouped by entity group, including
 the separate supplemental-requests list, with a Lender Info panel), Cost
 Schedule (its own module — a budget/Gantt tracker, not a document checklist
-— with a budget/spent/remaining rollup), and now a Dashboard home view. The
-UI has an Apple-style visual design (SF-like type, muted neutrals with a
-single blue accent, translucent sticky two-row nav, rounded cards). Steps
-8-10 (dedicated dependency/critical-path view, deal cloning, workflow
-automation, reporting) are not yet built.
+— with a budget/spent/remaining rollup), a Dashboard home view, and a
+dedicated Critical Path page. The UI has an Apple-style visual design
+(SF-like type, muted neutrals with a single blue accent, translucent sticky
+two-row nav, rounded cards). Steps 9-10 (deal cloning, workflow automation,
+reporting) are not yet built.
 
 **Dashboard** (`/`, the new home page — Master DD Tracker moved to
 `/master-dd-tracker`):
@@ -37,6 +37,22 @@ automation, reporting) are not yet built.
   works identically whether or not any deal dates are filled in.
 - **Workbook Summary**: an open/closed proportion bar per tab; Cost Schedule
   shows a task count instead, since it has no status field to summarize.
+
+**Critical Path** (`/critical-path`): every Master DD Tracker item flagged
+`is_critical_path`, each showing what it's linked to specifically in the
+Lender Checklist, HAP Assignment Checklist, or Cost Schedule (links to other
+tabs, e.g. Internal DD List, are intentionally out of scope for this page —
+see them on the item's own detail page instead). A "Blocked by open
+dependencies" note appears per critical item when any of those relevant
+links isn't Closed. Verified the tab-filtering by linking a critical item to
+one entity in each of the 4 tabs at once and confirming only the 3 in-scope
+ones rendered.
+
+The general "given any item, show its linked_items across tabs and their
+current status" dependency view from this same step is the **Linked Items**
+section already on every item's detail page (built in Steps 3 and 6) - the
+Critical Path page is the net-new piece: a dedicated cross-tab rollup
+scoped to just the critical-path items.
 
 Every item (any tab) has a detail page at `/items/:itemId` — click any table
 row to get there. It shows all fields, comments (with add-comment), full

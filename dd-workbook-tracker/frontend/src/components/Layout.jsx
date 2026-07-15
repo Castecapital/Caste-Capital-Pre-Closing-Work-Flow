@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 const tabs = [
   { to: "/", label: "Dashboard", end: true },
   { to: "/master-dd-tracker", label: "Master DD Tracker" },
+  { to: "/critical-path", label: "Critical Path" },
   { to: "/internal-dd-list", label: "Internal DD List" },
   { to: "/external-dd-list", label: "External DD List" },
   { to: "/hap-checklist", label: "HAP Checklist" },
