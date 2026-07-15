@@ -4,3 +4,13 @@ dist/
 .env.local
 *.log
 .DS_Store
+
+# All deal data lives in SQLite now (Step 1 migration), not JSON files, and
+# must never be committed. WAL mode creates -wal/-shm sidecar files
+# alongside the main db file. The whole data/ dir is runtime state - the
+# real seed mechanism is the .xlsx source + import-workbook.js.
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+dd-workbook-tracker/backend/data/

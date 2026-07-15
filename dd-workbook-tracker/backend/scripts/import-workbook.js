@@ -17,6 +17,8 @@ import {
   writeLenderConfig,
   writeCostSchedule,
   readItems,
+  readDealsRegistry,
+  writeDealsRegistry,
 } from "../store.js";
 import { emptyDealConfig, emptyHapConfig, emptyLenderConfig, today } from "../schema.js";
 
@@ -627,6 +629,26 @@ async function main() {
   console.log(`Importing ${SOURCE_PATH} into deal '${DEAL_ID}'...`);
   const workbook = new ExcelJS.Workbook();
   await workbook.xlsx.readFile(SOURCE_PATH);
+
+  // The deal's own row must exist before any child-table writes: SQLite
+  // (Step 1 migration) enforces deal_id as a foreign key on items,
+  // cost_schedule, deal_team, deal_config, hap_config, and lender_config.
+  // Previously this script relied on deal-1 already being present in
+  // deals.json/the deals table - true for a repo that already had seed
+  // data, but not for a genuinely fresh database (first-time setup with no
+  // prior JSON to migrate). Register the deal here, before importing
+  // anything else, using a lightweight read of the deal name cell so the
+  // full importDealConfig() (which also writes deal_config, later below)
+  // doesn't need to move.
+  const dealNameCell = cellText(workbook.getWorksheet("DD Full Checklist").getRow(3).getCell(4)); // D3
+  const dealName = typeof dealNameCell === "string" && dealNameCell.trim() ? dealNameCell.trim() : DEAL_ID;
+  const existingRegistry = await readDealsRegistry();
+  const existingEntry = existingRegistry.find((d) => d.id === DEAL_ID);
+  await writeDealsRegistry([
+    ...existingRegistry,
+    existingEntry ?? { id: DEAL_ID, name: dealName, created_at: today() },
+  ]);
+  console.log(`Deal registered: '${DEAL_ID}' (${existingEntry ? existingEntry.name : dealName})`);
 
   const team = await importDealTeam(workbook);
   console.log(`Deal Team: imported ${team.length} members`);

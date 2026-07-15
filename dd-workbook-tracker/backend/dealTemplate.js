@@ -66,6 +66,15 @@ export async function createDealFromTemplate(name) {
   const dealId = nextDealId(deals);
   const creationDate = today();
 
+  // The deal's own row must exist before any child-table writes: SQLite
+  // (Step 1 migration) enforces deal_id as a foreign key on items,
+  // cost_schedule, deal_team, deal_config, hap_config, and lender_config,
+  // so registering the deal first isn't just tidy ordering, it's required -
+  // writing a child row for a deal_id that doesn't exist yet in `deals`
+  // fails the FK constraint.
+  const entry = { id: dealId, name, created_at: creationDate };
+  await writeDealsRegistry([...deals, entry]);
+
   const sourceItems = await readItems(TEMPLATE_SOURCE_DEAL_ID);
   const templatedItems = sourceItems.map((i) => templateItem(i, creationDate));
 
@@ -78,9 +87,6 @@ export async function createDealFromTemplate(name) {
   await writeDealConfig(dealId, dealConfig);
   await writeHapConfig(dealId, emptyHapConfig());
   await writeLenderConfig(dealId, emptyLenderConfig());
-
-  const entry = { id: dealId, name, created_at: creationDate };
-  await writeDealsRegistry([...deals, entry]);
 
   return entry;
 }

@@ -6,12 +6,14 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "import-workbook": "node scripts/import-workbook.js"
+    "import-workbook": "node scripts/import-workbook.js",
+    "migrate-json-to-sqlite": "node scripts/migrate-json-to-sqlite.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "better-sqlite3": "^12.11.1",
     "cors": "^2.8.6",
     "exceljs": "^4.4.0",
     "express": "^5.2.1"
