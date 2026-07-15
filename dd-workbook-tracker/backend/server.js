@@ -6,7 +6,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { randomUUID } from "crypto";
 import { login, logout, requireAuth } from "./auth.js";
-import { adminMigrateToPostgres } from "./adminMigrateRoute.js";
+import { adminMigrateToPostgres, adminMigrateToPostgresGet } from "./adminMigrateRoute.js";
 import {
   readDealsRegistry,
   dealExists,
@@ -74,11 +74,14 @@ app.post("/api/logout", logout);
 app.use("/api", requireAuth);
 app.get("/api/session", (req, res) => res.json({ ok: true }));
 
-// TEMPORARY — FOR ONE-TIME MIGRATION, DELETE AFTER USE. Outside the /api
-// prefix on purpose (its own X-Migration-Secret gate, independent of the
-// normal session cookie) - see adminMigrateRoute.js for the full removal
-// checklist once the production cutover is done.
+// TEMPORARY — FOR ONE-TIME MIGRATION, DELETE AFTER USE. Both routes are
+// outside the /api prefix on purpose - `app.use("/api", requireAuth)` above
+// is scoped to that prefix, so these were never covered by (and don't need
+// adding to) the normal session-cookie auth; each checks its own
+// MIGRATION_SECRET independently instead. See adminMigrateRoute.js for the
+// full removal checklist once the production cutover is done.
 app.post("/admin/migrate-to-postgres", adminMigrateToPostgres);
+app.get("/admin/migrate-to-postgres", adminMigrateToPostgresGet);
 
 async function requireDeal(req, res, next) {
   const { dealId } = req.params;

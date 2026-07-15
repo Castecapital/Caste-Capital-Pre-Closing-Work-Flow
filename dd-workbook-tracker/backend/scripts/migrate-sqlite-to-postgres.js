@@ -254,25 +254,30 @@ export async function runSqliteToPostgresMigration(sqlitePathArg) {
   return { sqlitePath, summary, allMatch };
 }
 
-function printSummary({ sqlitePath, summary, allMatch }) {
-  console.log(`Migrating ${sqlitePath} -> ${process.env.DATABASE_URL ?? "(local fallback Postgres)"}\n`);
-  console.log("Table            Source  Copied  Postgres total  Match?");
-  console.log("----------------------------------------------------------");
+// Plain-text rendering of a runSqliteToPostgresMigration() result, shared by
+// the CLI's console output and the admin HTTP routes' response body (see
+// adminMigrateRoute.js) so the two never drift out of sync.
+export function formatMigrationSummaryText({ sqlitePath, summary, allMatch }) {
+  const lines = [];
+  lines.push(`Migrating ${sqlitePath} -> ${process.env.DATABASE_URL ?? "(local fallback Postgres)"}`, "");
+  lines.push("Table            Source  Copied  Postgres total  Match?");
+  lines.push("----------------------------------------------------------");
   for (const row of summary) {
     const match = row.source === row.copied && row.copied <= row.destinationTotal;
-    console.log(
+    lines.push(
       `${row.table.padEnd(17)} ${String(row.source).padStart(6)}  ${String(row.copied).padStart(6)}  ${String(
         row.destinationTotal
       ).padStart(15)}  ${match ? "yes" : "NO - CHECK THIS"}`
     );
   }
-  console.log("----------------------------------------------------------");
-  console.log(allMatch ? "\nAll tables copied in full." : "\nSome tables did not fully copy - see above.");
+  lines.push("----------------------------------------------------------");
+  lines.push("", allMatch ? "All tables copied in full." : "Some tables did not fully copy - see above.");
+  return lines.join("\n");
 }
 
 async function main() {
   const result = await runSqliteToPostgresMigration(process.argv[2]);
-  printSummary(result);
+  console.log(formatMigrationSummaryText(result));
   await pool.end();
 }
 
