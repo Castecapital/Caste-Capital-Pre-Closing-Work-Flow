@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../lib/api";
 import StatusBadge from "../components/StatusBadge";
+import ExportCsvButton from "../components/ExportCsvButton";
 
 export default function HapChecklist() {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ export default function HapChecklist() {
           </h1>
           <p className="text-[15px] text-[#86868b] mt-1">{items.length} items across {bySection.length} sections</p>
         </div>
+        <ExportCsvButton sourceTab="HAP Assignment Checklist" />
       </div>
 
       <div className="space-y-8">

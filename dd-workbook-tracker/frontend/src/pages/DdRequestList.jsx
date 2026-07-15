@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../lib/api";
 import StatusBadge from "../components/StatusBadge";
+import ExportCsvButton from "../components/ExportCsvButton";
 
 const ALL = "All";
 
@@ -55,6 +56,7 @@ export default function DdRequestList({ sourceTab, title }) {
             {filtered.length} of {items.length} items
           </p>
         </div>
+        <ExportCsvButton sourceTab={sourceTab} />
       </div>
 
       <div className="flex flex-wrap items-end gap-3 mb-6">

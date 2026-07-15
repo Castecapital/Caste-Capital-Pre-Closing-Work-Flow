@@ -12,6 +12,7 @@ import DealTeam from "./pages/DealTeam";
 import DealSetup from "./pages/DealSetup";
 import HapInfo from "./pages/HapInfo";
 import LenderInfo from "./pages/LenderInfo";
+import Reports from "./pages/Reports";
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="deal-setup" element={<DealSetup />} />
           <Route path="hap-info" element={<HapInfo />} />
           <Route path="lender-info" element={<LenderInfo />} />
+          <Route path="reports" element={<Reports />} />
         </Route>
       </Routes>
     </BrowserRouter>

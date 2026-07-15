@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../lib/api";
 import StatusBadge from "../components/StatusBadge";
+import ExportCsvButton from "../components/ExportCsvButton";
 
 const ALL = "All";
 
@@ -58,6 +59,7 @@ export default function MasterDdTracker() {
             {filtered.length} of {items.length} items
           </p>
         </div>
+        <ExportCsvButton sourceTab="DD Full Checklist" />
       </div>
 
       <div className="flex flex-wrap items-end gap-3 mb-6">

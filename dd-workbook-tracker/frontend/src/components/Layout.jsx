@@ -14,6 +14,7 @@ const tabs = [
   { to: "/deal-setup", label: "Deal Setup" },
   { to: "/hap-info", label: "HAP Info" },
   { to: "/lender-info", label: "Lender Info" },
+  { to: "/reports", label: "Reports" },
 ];
 
 function navLinkClass({ isActive }) {

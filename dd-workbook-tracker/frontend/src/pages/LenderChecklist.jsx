@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../lib/api";
 import StatusBadge from "../components/StatusBadge";
+import ExportCsvButton from "../components/ExportCsvButton";
 
 export default function LenderChecklist() {
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ export default function LenderChecklist() {
             {items.length} items across {byGroup.length} groups
           </p>
         </div>
+        <ExportCsvButton sourceTab="Lender Checklist" />
       </div>
 
       <div className="space-y-8">

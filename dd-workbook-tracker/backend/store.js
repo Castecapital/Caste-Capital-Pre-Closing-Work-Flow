@@ -63,6 +63,18 @@ function costScheduleFile(dealId) {
   return path.join(dealDir(dealId), "cost_schedule.json");
 }
 
+function reportsDir(dealId) {
+  return path.join(dealDir(dealId), "reports");
+}
+
+function reportsIndexFile(dealId) {
+  return path.join(dealDir(dealId), "reports.json");
+}
+
+function reportFile(dealId, filename) {
+  return path.join(reportsDir(dealId), filename);
+}
+
 export async function readDealsRegistry() {
   return readJson(DEALS_REGISTRY_FILE, []);
 }
@@ -122,4 +134,27 @@ export async function readCostSchedule(dealId) {
 
 export async function writeCostSchedule(dealId, tasks) {
   return writeJson(costScheduleFile(dealId), tasks);
+}
+
+// Reports (Step 10) are saved permanently, not just handed to the browser
+// as a one-off download - the generated file lives in reports/<filename>
+// and an entry is appended to reports.json so the Reports page can list
+// and re-download anything generated in the past, not just the most recent
+// run.
+export async function readReportsIndex(dealId) {
+  return readJson(reportsIndexFile(dealId), []);
+}
+
+export async function saveReport(dealId, { id, type, label, filename, content, generatedAt }) {
+  await fs.mkdir(reportsDir(dealId), { recursive: true });
+  await fs.writeFile(reportFile(dealId, filename), content, "utf-8");
+
+  const index = await readReportsIndex(dealId);
+  const entry = { id, type, label, filename, generated_at: generatedAt };
+  await writeJson(reportsIndexFile(dealId), [entry, ...index]);
+  return entry;
+}
+
+export async function readReportContent(dealId, filename) {
+  return fs.readFile(reportFile(dealId, filename), "utf-8");
 }

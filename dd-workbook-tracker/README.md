@@ -9,18 +9,18 @@ for storage (no database).
 
 ## Status
 
-**All 6 per-tab imports plus the cross-tab Dashboard are built and working
-end-to-end**: shared workflow engine, Deal Team directory, Master DD
-Tracker, Internal/External DD Request Lists (with cross-tab link
-suggestions), HAP Assignment Checklist (grouped by section, with a HAP
-General Info panel), Lender Checklist (grouped by entity group, including
-the separate supplemental-requests list, with a Lender Info panel), Cost
-Schedule (its own module — a budget/Gantt tracker, not a document checklist
-— with a budget/spent/remaining rollup), a Dashboard home view, a dedicated
-Critical Path page, and a deal-switcher with "New Deal" cloning. The UI has
-an Apple-style visual design (SF-like type, muted neutrals with a single
-blue accent, translucent sticky two-row nav, rounded cards). Step 10
-(workflow automation, reporting) is not yet built.
+**All 10 steps of the original spec are built and working end-to-end**:
+shared workflow engine, Deal Team directory, Master DD Tracker,
+Internal/External DD Request Lists (with cross-tab link suggestions), HAP
+Assignment Checklist (grouped by section, with a HAP General Info panel),
+Lender Checklist (grouped by entity group, including the separate
+supplemental-requests list, with a Lender Info panel), Cost Schedule (its
+own module — a budget/Gantt tracker, not a document checklist — with a
+budget/spent/remaining rollup), a Dashboard home view, a dedicated Critical
+Path page, a deal-switcher with "New Deal" cloning, and a Reports page
+(Weekly Agenda + per-tab CSV export, all permanently saved per deal). The UI
+has an Apple-style visual design (SF-like type, muted neutrals with a
+single blue accent, translucent sticky two-row nav, rounded cards).
 
 **Dashboard** (`/`, the new home page — Master DD Tracker moved to
 `/master-dd-tracker`):
@@ -89,6 +89,37 @@ ever auto-linked. If a linked item isn't "Closed," a "Blocked by open
 dependencies" banner appears (Cost Schedule tasks, having no status, never
 trigger it) — this is technically Step 4/8 scope but fell out naturally
 from the linked-items model built for Step 3's suggestions.
+
+**Reports** (`/reports`) — and this is the important part: **every
+generated report is saved on the server, not just handed to the browser as
+a one-off download.** Each generation writes the file to
+`data/deals/<id>/reports/` and appends an entry to `reports.json`; the
+Reports page lists every report ever generated for the current deal with a
+"Download" link that re-serves the saved file, so nothing is lost the
+moment a browser download completes or a tab gets closed. Two report types:
+- **Generate Weekly Agenda**: every Open/At Risk item across all 5
+  checklist tabs (Cost Schedule is excluded — it has no status), grouped by
+  tab then by that tab's own taxonomy (category/department/section/entity
+  group), as Markdown with item #, title, responsible party, and latest
+  comment.
+- **Export to CSV**, per tab, matching each tab's real original spreadsheet
+  columns — including reconstructing the split-out CC Comment / Partner
+  Comment / DIV Comment / Notes columns from the normalized `comments[]`
+  array, since the source file had those as separate columns before import
+  folded them together. Available both centrally on the Reports page and as
+  an "Export to CSV" button directly on each tab's own list view (Master DD
+  Tracker, Internal/External DD List, HAP Checklist, Lender Checklist).
+  Deleted-status rows are excluded, matching the same show/hide convention
+  used everywhere else in the app.
+
+Verified via the actual UI with real downloads (not just the API): 205
+Open/At Risk items came through the agenda correctly grouped; a 144-row DD
+Full Checklist CSV and other tab exports downloaded with the right headers;
+every generated report appeared in the saved-reports list with a working
+re-download link, confirmed by fetching that exact link directly and
+checking the response headers and content. Also re-verified the change-log
+history section (built in Step 1) renders correctly on Internal DD List,
+Lender Checklist, and HAP items, not just the Master DD Tracker.
 
 ## Running locally
 
@@ -203,8 +234,7 @@ it couldn't confidently map) rather than silently guessing at them.
 
 ## Data layout
 
-Deal-scoped from the start (Step 9's multi-deal cloning needs this), even
-though only one deal exists today and there's no deal-switcher UI yet:
+Deal-scoped from the start (Step 9's multi-deal cloning needs this):
 
 ```
 backend/data/
@@ -218,6 +248,8 @@ backend/data/
       lender_config.json       # Lender Info (lender_name), nullable
       cost_schedule.json       # Cost Schedule tasks - separate module, not
                                 # a workflow item (no status/comments/tab)
+      reports.json             # index of every generated report
+      reports/                 # the actual saved .md / .csv files
 ```
 
 ## API
@@ -236,3 +268,7 @@ backend/data/
 - `GET /api/deals/:dealId/lender-config`, `PUT ...`
 - `GET /api/deals/:dealId/cost-schedule`
 - `GET /api/deals/:dealId/cost-schedule/:taskId`, `PUT ...`
+- `GET /api/deals/:dealId/reports` — the saved-reports index
+- `POST /api/deals/:dealId/reports/weekly-agenda` — generates, saves, and returns the Markdown content
+- `POST /api/deals/:dealId/reports/csv/:sourceTab` — generates, saves, and returns the CSV content
+- `GET /api/deals/:dealId/reports/:reportId/download` — re-serves a previously saved report with `Content-Disposition: attachment`

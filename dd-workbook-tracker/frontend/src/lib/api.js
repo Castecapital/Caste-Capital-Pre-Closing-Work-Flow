@@ -56,5 +56,11 @@ export const api = {
     request(`/deals/${dealId}/lender-config`, { method: "PUT", body: JSON.stringify(patch) }),
   getCostSchedule: (dealId = CURRENT_DEAL_ID) => request(`/deals/${dealId}/cost-schedule`),
   getCostTask: (taskId, dealId = CURRENT_DEAL_ID) => request(`/deals/${dealId}/cost-schedule/${taskId}`),
+  getReports: (dealId = CURRENT_DEAL_ID) => request(`/deals/${dealId}/reports`),
+  generateWeeklyAgenda: (dealId = CURRENT_DEAL_ID) =>
+    request(`/deals/${dealId}/reports/weekly-agenda`, { method: "POST" }),
+  generateCsv: (sourceTab, dealId = CURRENT_DEAL_ID) =>
+    request(`/deals/${dealId}/reports/csv/${encodeURIComponent(sourceTab)}`, { method: "POST" }),
+  reportDownloadUrl: (reportId, dealId = CURRENT_DEAL_ID) => `/api/deals/${dealId}/reports/${reportId}/download`,
   getMeta: () => request("/meta"),
 };

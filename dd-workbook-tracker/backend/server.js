@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import { randomUUID } from "crypto";
 import {
   readDealsRegistry,
   dealExists,
@@ -15,8 +16,12 @@ import {
   writeLenderConfig,
   readCostSchedule,
   writeCostSchedule,
+  readReportsIndex,
+  saveReport,
+  readReportContent,
 } from "./store.js";
 import { createDealFromTemplate } from "./dealTemplate.js";
+import { generateWeeklyAgenda, generateCsv, csvSourceTabs } from "./reports.js";
 import {
   validateItem,
   validateDdFullChecklistItem,
@@ -268,6 +273,70 @@ app.put("/api/deals/:dealId/cost-schedule/:taskId", requireDeal, async (req, res
   tasks[index] = { ...tasks[index], ...req.body, task_id: taskId };
   await writeCostSchedule(req.params.dealId, tasks);
   res.json(tasks[index]);
+});
+
+// Step 10: generated reports are saved to disk (not just handed to the
+// browser as a one-off download), so the team can come back and re-download
+// any past weekly agenda or CSV export instead of losing it the moment the
+// browser download completes.
+app.get("/api/deals/:dealId/reports", requireDeal, async (req, res) => {
+  const index = await readReportsIndex(req.params.dealId);
+  res.json(index);
+});
+
+app.post("/api/deals/:dealId/reports/weekly-agenda", requireDeal, async (req, res) => {
+  const dealId = req.params.dealId;
+  const [items, dealConfig] = await Promise.all([readItems(dealId), readDealConfig(dealId)]);
+  const content = generateWeeklyAgenda(items, dealConfig?.deal_name);
+
+  const generatedAt = new Date().toISOString();
+  const filename = `weekly-agenda-${generatedAt.slice(0, 19).replace(/[:T]/g, "-")}.md`;
+  const entry = await saveReport(dealId, {
+    id: randomUUID(),
+    type: "weekly-agenda",
+    label: "Weekly Agenda",
+    filename,
+    content,
+    generatedAt,
+  });
+
+  res.status(201).json({ ...entry, content });
+});
+
+app.post("/api/deals/:dealId/reports/csv/:sourceTab", requireDeal, async (req, res) => {
+  const dealId = req.params.dealId;
+  const sourceTab = decodeURIComponent(req.params.sourceTab);
+  if (!csvSourceTabs().includes(sourceTab)) {
+    return res.status(400).json({ error: `no CSV export defined for source_tab "${sourceTab}"` });
+  }
+
+  const items = await readItems(dealId);
+  const content = generateCsv(items, sourceTab);
+
+  const generatedAt = new Date().toISOString();
+  const slug = sourceTab.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const filename = `${slug}-${generatedAt.slice(0, 19).replace(/[:T]/g, "-")}.csv`;
+  const entry = await saveReport(dealId, {
+    id: randomUUID(),
+    type: "csv",
+    label: `${sourceTab} Export`,
+    filename,
+    content,
+    generatedAt,
+  });
+
+  res.status(201).json({ ...entry, content });
+});
+
+app.get("/api/deals/:dealId/reports/:reportId/download", requireDeal, async (req, res) => {
+  const index = await readReportsIndex(req.params.dealId);
+  const entry = index.find((r) => r.id === req.params.reportId);
+  if (!entry) return res.status(404).json({ error: "report not found" });
+
+  const content = await readReportContent(req.params.dealId, entry.filename);
+  res.setHeader("Content-Disposition", `attachment; filename="${entry.filename}"`);
+  res.setHeader("Content-Type", entry.type === "csv" ? "text/csv" : "text/markdown");
+  res.send(content);
 });
 
 registerConfigRoutes("deal-config", {
