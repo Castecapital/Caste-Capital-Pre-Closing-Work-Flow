@@ -144,11 +144,12 @@ The backend refuses to start without `APP_PASSWORD` set.
 
 ## Deploying
 
-See [`DEPLOYMENT.md`](./DEPLOYMENT.md) for a step-by-step Railway
-walkthrough (single service - the backend serves both the API and the
-built frontend from one origin), the persistent-volume requirement for
-the SQLite database (Railway doesn't provide this automatically), and
-production build/start commands.
+See [`DEPLOYMENT.md`](./DEPLOYMENT.md) for step-by-step Railway and Render
+walkthroughs (single service - the backend serves both the API and the
+built frontend from one origin), the persistent-volume/disk requirement
+for the SQLite database (neither platform provides this automatically -
+and Render's Free tier doesn't support it at all), and production
+build/start commands.
 
 ## Authentication
 
