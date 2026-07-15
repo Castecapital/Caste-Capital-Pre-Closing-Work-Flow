@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { api } from "../lib/api";
 import StatusBadge from "../components/StatusBadge";
 import { suggestLinks } from "../lib/similarity";
@@ -32,6 +32,7 @@ async function resolveLinkedEntity(id) {
 
 export default function ItemDetail() {
   const { itemId } = useParams();
+  const navigate = useNavigate();
   const [item, setItem] = useState(null);
   const [linkedItems, setLinkedItems] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
@@ -122,9 +123,12 @@ export default function ItemDetail() {
 
   return (
     <div className="max-w-3xl">
-      <Link to="/" className="text-[13px] text-[#0071e3] hover:underline">
+      <button
+        onClick={() => navigate(-1)}
+        className="text-[13px] text-[#0071e3] hover:underline"
+      >
         ← Back
-      </Link>
+      </button>
 
       <div className="flex items-start justify-between gap-4 mt-3 mb-1">
         <h1 className="text-[26px] font-semibold tracking-tight text-[#1d1d1f] dark:text-white">

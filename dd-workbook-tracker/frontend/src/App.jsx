@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
+import Dashboard from "./pages/Dashboard";
 import MasterDdTracker from "./pages/MasterDdTracker";
 import DdRequestList from "./pages/DdRequestList";
 import HapChecklist from "./pages/HapChecklist";
@@ -16,7 +17,8 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route index element={<MasterDdTracker />} />
+          <Route index element={<Dashboard />} />
+          <Route path="master-dd-tracker" element={<MasterDdTracker />} />
           <Route
             path="internal-dd-list"
             element={<DdRequestList sourceTab="Internal DD Request List" title="Internal DD Request List" />}

@@ -9,17 +9,34 @@ for storage (no database).
 
 ## Status
 
-**All 6 per-tab imports are built and working end-to-end**: shared workflow
-engine, Deal Team directory, Master DD Tracker, Internal/External DD Request
-Lists (with cross-tab link suggestions), HAP Assignment Checklist (grouped
-by section, with a HAP General Info panel), Lender Checklist (grouped by
-entity group, including the separate supplemental-requests list, with a
-Lender Info panel), and Cost Schedule (its own module — a budget/Gantt
-tracker, not a document checklist — with a budget/spent/remaining rollup).
-The UI has an Apple-style visual design (SF-like type, muted neutrals with a
+**All 6 per-tab imports plus the cross-tab Dashboard are built and working
+end-to-end**: shared workflow engine, Deal Team directory, Master DD
+Tracker, Internal/External DD Request Lists (with cross-tab link
+suggestions), HAP Assignment Checklist (grouped by section, with a HAP
+General Info panel), Lender Checklist (grouped by entity group, including
+the separate supplemental-requests list, with a Lender Info panel), Cost
+Schedule (its own module — a budget/Gantt tracker, not a document checklist
+— with a budget/spent/remaining rollup), and now a Dashboard home view. The
+UI has an Apple-style visual design (SF-like type, muted neutrals with a
 single blue accent, translucent sticky two-row nav, rounded cards). Steps
-7-10 (dashboard, dedicated dependency/critical-path view, deal cloning,
-workflow automation, reporting) are not yet built.
+8-10 (dedicated dependency/critical-path view, deal cloning, workflow
+automation, reporting) are not yet built.
+
+**Dashboard** (`/`, the new home page — Master DD Tracker moved to
+`/master-dd-tracker`):
+- Countdown tiles for LOI, PSA Execution, Projected HUD Approval, Projected
+  Closing, and Outside Closing Date — each hidden entirely when its
+  `deal_config` date is null, turning red under 30 days remaining (including
+  already-overdue dates, shown as "N over").
+- **Blocking Closing**: Master DD Tracker items that are Open/Blocked *and*
+  critical-path, plus anything (any tab, including Cost Schedule tasks)
+  linked to one of those items — so a Lender Checklist item linked to a
+  blocked critical DD item surfaces here too, not just the DD item itself.
+- **Stalled Items**: Open items (any tab) not updated in over 7 days,
+  oldest first. This runs purely off `last_updated`, never due dates, so it
+  works identically whether or not any deal dates are filled in.
+- **Workbook Summary**: an open/closed proportion bar per tab; Cost Schedule
+  shows a task count instead, since it has no status field to summarize.
 
 Every item (any tab) has a detail page at `/items/:itemId` — click any table
 row to get there. It shows all fields, comments (with add-comment), full

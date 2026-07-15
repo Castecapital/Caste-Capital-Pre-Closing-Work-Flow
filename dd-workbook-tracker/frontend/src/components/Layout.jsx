@@ -1,7 +1,8 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 const tabs = [
-  { to: "/", label: "Master DD Tracker", end: true },
+  { to: "/", label: "Dashboard", end: true },
+  { to: "/master-dd-tracker", label: "Master DD Tracker" },
   { to: "/internal-dd-list", label: "Internal DD List" },
   { to: "/external-dd-list", label: "External DD List" },
   { to: "/hap-checklist", label: "HAP Checklist" },
@@ -25,7 +26,9 @@ export default function Layout() {
     <div className="min-h-screen bg-[#f5f5f7] dark:bg-black text-[#1d1d1f] dark:text-white">
       <header className="sticky top-0 z-50 bg-black/80 backdrop-blur-xl backdrop-saturate-150 border-b border-white/10">
         <div className="mx-auto max-w-6xl px-6 h-11 flex items-center gap-3">
-          <span className="text-[15px] font-semibold text-white tracking-tight shrink-0">DD Workbook Tracker</span>
+          <Link to="/" className="text-[15px] font-semibold text-white tracking-tight shrink-0">
+            DD Workbook Tracker
+          </Link>
           <span className="hidden sm:inline text-[13px] text-white/40 shrink-0">RAP UP Portfolio, Roxbury, MA</span>
         </div>
         <div className="mx-auto max-w-6xl px-6 h-9 flex items-center border-t border-white/5">
