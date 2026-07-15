@@ -4,12 +4,16 @@ Internal tool for managing the Section 8 / HUD multifamily acquisition due
 diligence workbook, from PSA execution through closing. Built as a reusable
 template — no dates or deal-specific data are hardcoded into the app itself.
 
-Stack: React + Vite + Tailwind (frontend), Node/Express (backend), JSON files
-for storage (no database).
+Stack: React + Vite + Tailwind (frontend), Node/Express (backend), SQLite via
+better-sqlite3 for storage. Gated behind a single shared-password login (see
+[Authentication](#authentication) below).
 
 ## Status
 
-**All 10 steps of the original spec are built and working end-to-end**:
+**All 10 steps of the original spec are built and working end-to-end**,
+plus a follow-up infrastructure pass: storage migrated from JSON files to
+SQLite (deploy-safe with a persistent volume) and a shared-password login
+gate (see [Authentication](#authentication)):
 shared workflow engine, Deal Team directory, Master DD Tracker,
 Internal/External DD Request Lists (with cross-tab link suggestions), HAP
 Assignment Checklist (grouped by section, with a HAP General Info panel),
@@ -127,20 +131,52 @@ Lender Checklist, and HAP items, not just the Master DD Tracker.
 # backend
 cd backend
 npm install
-npm start          # http://localhost:3001
+cp .env.example .env   # then edit .env and set APP_PASSWORD - see Authentication below
+npm start               # http://localhost:3001
 
 # frontend (separate terminal)
 cd frontend
 npm install
-npm run dev         # http://localhost:5173, proxies /api to the backend
+npm run dev              # http://localhost:5173, proxies /api to the backend
 ```
+
+The backend refuses to start without `APP_PASSWORD` set.
+
+## Authentication
+
+The app is gated behind a single shared password for the whole team - not
+per-user accounts. This is intentionally lightweight, fine for an internal
+tool with a handful of users. If you later want per-person logins or an
+audit trail of who changed what, that's a bigger step up (real auth + a
+users table).
+
+- **`APP_PASSWORD`** (backend env var, required, never hardcoded/committed):
+  the one password everyone on the team uses to sign in. Set it in
+  `backend/.env` locally (copy `backend/.env.example` as a starting point);
+  when deploying, set it as a platform environment variable in your
+  host's dashboard/CLI (Render, Railway, etc.) rather than committing it
+  anywhere.
+- `POST /api/login` accepts `{ password }`, compares it to `APP_PASSWORD`
+  using a constant-time comparison, and on success sets an `HttpOnly`,
+  `SameSite=Lax` signed session cookie (`Secure` too, once `NODE_ENV` is
+  `production` and the app is served over HTTPS) good for 12 hours.
+- Every other `/api/*` route requires that cookie; the frontend shows a
+  login screen whenever it doesn't have a valid session, and a "Log Out"
+  button (top-right of the nav) calls `POST /api/logout` to clear it
+  server-side.
+- Nothing password- or session-related is ever written to
+  `localStorage`/`sessionStorage` - only the cookie holds session state.
+- **Rotate `APP_PASSWORD`** (change the env var and redeploy) if it's ever
+  shared outside the immediate team.
 
 ## Re-running the import
 
 The one-time import script (`backend/scripts/import-workbook.js`) parses
 `backend/scripts/source-data/RAP_UP_DD_Work_Log_Internal.xlsx` and seeds
-`backend/data/deals/deal-1/`. It's safe to re-run — it overwrites that deal's
-`items.json`, `deal_config.json`, and `deal_team.json` from scratch.
+deal-1 in the SQLite database (registering the deal itself first, then its
+items/config/team/cost-schedule tables). It's safe to re-run on a fresh
+database or an existing one — each table it touches is fully replaced, not
+appended to.
 
 ```bash
 cd backend
@@ -234,26 +270,39 @@ it couldn't confidently map) rather than silently guessing at them.
 
 ## Data layout
 
-Deal-scoped from the start (Step 9's multi-deal cloning needs this):
+Everything lives in one SQLite file (`backend/data/app.db` by default,
+configurable via `DATABASE_PATH`), deal-scoped via a `deal_id` foreign key
+(`ON DELETE CASCADE`) on every child table rather than separate files per
+deal - this is what Step 9's "New Deal" cloning and any future multi-deal
+feature key off of:
 
 ```
-backend/data/
-  deals.json                  # registry: [{id, name, created_at}]
-  deals/
-    deal-1/
-      items.json               # all workflow items, tagged by source_tab
-      deal_config.json         # deal_name + key dates, all nullable
-      deal_team.json           # role/organization/name roster
-      hap_config.json          # HAP General Info, all nullable
-      lender_config.json       # Lender Info (lender_name), nullable
-      cost_schedule.json       # Cost Schedule tasks - separate module, not
-                                # a workflow item (no status/comments/tab)
-      reports.json             # index of every generated report
-      reports/                 # the actual saved .md / .csv files
+deals            # registry: id, name, created_at
+items            # all workflow items, tagged by source_tab, deal_id FK
+deal_config      # deal_name + key dates, all nullable, deal_id is the PK
+deal_team        # role/organization/name roster, deal_id FK
+hap_config       # HAP General Info, all nullable, deal_id is the PK
+lender_config    # Lender Info (lender_name), nullable, deal_id is the PK
+cost_schedule    # Cost Schedule tasks - separate module, not a workflow
+                 # item (no status/comments/tab), deal_id FK
+reports          # every generated report, content included, deal_id FK
 ```
+
+**Deploying somewhere with an ephemeral filesystem** (Render, Railway, etc.):
+the SQLite file itself must sit on a persistent/mounted volume, or all deal
+data is lost on every redeploy/restart - see `DEPLOYMENT.md`.
+
+Schema lives in `backend/db.js`; all reads/writes go through `backend/store.js`.
+`backend/scripts/migrate-json-to-sqlite.js` is a one-time, re-runnable script
+for migrating an older JSON-file-based copy of this app's data into SQLite -
+not needed for a fresh setup, only relevant if you have pre-existing JSON
+data to carry over.
 
 ## API
 
+- `POST /api/login` — `{ password }`, sets the session cookie on success (no auth required to call this one)
+- `POST /api/logout` — clears the session cookie
+- `GET /api/session` — `{ ok: true }` if the session cookie is valid, `401` otherwise; everything below requires a valid session
 - `GET /api/deals`
 - `POST /api/deals` — `{ name }`, clones deal-1's checklist tabs as a blank template (see dealTemplate.js)
 - `GET /api/deals/:dealId/items?source_tab=...`

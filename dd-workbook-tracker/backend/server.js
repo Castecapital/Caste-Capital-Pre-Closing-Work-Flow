@@ -1,6 +1,9 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import { randomUUID } from "crypto";
+import { login, logout, requireAuth } from "./auth.js";
 import {
   readDealsRegistry,
   dealExists,
@@ -47,8 +50,26 @@ import {
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors());
+// Trusts the platform's TLS-terminating proxy (Render/Railway etc.) so
+// req.secure reflects the original request scheme, not the internal http
+// hop - required for the "secure" session cookie to actually get set.
+app.set("trust proxy", 1);
+
+// credentials: true + a reflected origin (rather than "*") is required for
+// the browser to send/accept the session cookie on cross-origin requests -
+// relevant once the frontend is deployed separately from the backend
+// (Step 3). Safe here because the app is gated by APP_PASSWORD regardless
+// of which origin the request came from.
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
+app.use(cookieParser());
+
+// Step 2: every /api route requires a valid session cookie except /login
+// (obtaining one) and /logout (clearing one).
+app.post("/api/login", login);
+app.post("/api/logout", logout);
+app.use("/api", requireAuth);
+app.get("/api/session", (req, res) => res.json({ ok: true }));
 
 async function requireDeal(req, res, next) {
   const { dealId } = req.params;

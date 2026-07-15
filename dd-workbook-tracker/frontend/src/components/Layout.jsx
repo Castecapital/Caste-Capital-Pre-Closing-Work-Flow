@@ -1,5 +1,6 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import DealSwitcher from "./DealSwitcher";
+import { auth } from "../lib/api";
 
 const tabs = [
   { to: "/", label: "Dashboard", end: true },
@@ -24,6 +25,11 @@ function navLinkClass({ isActive }) {
   ].join(" ");
 }
 
+async function handleLogout() {
+  await auth.logout().catch(() => {});
+  window.location.href = "/";
+}
+
 export default function Layout() {
   return (
     <div className="min-h-screen bg-[#f5f5f7] dark:bg-black text-[#1d1d1f] dark:text-white">
@@ -33,6 +39,12 @@ export default function Layout() {
             DD Workbook Tracker
           </Link>
           <DealSwitcher />
+          <button
+            onClick={handleLogout}
+            className="ml-auto shrink-0 text-[13px] text-white/60 hover:text-white transition-colors"
+          >
+            Log Out
+          </button>
         </div>
         <div className="mx-auto max-w-6xl px-6 h-9 flex items-center border-t border-white/5">
           <nav className="flex items-center gap-1 overflow-x-auto">

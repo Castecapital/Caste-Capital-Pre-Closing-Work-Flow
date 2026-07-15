@@ -1,5 +1,8 @@
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
+import Login from "./components/Login";
+import { auth } from "./lib/api";
 import Dashboard from "./pages/Dashboard";
 import MasterDdTracker from "./pages/MasterDdTracker";
 import CriticalPath from "./pages/CriticalPath";
@@ -15,6 +18,18 @@ import LenderInfo from "./pages/LenderInfo";
 import Reports from "./pages/Reports";
 
 export default function App() {
+  const [authenticated, setAuthenticated] = useState(null);
+
+  useEffect(() => {
+    auth
+      .checkSession()
+      .then(() => setAuthenticated(true))
+      .catch(() => setAuthenticated(false));
+  }, []);
+
+  if (authenticated === null) return null;
+  if (!authenticated) return <Login onSuccess={() => setAuthenticated(true)} />;
+
   return (
     <BrowserRouter>
       <Routes>

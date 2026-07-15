@@ -18,15 +18,29 @@ export function setCurrentDealId(dealId) {
 async function request(path, options) {
   const res = await fetch(`/api${path}`, {
     headers: { "Content-Type": "application/json" },
+    credentials: "include",
     ...options,
   });
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
-    throw new Error(body.error || body.errors?.join(", ") || `${res.status} ${res.statusText}`);
+    const message = body.error || body.errors?.join(", ") || `${res.status} ${res.statusText}`;
+    const err = new Error(message);
+    err.status = res.status;
+    throw err;
   }
   if (res.status === 204) return null;
   return res.json();
 }
+
+// Step 2: single shared-password gate. checkSession() is used at app
+// startup to decide whether to show the login screen - it hits a route
+// that's protected but has no side effects, so a 401 just means "not
+// logged in yet" rather than a real error.
+export const auth = {
+  login: (password) => request("/login", { method: "POST", body: JSON.stringify({ password }) }),
+  logout: () => request("/logout", { method: "POST" }),
+  checkSession: () => request("/session"),
+};
 
 export const api = {
   getDeals: () => request("/deals"),
