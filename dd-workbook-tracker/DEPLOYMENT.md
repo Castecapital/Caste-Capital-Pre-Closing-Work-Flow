@@ -110,6 +110,53 @@ is what the walkthroughs below cover.)
    routing survive a hard refresh), and confirm the session survives a
    reload.
 
+## Cutting over an existing SQLite deployment to Postgres
+
+If the app is **already live** on Render or Railway with real deal data on
+the old SQLite-on-disk setup, do this instead of a plain first deploy - it
+migrates the *live* database (with whatever edits the team has made since
+launch), not just re-seeds from the source workbook, and keeps the disk
+attached just long enough to read from it one last time:
+
+1. **Set `DATABASE_URL` first**, before deploying the new code - point it
+   at your already-provisioned Postgres instance (Render: its Internal
+   Database URL). Leave the existing `DATABASE_PATH` env var and disk/volume
+   in place for now; the new code doesn't read `DATABASE_PATH` anymore, but
+   the disk needs to stay attached so its SQLite file is still reachable
+   in the next step.
+2. **Deploy this code** (the branch/commit with the Postgres migration).
+   Watch the deploy log for the migrations applying
+   (`Applied migration: 001_init.sql`) and the server starting. At this
+   point Postgres has the right schema but is **empty** - the live app
+   will show zero deals until step 3 finishes. For a small internal team
+   this is usually a few minutes; give them a heads-up if the timing
+   matters.
+3. **Open a shell on the now-running service** (Render: the Shell tab;
+   Railway: `railway run` or the web shell) and run the data migration
+   against the disk's existing file:
+   ```bash
+   cd dd-workbook-tracker/backend  # if the shell doesn't already start there
+   npm run migrate-sqlite-to-postgres /data/app.db   # adjust to your actual disk mount path + DATABASE_PATH value
+   ```
+   Check your service's Disks/Volumes settings first if you're not sure of
+   the exact path - it's whatever `DATABASE_PATH` was set to before this
+   migration.
+4. **Confirm the summary** printed at the end shows every table's
+   Source/Copied/Postgres-total counts matching, ending in
+   "All tables copied in full." A row failing with a clear table/key in
+   the error is a known, expected failure mode (Postgres rejecting a
+   malformed value SQLite tolerated, e.g. an empty-string date) - fix the
+   offending value and re-run against a truncated Postgres database rather
+   than guessing.
+5. **Verify in the browser**: refresh the live app, confirm real deal data
+   now appears (not just the deal-1 template), spot-check a few items'
+   comments/history/status against what the team remembers being there,
+   and confirm login still works.
+6. **Only then**, detach/remove the now-unused disk (Settings → Disks) and
+   the `DATABASE_PATH` env var - the disk was serving as the source of
+   truth until step 3 confirmed the copy, so don't remove it earlier than
+   this even though the new code stopped reading it at step 2.
+
 ## Post-deploy checklist
 
 - [ ] Postgres instance provisioned (Railway plugin or Render Postgres)
