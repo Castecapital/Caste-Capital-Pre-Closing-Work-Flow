@@ -6,6 +6,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { randomUUID } from "crypto";
 import { login, logout, requireAuth } from "./auth.js";
+import { adminMigrateToPostgres } from "./adminMigrateRoute.js";
 import {
   readDealsRegistry,
   dealExists,
@@ -72,6 +73,12 @@ app.post("/api/login", login);
 app.post("/api/logout", logout);
 app.use("/api", requireAuth);
 app.get("/api/session", (req, res) => res.json({ ok: true }));
+
+// TEMPORARY — FOR ONE-TIME MIGRATION, DELETE AFTER USE. Outside the /api
+// prefix on purpose (its own X-Migration-Secret gate, independent of the
+// normal session cookie) - see adminMigrateRoute.js for the full removal
+// checklist once the production cutover is done.
+app.post("/admin/migrate-to-postgres", adminMigrateToPostgres);
 
 async function requireDeal(req, res, next) {
   const { dealId } = req.params;
