@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
+    "build": "cd ../frontend && npm install && npm run build",
     "import-workbook": "node scripts/import-workbook.js",
     "migrate-json-to-sqlite": "node scripts/migrate-json-to-sqlite.js"
   },

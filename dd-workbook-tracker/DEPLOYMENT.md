@@ -1,100 +1,97 @@
 # Deployment Checklist
 
-This app has two independently deployable pieces: a Node/Express backend
-(API + SQLite database) and a static React frontend built with Vite. This
-checklist assumes you're deploying to a platform like Render or Railway,
-but the same requirements apply anywhere.
+The recommended setup is a **single Railway service**: the Express backend
+serves both the `/api` routes and the built frontend as static files from
+one origin, so there's no CORS or cross-origin cookie configuration to get
+right. (The app also supports deploying the frontend and backend as two
+separate services if you ever want that - see the bottom of this doc - but
+single-service is simpler and is what these steps walk through.)
 
-## 1. Required environment variables (backend)
+## Railway walkthrough (single service)
 
-| Variable | Required | Notes |
-| --- | --- | --- |
-| `APP_PASSWORD` | **Yes** | The shared team password (Step 2 auth). The backend refuses to start without it. Set it as a platform env var in your host's dashboard/CLI - never commit it, never put it in a Dockerfile. |
-| `DATABASE_PATH` | No (but see below) | Absolute path to the SQLite file. Defaults to `backend/data/app.db` relative to the backend package. On platforms with an ephemeral filesystem, this **must** point inside your persistent volume's mount path (e.g. `/data/app.db`), or all deal data is lost on every redeploy/restart. |
-| `PORT` | No | Defaults to `3001`. Most platforms inject this automatically - just make sure your start command doesn't hardcode a different port. |
-| `NODE_ENV` | Recommended | Set to `production`. This makes the session cookie `Secure` (HTTPS-only) and is standard practice for Express in production. |
+1. **New Project → Deploy from GitHub repo** and pick
+   `castecapital/caste-capital-pre-closing-work-flow`.
+2. In the service's **Settings**:
+   - **Root Directory**: `dd-workbook-tracker/backend`
+   - **Build Command**: `npm install && npm run build` (the `build` script
+     builds the frontend into `frontend/dist` - see `backend/package.json`)
+   - **Start Command**: `npm start`
+3. **Add a Volume** to the service (Settings → Volumes → New Volume).
+   Mount it at `/data`. This is the step most likely to be missed and the
+   one most likely to cause silent data loss: Railway's default filesystem
+   is ephemeral, so without a volume the SQLite database is wiped on every
+   redeploy or restart. Railway does **not** attach one automatically - you
+   have to add it explicitly.
+4. **Set environment variables** (Settings → Variables):
+   | Variable | Value |
+   | --- | --- |
+   | `APP_PASSWORD` | Your chosen shared team password. The backend refuses to start without this. |
+   | `DATABASE_PATH` | `/data/app.db` (inside the volume you just mounted) |
+   | `NODE_ENV` | `production` |
 
-Required environment variables (frontend, build-time only):
+   `PORT` is injected automatically by Railway - don't set it yourself.
+5. **Deploy.** Railway builds and starts the service; watch the deploy log
+   for `dd-workbook-tracker backend listening on http://localhost:<port>`.
+6. **Generate a domain**: Settings → Networking → Generate Domain. This
+   gives you a `*.up.railway.app` URL serving the whole app (login screen,
+   API, everything).
+7. **Seed the database.** The volume starts empty - `Deploy → View Logs`
+   won't show any deal data yet. Run the import once against the deployed
+   instance, not your local machine:
+   - Open a shell against the running service (Railway CLI: `railway run
+     npm run import-workbook` from `dd-workbook-tracker/backend`, or
+     Railway's web shell), or
+   - If you already have deal data locally in JSON files from before the
+     SQLite migration, use `npm run migrate-json-to-sqlite` instead - see
+     the main README's "Data layout" section.
+8. **Verify**: visit the generated domain, confirm the login screen loads,
+   log in with `APP_PASSWORD`, confirm deal data appears, refresh on a
+   non-root route (e.g. Master DD Tracker) and confirm it still renders
+   (this exercises the catch-all route that lets client-side routing
+   survive a hard refresh), and confirm the session survives a reload.
 
-| Variable | Required | Notes |
-| --- | --- | --- |
-| `VITE_API_BASE_URL` | Only if frontend and backend are on different origins | e.g. `https://api.yourapp.com`. Leave unset if a reverse proxy serves both frontend and backend from the same origin. Baked into the build at `vite build` time - changing it requires a rebuild, not just a redeploy/restart. |
+## Post-deploy checklist
 
-## 2. Persistent volume for the SQLite database
-
-**This is the step most likely to be missed, and the one most likely to
-cause silent data loss.**
-
-Render and Railway (and most container-based platforms) give each deploy a
-**fresh, ephemeral filesystem** by default - anything written to disk
-during a running instance, including the SQLite file, disappears the
-moment the service restarts, redeploys, or scales. Neither platform mounts
-a persistent volume automatically; you must configure one explicitly:
-
-- **Render**: add a [Persistent Disk](https://render.com/docs/disks) to
-  the backend service, mount it at a path like `/data`, and set
-  `DATABASE_PATH=/data/app.db`.
-- **Railway**: attach a [Volume](https://docs.railway.com/reference/volumes)
-  to the backend service, mount it at a path like `/data`, and set
-  `DATABASE_PATH=/data/app.db`.
-- **Any other platform**: confirm it offers a persistent volume/disk
-  feature and that you've actually attached one to the service running the
-  backend - "the container has a filesystem" is not the same thing as "the
-  container has a *persistent* filesystem."
-
-After attaching the volume and setting `DATABASE_PATH`, seed it once via
-`npm run import-workbook` (or `npm run migrate-json-to-sqlite` if migrating
-existing data - see the main README) run against that deployed instance,
-not your local machine's database.
-
-## 3. Build & start commands
-
-**Backend** (runs the Express API + owns the SQLite file):
-
-```bash
-# build: none needed, it's plain Node
-npm install
-
-# start (production - not `npm run dev`, there is no dev script for the backend)
-npm start
-```
-
-**Frontend** (static assets, served separately from the backend):
-
-```bash
-npm install
-npm run build      # outputs static files to frontend/dist/ - NOT `npm run dev`
-```
-
-Serve `frontend/dist/` as static files from whatever your platform's static
-site / CDN feature is (Render Static Site, Railway's static serving,
-Vercel/Netlify, an Nginx container, etc.) - `npm run dev` starts a
-development server with hot-reload and is not meant for production traffic.
-
-If the frontend is deployed on a different origin than the backend, set
-`VITE_API_BASE_URL` to the backend's public URL **before** running
-`npm run build` (it's baked into the built JS, not read at runtime).
-
-## 4. Post-deploy checklist
-
-- [ ] `APP_PASSWORD` set on the backend service
-- [ ] Persistent volume attached to the backend service, mounted, and
-      `DATABASE_PATH` pointing inside it
-- [ ] `NODE_ENV=production` set on the backend service
-- [ ] Backend reachable and `GET /api/session` (with no cookie) returns
-      `401` rather than a 500 or connection error
-- [ ] Frontend built with the correct `VITE_API_BASE_URL` (if applicable)
-      and served as static files, not via `vite dev`/`vite preview`
-- [ ] Logging in with `APP_PASSWORD` from the deployed frontend works and
-      the session survives a page reload
-- [ ] Deal data seeded (import script or migration script run against the
+- [ ] Volume attached and mounted at `/data`
+- [ ] `DATABASE_PATH=/data/app.db` set
+- [ ] `APP_PASSWORD` set
+- [ ] `NODE_ENV=production` set
+- [ ] Domain generated and reachable
+- [ ] Login screen loads at `/`, and `GET /api/session` with no cookie
+      returns `401` rather than a 500 or connection error
+- [ ] Logging in works and the session survives a page reload
+- [ ] A hard refresh on a non-root route (e.g. `/master-dd-tracker`) still
+      renders the app, not a 404 or blank page
+- [ ] Deal data seeded (import or migration script run against the
       deployed database, not left empty)
 
-## 5. Rotating the password
+## Rotating the password
 
-If `APP_PASSWORD` is ever shared outside the immediate team - a screenshot,
-a forwarded email, a departing team member - **rotate it**: change the env
-var on the backend service and redeploy/restart. Existing sessions signed
-with the old password stop verifying immediately (the session cookie is
-HMAC-signed using `APP_PASSWORD` itself), so everyone is logged out and
-must sign in again with the new password.
+If `APP_PASSWORD` is ever shared outside the immediate team - a
+screenshot, a forwarded email, a departing team member - **rotate it**:
+change the env var in Railway and redeploy/restart. Existing sessions
+signed with the old password stop verifying immediately (the session
+cookie is HMAC-signed using `APP_PASSWORD` itself), so everyone is logged
+out and must sign in again with the new password.
+
+## Alternative: separate frontend/backend services
+
+The app also supports deploying the frontend and backend as two
+independent services (e.g. if you want to scale or redeploy them
+separately, or put the frontend on a CDN-backed static host). This needs
+extra configuration the single-service setup above avoids entirely:
+
+- Deploy `dd-workbook-tracker/backend` as its own service. Skip its
+  `build` script (nothing to build) - Build Command: `npm install`,
+  Start Command: `npm start`. Same `APP_PASSWORD`/`DATABASE_PATH`/
+  `NODE_ENV`/volume requirements as above.
+- Deploy `dd-workbook-tracker/frontend` as a static site. Build Command:
+  `npm install && npm run build`, publish directory: `dist`. Before
+  building, set `VITE_API_BASE_URL` to the backend service's public URL
+  (e.g. `https://api-production.up.railway.app`) - it's baked into the
+  JS bundle at build time, so changing it later requires a rebuild, not
+  just a redeploy.
+- The backend's CORS is already configured to reflect the request origin
+  with credentials enabled (`server.js`), so the session cookie will flow
+  correctly across the two origins once `VITE_API_BASE_URL` is set - no
+  further backend changes needed.

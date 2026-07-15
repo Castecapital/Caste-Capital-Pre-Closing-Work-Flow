@@ -2,6 +2,8 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import path from "path";
+import { fileURLToPath } from "url";
 import { randomUUID } from "crypto";
 import { login, logout, requireAuth } from "./auth.js";
 import {
@@ -400,6 +402,21 @@ app.put("/api/deals/:dealId/deal-team", requireDeal, async (req, res) => {
   if (!Array.isArray(req.body)) return res.status(400).json({ error: "body must be an array of {role, organization, name}" });
   await writeDealTeam(req.params.dealId, req.body);
   res.json(req.body);
+});
+
+// Single-service production deploy (e.g. Railway): this backend also
+// serves the frontend's built static assets, so the whole app is one
+// origin with no CORS/VITE_API_BASE_URL config needed. `npm run build`
+// (see package.json) builds ../frontend into frontend/dist before this
+// starts. Mounted after every /api route so an unmatched /api/* path
+// still 404s as JSON instead of falling through to index.html. The
+// catch-all is a RegExp (not a "*" string) because Express 5's
+// path-to-regexp no longer accepts a bare wildcard string.
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const FRONTEND_DIST = path.join(__dirname, "..", "frontend", "dist");
+app.use(express.static(FRONTEND_DIST));
+app.get(/^(?!\/api\/).*/, (req, res) => {
+  res.sendFile(path.join(FRONTEND_DIST, "index.html"));
 });
 
 app.listen(PORT, () => {
